@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jongan69 — builder, hacker, shipwright</title>
+<meta name="description" content="Miami-based software engineer. I build AI tools, mobile apps, camera hacks, and whatever else needs to exist.">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:title" content="Jongan69">
+<meta property="og:description" content="Builder. Hacker. Shipwright. Miami Beach.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#faf9f7;
+    --surface:#ffffff;
+    --surface-elevated:#f5f3f0;
+    --text:#1a1a1a;
+    --text-secondary:#5c5c5c;
+    --text-muted:#8c8c8c;
+    --accent:#6366f1;
+    --accent-2:#a855f7;
+    --accent-3:#06b6d4;
+    --accent-soft:#e0e7ff;
+    --accent-glow:rgba(99,102,241,0.15);
+    --border:rgba(0,0,0,0.06);
+    --border-strong:rgba(0,0,0,0.1);
+    --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md:0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg:0 12px 40px rgba(0,0,0,0.08);
+    --radius:12px;
+    --radius-lg:20px;
+    --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+    --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-mono:'JetBrains Mono','SF Mono',monospace;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{
+      --bg:#0a0a0b;
+      --surface:#121214;
+      --surface-elevated:#1a1a1d;
+      --text:#f0f0f0;
+      --text-secondary:#b0b0b0;
+      --text-muted:#6b6b6b;
+      --accent:#818cf8;
+      --accent-2:#c084fc;
+      --accent-3:#22d3ee;
+      --accent-soft:#1e1b4b;
+      --accent-glow:rgba(129,140,248,0.12);
+      --border:rgba(255,255,255,0.06);
+      --border-strong:rgba(255,255,255,0.1);
+      --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md:0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg:0 12px 40px rgba(0,0,0,0.5);
+    }
+  }
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-padding-top:40px}
+  body{
+    font-family:var(--font-sans);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:16px;
+    overflow-x:hidden;
+    transition:color var(--transition),background var(--transition);
+  }
+  .bg-geometry{
+    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  }
+  .bg-geometry .orb{
+    position:absolute;border-radius:50%;filter:blur(90px);opacity:0.45;
+    animation:orb-float 24s ease-in-out infinite;
+  }
+  .bg-geometry .orb:nth-child(1){
+    width:700px;height:700px;
+    background:var(--accent-glow);
+    top:-250px;right:-150px;
+  }
+  .bg-geometry .orb:nth-child(2){
+    width:500px;height:500px;
+    background:rgba(168,85,247,0.08);
+    bottom:-200px;left:-150px;
+    animation-delay:-8s;animation-duration:28s;
+  }
+  .bg-geometry .orb:nth-child(3){
+    width:350px;height:350px;
+    background:rgba(6,182,212,0.06);
+    top:50%;left:55%;
+    animation-delay:-16s;animation-duration:20s;
+  }
+  @keyframes orb-float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    25%{transform:translate(50px,-40px) scale(1.1)}
+    50%{transform:translate(-30px,25px) scale(0.92)}
+    75%{transform:translate(-40px,-15px) scale(1.06)}
+  }
+  .bg-grid{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(var(--border) 1px,transparent 1px),
+      linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,black 25%,transparent 75%);
+    opacity:0.4;
+  }
+  .container{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px}
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:16px 0;
+    transition:background var(--transition),box-shadow var(--transition);
+  }
+  .nav.scrolled{
+    background:rgba(255,255,255,0.85);
+    box-shadow:0 1px 0 var(--border);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  }
+  @media(prefers-color-scheme:dark){.nav.scrolled{background:rgba(18,18,20,0.85)}}
+  .nav .container{display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{
+    font-family:var(--font-mono);font-size:16px;font-weight:600;
+    color:var(--text);text-decoration:none;letter-spacing:-0.02em;
+    transition:opacity 0.2s;
+  }
+  .nav-logo:hover{opacity:0.6}
+  .nav-logo .accent{color:var(--accent)}
+  .nav-links{display:flex;gap:24px;list-style:none}
+  .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}
+  .nav-links a:hover{color:var(--text)}
+  .hero{position:relative;z-index:1;padding:160px 0 80px;text-align:center}
+  .hero-avatar{
+    width:88px;height:88px;border-radius:50%;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:36px;margin-bottom:28px;
+    animation:fade-up 0.8s ease both;
+    box-shadow:0 0 0 6px var(--bg),0 0 0 8px var(--border),0 8px 32px var(--accent-glow);
+    user-select:none;
+  }
+  .hero h1{
+    font-size:clamp(40px,7vw,68px);font-weight:800;letter-spacing:-0.03em;
+    line-height:1.08;margin-bottom:16px;
+    animation:fade-up 0.8s 0.1s ease both;
+    background:linear-gradient(135deg,var(--text) 0%,var(--text-secondary) 55%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .hero .tagline{
+    font-size:19px;color:var(--text-secondary);font-weight:400;
+    max-width:520px;margin:0 auto 12px;
+    animation:fade-up 0.8s 0.2s ease both;line-height:1.55;
+  }
+  .hero .location{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:15px;color:var(--text-muted);font-weight:450;
+    animation:fade-up 0.8s 0.25s ease both;
+  }
+  .hero .location .dot{
+    width:7px;height:7px;border-radius:50%;background:#22c55e;
+    animation:pulse-dot 2s ease-in-out infinite;
+    box-shadow:0 0 8px rgba(34,197,94,0.4);
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:0.4;transform:scale(0.7)}
+  }
+  @keyframes fade-up{
+    from{opacity:0;transform:translateY(24px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .hero-stats{
+    display:flex;justify-content:center;gap:32px;margin-top:36px;
+    animation:fade-up 0.8s 0.3s ease both;
+  }
+  .hero-stat{text-align:center}
+  .hero-stat .num{
+    font-size:32px;font-weight:700;font-family:var(--font-mono);
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  }
+  .hero-stat .lbl{font-size:13px;color:var(--text-muted);font-weight:500;margin-top:2px}
+
+  .section{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:var(--radius-lg);padding:44px 48px;margin-bottom:20px;
+    box-shadow:var(--shadow-sm);
+    transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease,background var(--transition);
+    position:relative;overflow:hidden;
+  }
+  .section::before{
+    content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.5s ease;pointer-events:none;
+    background:radial-gradient(700px circle at var(--mouse-x,50%) var(--mouse-y,50%),var(--accent-glow),transparent 55%);
+  }
+  .section:hover::before{opacity:1}
+  .section:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong)}
+  .section.reveal{animation:reveal-section 0.7s ease both}
+  @keyframes reveal-section{
+    from{opacity:0;transform:translateY(24px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+  .section-label{
+    font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:0.1em;color:var(--accent);margin-bottom:8px;
+  }
+  .section h2{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px;color:var(--text)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
+  .project-card{
+    background:var(--surface-elevated);border:1px solid var(--border);
+    border-radius:var(--radius);padding:24px;
+    transition:all 0.3s ease;text-decoration:none;color:inherit;
+    display:flex;flex-direction:column;position:relative;overflow:hidden;
+  }
+  .project-card:hover{
+    border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-2px);
+  }
+  .project-card .lang{
+    font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent);
+    text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;
+  }
+  .project-card h3{font-size:17px;font-weight:650;margin-bottom:8px;color:var(--text);letter-spacing:-0.01em}
+  .project-card p{font-size:14px;color:var(--text-secondary);line-height:1.55;flex-grow:1}
+  .project-card .star{
+    display:inline-flex;align-items:center;gap:5px;font-size:13px;
+    color:var(--text-muted);margin-top:12px;font-weight:500;
+  }
+  .stack-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+  .stack-tag{
+    font-family:var(--font-mono);font-size:13px;font-weight:500;
+    padding:7px 16px;border-radius:100px;
+    background:var(--surface-elevated);border:1px solid var(--border);
+    color:var(--text-secondary);transition:all 0.25s ease;white-space:nowrap;cursor:default;
+  }
+  .stack-tag:hover{
+    border-color:var(--accent);color:var(--accent);
+    background:var(--accent-soft);transform:translateY(-1px);
+    box-shadow:0 4px 12px var(--accent-glow);
+  }
+  .links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+  .link-btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-size:15px;font-weight:550;padding:12px 22px;border-radius:100px;
+    text-decoration:none;transition:all 0.25s ease;
+    border:1.5px solid var(--border-strong);
+    background:var(--surface-elevated);color:var(--text-secondary);
+  }
+  .link-btn:hover{
+    border-color:var(--accent);color:var(--accent);
+    background:var(--accent-soft);transform:translateY(-2px);
+    box-shadow:0 6px 20px var(--accent-glow);
+  }
+  .link-btn .icon{font-size:18px}
+  .footer{
+    position:relative;z-index:1;text-align:center;
+    padding:48px 0 60px;color:var(--text-muted);font-size:14px;
+    border-top:1px solid var(--border);
+  }
+  .footer .heart{color:var(--accent-2);animation:pulse-dot 1.5s ease-in-out infinite;display:inline-block}
+  @media(max-width:700px){
+    .hero{padding:120px 0 56px}
+    .hero h1{font-size:36px}
+    .hero .tagline{font-size:17px}
+    .section{padding:32px 22px;border-radius:var(--radius)}
+    .section h2{font-size:22px}
+    .hero-stats{gap:20px}
+    .hero-stat .num{font-size:24px}
+    .projects-grid{grid-template-columns:1fr}
+    .nav-links{gap:16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-geometry">
+  <div class="orb"></div>
+  <div class="orb"></div>
+  <div class="orb"></div>
+</div>
+<div class="bg-grid"></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="#" class="nav-logo"><span class="accent">~/</span>jongan69</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#links">Links</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-avatar">🛠️</div>
+    <h1>Hey, I'm Jong.</h1>
+    <p class="tagline">I build things at the intersection of <strong>AI</strong>, <strong>cameras</strong>, and <strong>mobile</strong>. If it involves a lens, a model, or a shipping deadline — I'm on it.</p>
+    <div class="location">
+      <span class="dot"></span>
+      Miami Beach, Florida
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">19</div>
+        <div class="lbl">Public Repos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">302</div>
+        <div class="lbl">Followers</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">8+</div>
+        <div class="lbl">Years Building</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <article class="section reveal" id="work">
+    <div class="section-label">Featured</div>
+    <h2>What I've shipped</h2>
+    <div class="projects-grid">
+      <a class="project-card" href="https://github.com/jongan69/ListingOS" target="_blank" rel="noopener">
+        <div class="lang">TypeScript</div>
+        <h3>ListingOS</h3>
+        <p>Camera-first AI listing machine for eBay sellers — Expo, GPT, Cloudflare, eBay APIs.</p>
+        <span class="star">⭐ 1</span>
+      </a>
+      <a class="project-card" href="https://github.com/jongan69/expo-sony-camera" target="_blank" rel="noopener">
+        <div class="lang">Kotlin</div>
+        <h3>Expo Sony Camera</h3>
+        <p>Expo native module for Sony camera live view and remote capture. Most popular repo.</p>
+        <span class="star">⭐ 12</span>
+      </a>
+      <a class="project-card" href="https://github.com/jongan69/ClipCaptionAI" target="_blank" rel="noopener">
+        <div class="lang">JavaScript</div>
+        <h3>ClipCaptionAI</h3>
+        <p>AI video editing toolkit: YouTube shorts, TikTok captions, viral clip finding, Remotion workflows.</p>
+        <span class="star">⭐ 2</span>
+      </a>
+      <a class="project-card" href="https://github.com/jongan69/YouTubeResearchAI" target="_blank" rel="noopener">
+        <div class="lang">JavaScript</div>
+        <h3>YouTubeResearchAI</h3>
+        <p>Local-first AI learning tool — transcripts → timestamped notes → deep research reports.</p>
+        <span class="star">⭐ 0</span>
+      </a>
+      <a class="project-card" href="https://github.com/jongan69/odysseus" target="_blank" rel="noopener">
+        <div class="lang">Python</div>
+        <h3>Odysseus</h3>
+        <p>Self-hosted AI workspace. Your models, your data, your rules.</p>
+        <span class="star">⭐ 1</span>
+      </a>
+      <a class="project-card" href="https://github.com/jongan69/shopping-deals-mcp-server" target="_blank" rel="noopener">
+        <div class="lang">TypeScript</div>
+        <h3>Shopping Deals MCP</h3>
+        <p>MCP server for cheapest deals across eBay, Amazon, Craigslist, OfferUp, Facebook Marketplace.</p>
+        <span class="star">⭐ 0</span>
+      </a>
+    </div>
+  </article>
+
+  <article class="section reveal" id="stack">
+    <div class="section-label">Toolbox</div>
+    <h2>What I work with</h2>
+    <div class="stack-cloud">
+      <span class="stack-tag">TypeScript</span>
+      <span class="stack-tag">React / Next.js</span>
+      <span class="stack-tag">Expo / React Native</span>
+      <span class="stack-tag">Kotlin</span>
+      <span class="stack-tag">Swift</span>
+      <span class="stack-tag">Python</span>
+      <span class="stack-tag">Node.js</span>
+      <span class="stack-tag">Cloudflare Workers</span>
+      <span class="stack-tag">GPT / Claude API</span>
+      <span class="stack-tag">Postgres / SQLite</span>
+      <span class="stack-tag">Docker</span>
+      <span class="stack-tag">Firebase / Supabase</span>
+      <span class="stack-tag">Tailwind CSS</span>
+      <span class="stack-tag">eBay / Amazon APIs</span>
+      <span class="stack-tag">MCP Servers</span>
+      <span class="stack-tag">Convex</span>
+      <span class="stack-tag">Remotion</span>
+      <span class="stack-tag">FFmpeg</span>
+    </div>
+  </article>
+
+  <article class="section reveal" id="links">
+    <div class="section-label">Connect</div>
+    <h2>Find me around the internet</h2>
+    <div class="links-row">
+      <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
+        <span class="icon">🐙</span> GitHub
+      </a>
+      <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
+        <span class="icon">💼</span> LinkedIn
+      </a>
+      <a class="link-btn" href="https://jongan69.github.io/privacy-policy/" target="_blank" rel="noopener">
+        <span class="icon">🔒</span> Privacy Policy
+      </a>
+      <a class="link-btn" href="mailto:jonathangan@hey.com">
+        <span class="icon">📬</span> Email
+      </a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <p>Built with <span class="heart">♥</span> in Miami Beach &nbsp;·&nbsp; © 2026 Jong</p>
+  </div>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+const updateNav=()=>nav.classList.toggle('scrolled',window.scrollY>20);
+window.addEventListener('scroll',updateNav,{passive:true});updateNav();
+
+document.querySelectorAll('.section.reveal').forEach((el,i)=>{
+  el.style.animationPlayState='paused';
+  el.addEventListener('animationend',()=>el.style.animationPlayState='running');
+});
+const reveal=()=>{
+  document.querySelectorAll('.section.reveal').forEach((el,i)=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60){
+      el.style.animationDelay=`${i*0.08}s`;
+      el.style.animationPlayState='running';
+    }
+  });
+};
+window.addEventListener('load',reveal);
+window.addEventListener('scroll',reveal,{passive:true});
+
+document.querySelectorAll('.section').forEach(s=>{
+  s.addEventListener('mousemove',e=>{
+    const r=s.getBoundingClientRect();
+    s.style.setProperty('--mouse-x',`${((e.clientX-r.left)/r.width)*100}%`);
+    s.style.setProperty('--mouse-y',`${((e.clientY-r.top)/r.height)*100}%`);
+  });
+});
+
+document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    const t=document.querySelector(this.getAttribute('href'));
+    if(!t)return;
+    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>
