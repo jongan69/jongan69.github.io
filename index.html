@@ -168,7 +168,7 @@
     {
       "@type": "SoftwareApplication",
       "name": "PushUp Timer Pro",
-      "url": "https://apps.apple.com/us/app/pushup-timer-pro/id1477282248",
+      "url": "https://apps.apple.com/us/app/pushup-timer-pro/id1664672788",
       "applicationCategory": "HealthAndFitnessApplication",
       "description": "Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit integration"
     },
@@ -188,7 +188,7 @@
     {
       "@type": "CreativeWork",
       "name": "OpenDating Mobile",
-      "url": "https://jongan.com/opendating-mobile/"
+      "url": "https://jongan.com/opendating-mobile/",
       "description": "Privacy-first decentralized dating app on Nostr with Tinder-quality UX and end-to-end encrypted messaging"
     }
   ]
@@ -671,6 +671,83 @@
       font-weight: 500;
     }
 
+    .project-card.featured {
+      grid-column: 1 / -1;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      align-items: stretch;
+    }
+
+    .project-card.featured .shot {
+      width: 100%;
+      height: 100%;
+      min-height: 280px;
+      object-fit: cover;
+      border-right: 1px solid var(--border);
+    }
+
+    .project-card.featured .shot.contain {
+      object-fit: contain;
+      background: var(--surface-elevated);
+      padding: 16px;
+    }
+
+    .project-card.featured .body {
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card.featured .bullets {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin: 14px 0 2px;
+      padding: 0;
+    }
+
+    .project-card.featured .bullets li {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .project-card.featured .bullets li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .project-card.featured .flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0 2px;
+    }
+
+    .project-card.featured .flow-node {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .project-card.featured .flow-arrow {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
     .stack-cloud {
       display: flex;
       flex-wrap: wrap;
@@ -799,6 +876,24 @@
       .nav-links {
         gap: 16px
       }
+
+      .nav-links li:not(.keep) {
+        display: none
+      }
+
+      .project-card.featured {
+        grid-template-columns: 1fr
+      }
+
+      .project-card.featured .shot {
+        min-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid var(--border)
+      }
+
+      .project-card.featured .body {
+        padding: 20px 22px
+      }
     }
   </style>
 </head>
@@ -818,9 +913,10 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#work">Work</a></li>
+        <li class="keep"><a href="#work">Work</a></li>
         <li><a href="#stack">Stack</a></li>
-        <li><a href="#links">Links</a></li>
+        <li class="keep"><a href="Jonathan-Gan-Resume.pdf" download>Résumé</a></li>
+        <li class="keep"><a href="#links">Contact</a></li>
       </ul>
     </div>
   </nav>
@@ -841,9 +937,7 @@
         Miami Beach, Florida
       </div>
       <div class="links-row" style="justify-content:center; margin-top:22px;">
-        <a class="link-btn"
-          href="https://docs.google.com/document/d/1cXa2aDfjhd4lCQxdDmIcI7zv9OMc4aYu/edit?usp=sharing&ouid=100083907697199875924&rtpof=true&sd=true"
-          target="_blank" rel="noopener">
+        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>
           <span class="icon">📄</span> Download Résumé
         </a>
       </div>
@@ -867,19 +961,13 @@
   <main class="container">
     <article class="section reveal" id="about">
       <div class="section-label">About</div>
-      <h2>React Native & mobile engineer building AI, camera, healthcare, fintech, and production-ready apps.</h2>
-      <p>Jonathan Gan is a <strong>Miami-based software engineer</strong>, <strong>React Native developer</strong>,
-        <strong>mobile app developer</strong>, and <strong>AI app engineer</strong> with 7+ years of experience and 5+
-        years shipping production React Native systems. He specializes in <strong>iOS app development</strong>,
-        <strong>Android app development</strong>, <strong>watchOS app development</strong>, <strong>native Swift and
-          Kotlin modules</strong>, <strong>on-device AI</strong>, and <strong>camera and hardware integrations</strong>
-        for fintech, healthcare, and media products.</p>
-      <p>His work spans end-to-end mobile delivery, from architecture and implementation to <strong>App Store release
-          engineering</strong>, <strong>CI/CD</strong>, <strong>secure authentication</strong>, <strong>offline-first
-          workflows</strong>, and post-launch iteration. Jonathan has built and published multiple production apps,
-        open-source modules, and AI-driven mobile tools that combine polished UX with deeply technical systems work for
-        <strong>AI startups</strong>, <strong>mobile product teams</strong>, and <strong>consumer technology
-          companies</strong>.</p>
+      <h2>Mobile engineer building AI-powered, hardware-aware apps — from concept to App Store.</h2>
+      <p>I'm a Miami Beach–based mobile engineer with 7+ years in software and 5+ shipping production React Native
+        systems across iOS, Android, and watchOS. I build apps around on-device AI, camera and hardware integrations,
+        and offline-first architectures for fintech, healthcare, and consumer products.</p>
+      <p>I own delivery end to end — architecture, native Swift and Kotlin modules, CI/CD, App Store release
+        engineering, and post-launch iteration — and I've published apps, open-source modules, and AI tools along the
+        way.</p>
       <div class="stack-cloud">
         <span class="stack-tag">React Native</span>
         <span class="stack-tag">Expo</span>
@@ -934,30 +1022,68 @@
       <div class="section-label">Featured</div>
       <h2>Shipped products, open source, and published work</h2>
       <div class="projects-grid" id="github-projects">
+        <a class="project-card featured" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank"
+          rel="noopener">
+          <div class="body">
+            <div class="lang">TypeScript</div>
+            <h3>Expo Sony Camera</h3>
+            <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
+              leaving Expo. Published MIT module with community traction.</p>
+            <div class="flow" aria-hidden="true">
+              <span class="flow-node">React Native UI</span>
+              <span class="flow-arrow">→</span>
+              <span class="flow-node">Expo native module</span>
+              <span class="flow-arrow">→</span>
+              <span class="flow-node">Kotlin / Swift + PTP</span>
+              <span class="flow-arrow">→</span>
+              <span class="flow-node">Sony camera</span>
+            </div>
+            <ul class="bullets">
+              <li>Author and maintainer of a cross-platform native module (Kotlin + Swift bridge)</li>
+              <li>Live view and remote capture over PTP with structured error handling</li>
+              <li>Published on npm with developer documentation</li>
+            </ul>
+            <span class="star">📦 NPM Package</span>
+          </div>
+        </a>
+        <a class="project-card featured" href="https://reelagree.com" target="_blank" rel="noopener">
+          <img class="shot" src="case-studies/reelagree-home.png"
+            alt="ReelAgree — private group movie voting interface" loading="lazy">
+          <div class="body">
+            <div class="lang">TypeScript</div>
+            <h3>ReelAgree</h3>
+            <p>Movie-night planning with blind group voting — everyone picks privately, then the server reveals
+              consensus. No spoiled endings, no vetoed suggestions.</p>
+            <ul class="bullets">
+              <li>Blind votes stay hidden until every member has voted</li>
+              <li>Server-authoritative consensus flow, immune to client-side tampering</li>
+              <li>One codebase shipping to public web, iOS, and Android</li>
+            </ul>
+            <span class="star">🎬 Group movie planning</span>
+          </div>
+        </a>
+        <a class="project-card featured" href="https://prepaihq.com" target="_blank" rel="noopener">
+          <img class="shot contain" src="case-studies/prepai-home.png"
+            alt="PrepAI — private health intelligence home screen" loading="lazy">
+          <div class="body">
+            <div class="lang">TypeScript</div>
+            <h3>PrepAI</h3>
+            <p>A private health intelligence app — all AI runs on-device. No account, no cloud, no data leaving your
+              phone.</p>
+            <ul class="bullets">
+              <li>On-device inference with clinical knowledge logic</li>
+              <li>HealthKit ingestion and local-only storage</li>
+              <li>Fully functional offline; App Store submission in review</li>
+            </ul>
+            <span class="star">🧠 AI health app</span>
+          </div>
+        </a>
         <a class="project-card" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
           rel="noopener">
           <div class="lang">watchOS</div>
           <h3>PushUp Timer Pro</h3>
           <p>Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit integration, and production release engineering.</p>
           <span class="star">⏱️ Live on App Store</span>
-        </a>
-        <a class="project-card" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank" rel="noopener">
-          <div class="lang">TypeScript</div>
-          <h3>Expo Sony Camera</h3>
-          <p>Published NPM package bringing Sony camera control to React Native and Expo apps—live view, remote capture, and robust error handling across platforms.</p>
-          <span class="star">📦 NPM Package</span>
-        </a>
-        <a class="project-card" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <div class="lang">TypeScript</div>
-          <h3>PrepAI</h3>
-          <p>Private, offline health intelligence app with on-device AI and clinical knowledge logic for iPhone-based personal fitness workflows.</p>
-          <span class="star">🧠 AI health app</span>
-        </a>
-        <a class="project-card" href="https://reelagree.com" target="_blank" rel="noopener">
-          <div class="lang">TypeScript</div>
-          <h3>ReelAgree</h3>
-          <p>Private movie and TV discovery app for blind group voting, server-authoritative consensus, and movie-night planning across public web, iOS, and Android.</p>
-          <span class="star">🎬 Group movie planning</span>
         </a>
         <a class="project-card" href="https://jongan.com/YouTubeResearchAI/">
           <div class="lang">JavaScript</div>
@@ -1037,9 +1163,7 @@
         <a class="link-btn" href="https://jongan.com/privacy-policy/" target="_blank" rel="noopener">
           <span class="icon">🔒</span> Privacy Policy
         </a>
-        <a class="link-btn"
-          href="https://docs.google.com/document/d/1cXa2aDfjhd4lCQxdDmIcI7zv9OMc4aYu/edit?usp=sharing&ouid=100083907697199875924&rtpof=true&sd=true"
-          target="_blank" rel="noopener">
+        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>
           <span class="icon">📄</span> Download Résumé
         </a>
         <a class="link-btn" href="mailto:jongan.engineering@outlook.com">
