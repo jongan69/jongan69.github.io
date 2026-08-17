@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
       - name: Setup Node
-        uses: actions/setup-node@0a4c964ab5d8b42f18b157a52c0a8a5b79d61b9e
+        uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: HTML validation
