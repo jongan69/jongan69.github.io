@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jonathan Gan — React Native & Mobile Engineer</title>
+  <title>Jonathan Gan — React Native &amp; Mobile Engineer</title>
   <meta name="description"
     content="React Native engineer building production iOS, Android, and watchOS products with on-device AI, native camera integrations, Swift, Kotlin, and Expo.">
 
@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#4f46e5">
   <meta name="classification"
     content="Software Engineer, React Native, Mobile Development, AI Applications, Camera Software, App Development">
-  <meta property="og:title" content="Jonathan Gan — React Native & Mobile Engineer">
+  <meta property="og:title" content="Jonathan Gan — React Native &amp; Mobile Engineer">
   <meta property="og:description"
     content="React Native engineer building production iOS, Android, and watchOS products with on-device AI, native camera integrations, Swift, Kotlin, and Expo.">
   <meta property="og:type" content="website">
@@ -23,15 +23,15 @@
   <meta property="og:image" content="https://jongan.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Jonathan Gan — React Native & Mobile Engineer: AI apps, iOS, Android, watchOS, camera systems">
+  <meta property="og:image:alt" content="Jonathan Gan — React Native &amp; Mobile Engineer: AI apps, iOS, Android, watchOS, camera systems">
   <meta property="og:site_name" content="Jonathan Gan">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jonathan Gan — React Native & Mobile Engineer">
+  <meta name="twitter:title" content="Jonathan Gan — React Native &amp; Mobile Engineer">
   <meta name="twitter:description"
     content="AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.">
   <meta name="twitter:image" content="https://jongan.com/og-image.png">
-  <meta name="twitter:image:alt" content="Jonathan Gan — React Native & Mobile Engineer: AI apps, iOS, Android, watchOS, camera systems">
+  <meta name="twitter:image:alt" content="Jonathan Gan — React Native &amp; Mobile Engineer: AI apps, iOS, Android, watchOS, camera systems">
   <link rel="canonical" href="https://jongan.com/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -39,8 +39,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -490,11 +490,11 @@
       max-width: 980px;
       margin: 0 auto 16px;
       font-size: clamp(42px, 5vw, 86px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.065em;
       line-height: 0.91;
       text-wrap: balance;
-      animation: fade-up 0.8s 0.1s ease both;
+      animation: rise 0.8s 0.05s ease both;
       color: var(--text);
       text-shadow: 0 0 28px rgba(99, 102, 241, 0.08);
     }
@@ -514,12 +514,12 @@
       max-width: 760px;
       margin: 0 auto 20px;
       font-size: clamp(28px, 4vw, 52px);
-      font-weight: 750;
+      font-weight: 700;
       line-height: 1.08;
       letter-spacing: -0.045em;
       text-wrap: balance;
       color: var(--text);
-      animation: fade-up 0.8s 0.15s ease both;
+      animation: rise 0.8s 0.1s ease both;
     }
 
     .hero h2 .accent {
@@ -543,7 +543,7 @@
       font-weight: 400;
       max-width: 520px;
       margin: 0 auto 12px;
-      animation: fade-up 0.8s 0.2s ease both;
+      animation: rise 0.8s 0.05s ease both;
       line-height: 1.55;
     }
 
@@ -553,8 +553,8 @@
       gap: 7px;
       font-size: 15px;
       color: var(--text-muted);
-      font-weight: 450;
-      animation: fade-up 0.8s 0.25s ease both;
+      font-weight: 500;
+      animation: rise 0.8s 0.15s ease both;
     }
 
     .hero .location .dot {
@@ -592,11 +592,22 @@
       }
     }
 
+    @keyframes rise {
+      from {
+        transform: translateY(24px)
+      }
+
+      to {
+        transform: translateY(0)
+      }
+    }
+
     .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: min(100%, 620px);
+      margin: 36px auto 0;
+      gap: 24px;
       animation: fade-up 0.8s 0.3s ease both;
     }
 
@@ -614,16 +625,62 @@
       background-clip: text;
     }
 
-    .hero-stat .num.long {
-      font-size: 22px;
-      padding-top: 5px;
-    }
-
     .hero-stat .lbl {
       font-size: 13px;
       color: var(--text-muted);
       font-weight: 500;
       margin-top: 2px
+    }
+
+    .section,
+    main,
+    article {
+      scroll-margin-top: 88px;
+    }
+
+    .section.work-container {
+      width: min(1120px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .hero-links {
+      justify-content: center;
+      margin-top: 22px;
+    }
+
+    .exp-links {
+      margin-top: 16px;
+      gap: 10px;
+    }
+
+    .earlier-exp {
+      margin-top: 18px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .earlier-exp strong {
+      color: var(--text);
+    }
+
+    .exp-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .exp-role h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .exp-role .exp-meta {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .exp-role .exp-body {
+      margin-top: 10px;
     }
 
     .section {
@@ -729,7 +786,7 @@
 
     .project-card h3 {
       font-size: 17px;
-      font-weight: 650;
+      font-weight: 600;
       margin-bottom: 8px;
       color: var(--text);
       letter-spacing: -0.01em
@@ -774,11 +831,19 @@
       box-shadow: var(--shadow-md);
     }
 
-    .project-card .card-hit {
-      display: contents;
+    .project-card .card-title {
       color: inherit;
       text-decoration: none;
-      cursor: pointer;
+    }
+
+    .project-card .card-title:hover {
+      color: var(--accent);
+    }
+
+    .project-card .card-title:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
     .project-card .card-meta {
@@ -986,17 +1051,6 @@
       margin-top: 0
     }
 
-    .seo-sentinel {
-      position: absolute;
-      left: -9999px;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      white-space: pre-wrap;
-      opacity: 0;
-      pointer-events: none;
-    }
 
     .links-row {
       display: flex;
@@ -1091,15 +1145,18 @@
       }
 
       .hero-stats {
-        gap: 20px
+        gap: 10px
       }
 
       .hero-stat .num {
-        font-size: 24px
+        font-size: 23px
       }
 
-      .hero-stat .num.long {
-        font-size: 17px
+      .hero-stat .lbl {
+        font-size: 11px;
+        line-height: 1.35;
+        margin-top: 2px;
+        word-break: break-word;
       }
 
       .projects-grid {
@@ -1152,7 +1209,7 @@
   </style>
 </head>
 
-<body>
+<body id="top">
 
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -1165,7 +1222,7 @@
 
   <nav class="nav" id="nav">
     <div class="container">
-      <a href="#" class="nav-logo"><span class="accent">~/</span>jongan</a>
+      <a href="#top" class="nav-logo"><span class="accent">~/</span>jongan</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -1191,15 +1248,12 @@
         <span class="dot"></span>
         Miami Beach, Florida
       </div>
-      <div class="links-row" style="justify-content:center; margin-top:22px;">
-        <a class="link-btn" href="#work">
-          <span class="icon">🛠️</span> View Selected Work
+      <div class="links-row hero-links">
+        <a class="link-btn" href="#work"> View Selected Work
         </a>
-        <a class="link-btn" href="mailto:jongan.engineering@outlook.com">
-          <span class="icon">📬</span> Email Jonathan
+        <a class="link-btn" href="mailto:jongan.engineering@outlook.com"> Email Jonathan
         </a>
-        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>
-          <span class="icon">📄</span> Download Résumé
+        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download> Download Résumé
         </a>
       </div>
       <div class="hero-stats">
@@ -1212,14 +1266,14 @@
           <div class="lbl">Public native Expo module</div>
         </div>
         <div class="hero-stat">
-          <div class="num long">iOS·Android·watchOS</div>
-          <div class="lbl">Platforms shipped</div>
+          <div class="num">3</div>
+          <div class="lbl">Platforms: iOS, Android &amp; watchOS</div>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="container" id="main">
+  <main class="container" id="main" tabindex="-1">
     <article class="section reveal" id="about">
       <div class="section-label">About</div>
       <h2>Mobile engineer building AI-powered, hardware-aware apps — from concept to App Store.</h2>
@@ -1246,54 +1300,53 @@
     <article class="section reveal" id="experience">
       <div class="section-label">Experience</div>
       <h2>Experience and background</h2>
-      <div class="links-row" style="margin-top:16px; gap:10px;">
-        <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
-          <span class="icon">🧑‍💻</span> GitHub portfolio
+      <div class="links-row exp-links">
+        <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener"> GitHub portfolio
         </a>
-        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
-          <span class="icon">💼</span> LinkedIn
+        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener"> LinkedIn
         </a>
       </div>
-      <div style="margin-top:22px; display:grid; gap:18px;">
-        <div>
-          <h3 style="font-size:18px; margin-bottom:4px;">Freelance Software Engineer</h3>
-          <p style="color:var(--text-secondary); margin:0;">Remote · Jul 2024 – Present</p>
-          <p style="margin-top:10px;">Designed and shipped client and independent mobile products from concept through
-            production using React Native and Expo, owning end-to-end delivery across mobile UI, backend APIs,
-            databases, authentication, payments, native integrations, hardware-aware features, CI/CD, App Store
-            readiness, and QA.</p>
+      <div class="exp-list">
+        <div class="exp-role">
+          <h3>Freelance Software Engineer</h3>
+          <p class="exp-meta">Remote · Jul 2024 – Present</p>
+          <p class="exp-body">Independently own architecture, native Swift and Kotlin integrations, backend delivery,
+            signing, deployment, monitoring, and post-release iteration across multiple Expo and React Native products
+            — including App Store and hardware-integrated releases shipped as sole contributor.</p>
         </div>
-        <div>
-          <h3 style="font-size:18px; margin-bottom:4px;">Senior Analyst III / Delivery Cloud Engineer</h3>
-          <p style="color:var(--text-secondary); margin:0;">Kin + Carta · 2022 – 2024</p>
-          <p style="margin-top:10px;">Delivered React and enterprise engineering solutions for Syngenta Digital,
-            including responsive interfaces, Java code audits, regulated delivery support, and cloud deployment
-            automation that improved release reliability.</p>
+        <div class="exp-role">
+          <h3>Senior Analyst III / Delivery Cloud Engineer</h3>
+          <p class="exp-meta">Kin + Carta · 2022 – 2024</p>
+          <p class="exp-body">Shipped React and enterprise solutions for Syngenta Digital — responsive interfaces, Java
+            code audits, and cloud deployment automation that standardized release steps and improved release
+            reliability under regulated delivery constraints. Piloted practical LLM use in internal operations and
+            delivery workflows.</p>
         </div>
-        <div>
-          <h3 style="font-size:18px; margin-bottom:4px;">React / React Native Developer</h3>
-          <p style="color:var(--text-secondary); margin:0;">ChainBytes LLC · 2021 – 2022</p>
-          <p style="margin-top:10px;">Built and enhanced mobile and web features for a Bitcoin ATM platform, including
-            real-time transaction interfaces and wallet-aware mobile experiences.</p>
+        <div class="exp-role">
+          <h3>React / React Native Developer</h3>
+          <p class="exp-meta">ChainBytes LLC · 2021 – 2022</p>
+          <p class="exp-body">Built mobile and web features for a Bitcoin ATM platform, owning real-time
+            transaction-state interfaces and integrating wallet functionality into user-facing flows — keeping
+            balance, deposit, and transfer states reliable across mobile clients.</p>
         </div>
       </div>
-      <p style="margin-top:18px; font-size:14px; color:var(--text-secondary);">
-        <strong style="color:var(--text);">Earlier experience:</strong> SaaS React Developer — Accusoft (2018–2019) ·
+      <p class="earlier-exp">
+        <strong>Earlier experience:</strong> SaaS React Developer — Accusoft (2018–2019) ·
         Junior React Developer / Blockchain Research — BlockSpaces (2019–2021) · Code Coach — theCoderSchool
         (2022–2023), mentoring 30+ students through web, game, and mobile curriculum.</p>
     </article>
 
-    <article class="section reveal" id="work">
+    <article class="section reveal work-container" id="work">
       <div class="section-label">Featured</div>
       <h2>Shipped products, open source, and published work</h2>
       <div class="projects-grid" id="github-projects">
         <article class="project-card featured full">
-          <a class="card-hit" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank" rel="noopener">
-            <div class="body">
-              <div class="lang">TypeScript</div>
-              <h3>Expo Sony Camera</h3>
-              <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
-                leaving Expo. Published MIT module with 13 GitHub stars since its July 2026 launch.</p>
+          <div class="body">
+            <div class="lang">Expo · Kotlin · Swift · PTP</div>
+            <h3><a class="card-title" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank"
+                rel="noopener">Expo Sony Camera</a></h3>
+            <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
+              leaving Expo. Published MIT module with 13+ GitHub stars in its first month.</p>
               <div class="flow" aria-hidden="true">
                 <span class="flow-node">React Native UI</span>
                 <span class="flow-arrow">→</span>
@@ -1309,8 +1362,7 @@
                 <li>Published on npm with developer documentation</li>
               </ul>
               <span class="star">📦 NPM Package</span>
-            </div>
-          </a>
+          </div>
           <div class="card-meta">
             <span><strong>Role:</strong> Sole author &amp; maintainer</span>
             <span><strong>Status:</strong> Experimental 0.x — validated on selected Sony/Android paths</span>
@@ -1326,15 +1378,14 @@
           </div>
         </article>
         <article class="project-card featured">
-          <a class="card-hit" href="https://reelagree.com" target="_blank" rel="noopener">
-            <div class="shot-wrap"><video class="shot contain brand-animation" autoplay muted loop playsinline preload="none"
-              poster="case-studies/reelagree-poster.png">
+          <div class="shot-wrap"><video class="shot contain brand-animation" muted loop playsinline preload="none"
+              poster="case-studies/reelagree-poster.webp">
               <source src="case-studies/reelagree-anim.webm" type="video/webm">
               <source src="case-studies/reelagree-anim.mp4" type="video/mp4">
             </video></div>
-            <div class="body">
-              <div class="lang">TypeScript</div>
-              <h3>ReelAgree</h3>
+          <div class="body">
+            <div class="lang">TypeScript · Expo</div>
+            <h3><a class="card-title" href="https://reelagree.com" target="_blank" rel="noopener">ReelAgree</a></h3>
               <p>Movie-night planning with blind group voting — everyone picks privately, then the server reveals
                 consensus. No spoiled endings, no vetoed suggestions.</p>
               <ul class="bullets">
@@ -1343,11 +1394,10 @@
                 <li>Built from one Expo codebase for web, iOS, and Android</li>
               </ul>
               <span class="star">🎬 Group movie planning</span>
-            </div>
-          </a>
+          </div>
           <div class="card-meta">
             <span><strong>Role:</strong> Sole developer</span>
-            <span><strong>Status:</strong> Live web app — public beta</span>
+            <span><strong>Status:</strong> Live web app · native builds in development</span>
             <span><strong>Platforms:</strong> Web · iOS · Android</span>
           </div>
           <div class="card-actions">
@@ -1355,15 +1405,14 @@
           </div>
         </article>
         <article class="project-card featured">
-          <a class="card-hit" href="https://prepaihq.com" target="_blank" rel="noopener">
-            <div class="shot-wrap"><video class="shot contain brand-animation" autoplay muted loop playsinline preload="none"
-              poster="case-studies/prepai-poster.png">
+          <div class="shot-wrap"><video class="shot contain brand-animation" muted loop playsinline preload="none"
+              poster="case-studies/prepai-poster.webp">
               <source src="case-studies/prepai-anim.webm" type="video/webm">
               <source src="case-studies/prepai-anim.mp4" type="video/mp4">
             </video></div>
-            <div class="body">
-              <div class="lang">TypeScript</div>
-              <h3>PrepAI</h3>
+          <div class="body">
+            <div class="lang">TypeScript · Swift · HealthKit</div>
+            <h3><a class="card-title" href="https://prepaihq.com" target="_blank" rel="noopener">PrepAI</a></h3>
               <p>A private health intelligence app. Core health records and supported AI processing stay on-device,
                 and core tracking works fully offline — no account required.</p>
               <ul class="bullets">
@@ -1373,8 +1422,7 @@
                   opt-in diagnostics</li>
               </ul>
               <span class="star">🧠 AI health app</span>
-            </div>
-          </a>
+          </div>
           <div class="card-meta">
             <span><strong>Role:</strong> Founder · lead mobile architect</span>
             <span><strong>Status:</strong> iPhone release in progress</span>
@@ -1385,15 +1433,14 @@
           </div>
         </article>
         <article class="project-card featured">
-          <a class="card-hit" href="https://listingos.expo.app/" target="_blank" rel="noopener">
-            <div class="shot-wrap"><video class="shot contain product-demo" autoplay muted loop playsinline preload="none"
-              poster="case-studies/listingos-poster.png">
+          <div class="shot-wrap"><video class="shot contain product-demo" muted loop playsinline preload="none"
+              poster="case-studies/listingos-poster.webp">
               <source src="case-studies/listingos-anim.webm" type="video/webm">
               <source src="case-studies/listingos-anim.mp4" type="video/mp4">
             </video></div>
-            <div class="body">
-              <div class="lang">TypeScript</div>
-              <h3>ListingOS</h3>
+          <div class="body">
+            <div class="lang">TypeScript · Expo · Cloudflare</div>
+            <h3><a class="card-title" href="https://listingos.expo.app/" target="_blank" rel="noopener">ListingOS</a></h3>
               <p>Product photos to review-ready eBay drafts — capture an item, let AI draft the listing, then publish
                 from one review screen.</p>
               <ul class="bullets">
@@ -1403,11 +1450,10 @@
                 <li>Direct fixed-price publishing after explicit seller approval</li>
               </ul>
               <span class="star">📸 Photo-to-listing AI</span>
-            </div>
-          </a>
+          </div>
           <div class="card-meta">
             <span><strong>Role:</strong> Sole developer</span>
-            <span><strong>Status:</strong> Public demo — v1.0.1 MVP</span>
+            <span><strong>Status:</strong> Public web demo · Expo mobile application</span>
             <span><strong>Platforms:</strong> Web · iOS · Android</span>
           </div>
           <div class="card-actions">
@@ -1415,13 +1461,25 @@
             <a class="card-action" href="https://github.com/jongan69/ListingOS-AI" target="_blank" rel="noopener">GitHub</a>
           </div>
         </article>
-        <a class="project-card" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
-          rel="noopener">
-          <div class="lang">watchOS</div>
-          <h3>PushUp Timer Pro</h3>
-          <p>Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit integration, and production release engineering.</p>
-          <span class="star">⏱️ Live on App Store</span>
-        </a>
+        <article class="project-card featured full">
+          <div class="body">
+            <div class="lang">Swift · watchOS · HealthKit</div>
+            <h3><a class="card-title" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788"
+                target="_blank" rel="noopener">PushUp Timer Pro</a></h3>
+            <p>Published Apple App Store workout timer for watchOS — one-handed interactions, HealthKit integration,
+              and production release engineering.</p>
+            <span class="star">⏱️ Live on App Store</span>
+          </div>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Sole developer</span>
+            <span><strong>Status:</strong> Published — App Store</span>
+            <span><strong>Platforms:</strong> watchOS</span>
+          </div>
+          <div class="card-actions">
+            <a class="card-action" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
+              rel="noopener">App Store</a>
+          </div>
+        </article>
         <a class="project-card" href="https://jongan.com/YouTubeResearchAI/">
           <div class="lang">JavaScript</div>
           <h3>YouTubeResearchAI</h3>
@@ -1490,45 +1548,15 @@
       </div>
     </article>
 
-    <article class="section reveal" id="live">
-      <div class="section-label">Live</div>
-      <h2>Shipped and in progress</h2>
-      <div class="links-row">
-        <a class="link-btn" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
-          rel="noopener">
-          <span class="icon">⏱️</span> PushUp Timer Pro — Apple App Store
-        </a>
-        <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <span class="icon">🥗</span> PrepAI — Release in progress (iPhone)
-        </a>
-        <a class="link-btn" href="https://reelagree.com" target="_blank" rel="noopener">
-          <span class="icon">🎬</span> ReelAgree — Movie discovery app
-        </a>
-      </div>
-    </article>
 
-    <article class="section reveal" id="links">
+      <article class="section reveal" id="links">
       <div class="section-label">Connect</div>
-      <h2>Find me around the internet</h2>
+      <h2>Building a technically ambitious mobile product?</h2>
+      <p>I work across React Native, native modules, on-device AI, camera systems, and production delivery.</p>
       <div class="links-row">
-        <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
-          <span class="icon">🐙</span> GitHub
-        </a>
-        <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <span class="icon">📱</span> PrepAI
-        </a>
-        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
-          <span class="icon">💼</span> LinkedIn
-        </a>
-        <a class="link-btn" href="https://jongan.com/privacy-policy/" target="_blank" rel="noopener">
-          <span class="icon">🔒</span> Privacy Policy
-        </a>
-        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>
-          <span class="icon">📄</span> Download Résumé
-        </a>
-        <a class="link-btn" href="mailto:jongan.engineering@outlook.com">
-          <span class="icon">📬</span> jongan.engineering@outlook.com
-        </a>
+        <a class="link-btn" href="mailto:jongan.engineering@outlook.com">Email Jonathan</a>
+        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>Download Résumé</a>
       </div>
     </article>
   </main>
@@ -1538,8 +1566,6 @@
       <p>Built with <span class="heart">♥</span> in Miami Beach &nbsp;·&nbsp; © 2026 Jon</p>
     </div>
   </footer>
-
-
 
   <script>
     const nav = document.getElementById('nav');
@@ -1576,18 +1602,6 @@
     } else {
       // reduced motion: no reveal animations, nothing to load
     }
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        const t = document.querySelector(this.getAttribute('href'));
-        if (!t) return;
-        window.scrollTo({
-          top: t.getBoundingClientRect().top + window.pageYOffset - 80,
-          behavior: prefersReducedMotion ? 'auto' : 'smooth'
-        });
-      });
-    });
 
     const heroVideos = document.querySelectorAll('.project-card.featured video.shot');
     if (heroVideos.length) {
@@ -1633,9 +1647,15 @@
           });
         }, { rootMargin: '200px' });
         heroVideos.forEach(v => io.observe(v));
+      } else {
+        heroVideos.forEach(v => {
+          v.pause();
+          v.currentTime = 0;
+        });
       }
     }
   </script>
 </body>
 
 </html>
+

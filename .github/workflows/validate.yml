@@ -1,0 +1,25 @@
+name: Validate
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Setup Node
+        uses: actions/setup-node@0a4c964ab5d8b42f18b157a52c0a8a5b79d61b9e
+        with:
+          node-version: 22
+      - name: HTML validation
+        run: npx --yes html-validate index.html 404.html
+      - name: JSON-LD, assets, anchors, links
+        run: node scripts/validate.mjs
