@@ -44,9 +44,22 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Jonathan Gan",
-  "jobTitle": "React Native & Mobile Engineer",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://jongan.com/#profile-page",
+      "name": "Jonathan Gan — React Native & Mobile Engineer",
+      "url": "https://jongan.com/",
+      "inLanguage": "en-US",
+      "mainEntity": {
+        "@id": "https://jongan.com/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jongan.com/#person",
+      "name": "Jonathan Gan",
+      "jobTitle": "React Native & Mobile Engineer",
   "description": "Mobile engineer with 7+ years of experience and 5+ years shipping production React Native systems across iOS, Android, watchOS, AI, camera, fintech, and healthcare apps.",
   "email": "mailto:jongan.engineering@outlook.com",
   "address": {
@@ -60,17 +73,11 @@
     "https://github.com/jongan69",
     "https://linkedin.com/in/jongan69",
     "https://medium.com/@jonngan",
-    "https://www.youtube.com/@jonngan",
-    "https://prepaihq.com"
+    "https://www.youtube.com/@jonngan"
   ],
   "knowsAbout": [
     "React Native",
     "Expo",
-    "TypeScript",
-    "Swift",
-    "Kotlin",
-    "watchOS",
-    "React Native",
     "Expo Router",
     "TypeScript",
     "JavaScript",
@@ -80,28 +87,16 @@
     "Jetpack Compose",
     "watchOS",
     "On-device machine learning",
-    "Machine learning",
     "TensorFlow Lite",
     "Core ML",
-    "ONNX models",
-    "LLM integration",
-    "ChatGPT API",
-    "Claude API",
-    "DeepSeek",
-    "Generative AI",
-    "Edge AI",
     "HealthKit",
-    "Health sensor integration",
     "Camera software",
-    "Hardware integrations",
+    "PTP",
     "BLE development",
     "App Store release engineering",
-    "Enterprise React",
-    "React Query",
     "Cloudflare Workers",
     "Node.js",
     "PostgreSQL",
-    "Decentralized apps",
     "Nostr protocol",
     "Privacy-first design",
     "Performance optimization",
@@ -147,49 +142,77 @@
       }
     }
   ],
-  "award": [
-    "Published NPM package: expo-sony-camera",
-    "Published iOS App Store app: PushUp Timer Pro",
-    "Built production AI applications"
-  ],
-  "hasMadeProject": [
+  "subjectOf": [
     {
-      "@type": "CreativeWork",
+      "@id": "https://jongan.com/#project-reelagree"
+    },
+    {
+      "@id": "https://jongan.com/#project-prepai"
+    },
+    {
+      "@id": "https://jongan.com/#project-pushup"
+    },
+    {
+      "@id": "https://jongan.com/#project-sony"
+    },
+    {
+      "@id": "https://jongan.com/#project-listingos"
+    }
+  ]
+    },
+    {
+      "@id": "https://jongan.com/#project-reelagree",
+      "@type": "WebApplication",
       "name": "ReelAgree",
       "url": "https://reelagree.com",
-      "description": "Private movie and TV discovery app for blind group voting, server-authoritative consensus, and movie-night planning across public web, iOS, and Android"
+      "description": "Private movie and TV discovery app for blind group voting, server-authoritative consensus, and movie-night planning across public web, iOS, and Android",
+      "creator": {
+        "@id": "https://jongan.com/#person"
+      }
     },
     {
-      "@type": "CreativeWork",
+      "@id": "https://jongan.com/#project-prepai",
+      "@type": "MobileApplication",
       "name": "PrepAI",
       "url": "https://prepaihq.com",
-      "description": "Private, offline health intelligence app with on-device AI and clinical knowledge logic for iPhone-based personal fitness workflows"
+      "description": "Private, offline health intelligence app with on-device AI and clinical knowledge logic for iPhone-based personal fitness workflows",
+      "creator": {
+        "@id": "https://jongan.com/#person"
+      }
     },
     {
+      "@id": "https://jongan.com/#project-pushup",
       "@type": "SoftwareApplication",
       "name": "PushUp Timer Pro",
       "url": "https://apps.apple.com/us/app/pushup-timer-pro/id1664672788",
       "applicationCategory": "HealthAndFitnessApplication",
-      "description": "Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit integration"
+      "operatingSystem": "watchOS",
+      "description": "Published Apple App Store workout timer app for watchOS, featuring one-handed interactions and HealthKit integration",
+      "creator": {
+        "@id": "https://jongan.com/#person"
+      }
     },
     {
+      "@id": "https://jongan.com/#project-sony",
       "@type": "SoftwareSourceCode",
       "name": "expo-sony-camera",
       "url": "https://www.npmjs.com/package/expo-sony-camera",
+      "codeRepository": "https://github.com/jongan69/expo-sony-camera",
+      "programmingLanguage": "TypeScript",
       "description": "Published NPM package bringing Sony camera control to React Native and Expo apps",
-      "programmingLanguage": "TypeScript"
+      "maintainer": {
+        "@id": "https://jongan.com/#person"
+      }
     },
     {
-      "@type": "CreativeWork",
-      "name": "YouTubeResearchAI",
-      "url": "https://jongan.com/YouTubeResearchAI/",
-      "description": "Turns any video URL into a research report with automated analysis and citation-oriented output generation"
-    },
-    {
-      "@type": "CreativeWork",
-      "name": "OpenDating Mobile",
-      "url": "https://jongan.com/opendating-mobile/",
-      "description": "Privacy-first decentralized dating app on Nostr with Tinder-quality UX and end-to-end encrypted messaging"
+      "@id": "https://jongan.com/#project-listingos",
+      "@type": "WebApplication",
+      "name": "ListingOS",
+      "url": "https://listingos.expo.app/",
+      "description": "Camera-first AI seller agent that turns product photos into review-ready eBay listing drafts with comparable-backed pricing",
+      "creator": {
+        "@id": "https://jongan.com/#person"
+      }
     }
   ]
 }
@@ -591,6 +614,11 @@
       background-clip: text;
     }
 
+    .hero-stat .num.long {
+      font-size: 22px;
+      padding-top: 5px;
+    }
+
     .hero-stat .lbl {
       font-size: 13px;
       color: var(--text-muted);
@@ -741,6 +769,65 @@
       margin: 0 auto;
     }
 
+    .project-card:focus-within {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .project-card .card-hit {
+      display: contents;
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .project-card .card-meta {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 22px;
+      padding: 12px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .project-card .card-meta strong {
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    .project-card .card-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 14px 24px 22px;
+    }
+
+    .project-card .card-action {
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .project-card .card-action:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .project-card .card-action:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     .project-card.featured .shot {
       width: 100%;
       height: 100%;
@@ -753,6 +840,44 @@
       object-fit: contain;
       background: var(--surface-elevated);
       padding: 16px;
+    }
+
+    .project-card.featured .shot-wrap {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      min-width: 0;
+    }
+
+    .vid-toggle {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      background: rgba(18, 18, 20, 0.75);
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .shot-wrap:hover .vid-toggle,
+    .vid-toggle:focus-visible {
+      opacity: 1;
+    }
+
+    @media(hover:none) {
+      .vid-toggle {
+        opacity: 1;
+      }
     }
 
     .project-card.featured .body {
@@ -943,12 +1068,6 @@
       }
     }
 
-    @media(min-width:701px) {
-      .project-card.hide-lg {
-        display: none
-      }
-    }
-
     @media(max-width:700px) {
       .hero {
         padding: 120px 0 56px
@@ -979,6 +1098,10 @@
         font-size: 24px
       }
 
+      .hero-stat .num.long {
+        font-size: 17px
+      }
+
       .projects-grid {
         grid-template-columns: 1fr
       }
@@ -1001,13 +1124,23 @@
         border-bottom: 1px solid var(--border)
       }
 
-      .project-card.featured .shot.contain {
+      .project-card.featured .shot.contain.brand-animation {
         width: 100%;
         height: auto;
         max-width: 220px;
         max-height: 220px;
         margin: 0 auto;
         padding: 24px 0;
+        object-fit: contain;
+        border-bottom: none
+      }
+
+      .project-card.featured .shot.contain.product-demo {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 16px 0;
         object-fit: contain;
         border-bottom: none
       }
@@ -1051,7 +1184,7 @@
         <span class="line">Jonathan Gan</span>
       </h1>
       <h2>
-        <span class="line">Building <span class="accent">AI-powered mobile</span> experiences</span>
+        <span class="line">Building <span class="accent">on-device AI and camera-connected</span> mobile products</span>
       </h2>
       <p class="tagline">React Native engineer shipping production iOS, Android, and watchOS apps with on-device AI, camera integrations, and hardware-aware features. Specializing in healthtech, fintech, and consumer products.</p>
       <div class="location">
@@ -1059,22 +1192,28 @@
         Miami Beach, Florida
       </div>
       <div class="links-row" style="justify-content:center; margin-top:22px;">
+        <a class="link-btn" href="#work">
+          <span class="icon">🛠️</span> View Selected Work
+        </a>
+        <a class="link-btn" href="mailto:jongan.engineering@outlook.com">
+          <span class="icon">📬</span> Email Jonathan
+        </a>
         <a class="link-btn" href="Jonathan-Gan-Resume.pdf" download>
           <span class="icon">📄</span> Download Résumé
         </a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="num" id="github-repos">26</div>
-          <div class="lbl">Public Repos</div>
+          <div class="num">1</div>
+          <div class="lbl">Published App Store product</div>
         </div>
         <div class="hero-stat">
-          <div class="num" id="github-followers">300</div>
-          <div class="lbl">Followers</div>
+          <div class="num">1</div>
+          <div class="lbl">Public native Expo module</div>
         </div>
         <div class="hero-stat">
-          <div class="num">8+</div>
-          <div class="lbl">Years Building</div>
+          <div class="num long">iOS·Android·watchOS</div>
+          <div class="lbl">Platforms shipped</div>
         </div>
       </div>
     </div>
@@ -1138,94 +1277,145 @@
             real-time transaction interfaces and wallet-aware mobile experiences.</p>
         </div>
       </div>
+      <p style="margin-top:18px; font-size:14px; color:var(--text-secondary);">
+        <strong style="color:var(--text);">Earlier experience:</strong> SaaS React Developer — Accusoft (2018–2019) ·
+        Junior React Developer / Blockchain Research — BlockSpaces (2019–2021) · Code Coach — theCoderSchool
+        (2022–2023), mentoring 30+ students through web, game, and mobile curriculum.</p>
     </article>
 
     <article class="section reveal" id="work">
       <div class="section-label">Featured</div>
       <h2>Shipped products, open source, and published work</h2>
       <div class="projects-grid" id="github-projects">
-        <a class="project-card featured full" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank"
-          rel="noopener">
-          <div class="body">
-            <div class="lang">TypeScript</div>
-            <h3>Expo Sony Camera</h3>
-            <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
-              leaving Expo. Published MIT module with 13 GitHub stars since its July 2026 launch.</p>
-            <div class="flow" aria-hidden="true">
-              <span class="flow-node">React Native UI</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-node">Expo native module</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-node">Kotlin / Swift + PTP</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-node">Sony camera</span>
+        <article class="project-card featured full">
+          <a class="card-hit" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank" rel="noopener">
+            <div class="body">
+              <div class="lang">TypeScript</div>
+              <h3>Expo Sony Camera</h3>
+              <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
+                leaving Expo. Published MIT module with 13 GitHub stars since its July 2026 launch.</p>
+              <div class="flow" aria-hidden="true">
+                <span class="flow-node">React Native UI</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-node">Expo native module</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-node">Kotlin / Swift + PTP</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-node">Sony camera</span>
+              </div>
+              <ul class="bullets">
+                <li>Author and maintainer of a cross-platform native module (Kotlin + Swift bridge)</li>
+                <li>Live view and remote capture over PTP with structured error handling</li>
+                <li>Published on npm with developer documentation</li>
+              </ul>
+              <span class="star">📦 NPM Package</span>
             </div>
-            <ul class="bullets">
-              <li>Author and maintainer of a cross-platform native module (Kotlin + Swift bridge)</li>
-              <li>Live view and remote capture over PTP with structured error handling</li>
-              <li>Published on npm with developer documentation</li>
-            </ul>
-            <span class="star">📦 NPM Package</span>
+          </a>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Sole author &amp; maintainer</span>
+            <span><strong>Status:</strong> Experimental 0.x — validated on selected Sony/Android paths</span>
+            <span><strong>Platforms:</strong> Android · iOS</span>
           </div>
-        </a>
-        <a class="project-card featured" href="https://reelagree.com" target="_blank" rel="noopener">
-          <video class="shot contain" autoplay muted loop playsinline preload="none"
-            poster="case-studies/reelagree-poster.png">
-            <source src="case-studies/reelagree-anim.webm" type="video/webm">
-            <source src="case-studies/reelagree-anim.mp4" type="video/mp4">
-          </video>
-          <div class="body">
-            <div class="lang">TypeScript</div>
-            <h3>ReelAgree</h3>
-            <p>Movie-night planning with blind group voting — everyone picks privately, then the server reveals
-              consensus. No spoiled endings, no vetoed suggestions.</p>
-            <ul class="bullets">
-              <li>Blind votes stay hidden until every member has voted</li>
-              <li>Server-authoritative consensus flow, immune to client-side tampering</li>
-              <li>One codebase shipping to public web, iOS, and Android</li>
-            </ul>
-            <span class="star">🎬 Group movie planning</span>
+          <div class="card-actions">
+            <a class="card-action" href="https://github.com/jongan69/expo-sony-camera" target="_blank"
+              rel="noopener">GitHub</a>
+            <a class="card-action" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank"
+              rel="noopener">npm</a>
+            <a class="card-action" href="https://github.com/jongan69/expo-sony-camera#readme" target="_blank"
+              rel="noopener">Docs</a>
           </div>
-        </a>
-        <a class="project-card featured" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <video class="shot contain" autoplay muted loop playsinline preload="none"
-            poster="case-studies/prepai-poster.png">
-            <source src="case-studies/prepai-anim.webm" type="video/webm">
-            <source src="case-studies/prepai-anim.mp4" type="video/mp4">
-          </video>
-          <div class="body">
-            <div class="lang">TypeScript</div>
-            <h3>PrepAI</h3>
-            <p>A private health intelligence app — all AI runs on-device. No account, no cloud, no data leaving your
-              phone.</p>
-            <ul class="bullets">
-              <li>On-device inference with clinical knowledge logic</li>
-              <li>HealthKit ingestion and local-only storage</li>
-              <li>Fully functional offline; iPhone release in progress</li>
-            </ul>
-            <span class="star">🧠 AI health app</span>
+        </article>
+        <article class="project-card featured">
+          <a class="card-hit" href="https://reelagree.com" target="_blank" rel="noopener">
+            <div class="shot-wrap"><video class="shot contain brand-animation" autoplay muted loop playsinline preload="none"
+              poster="case-studies/reelagree-poster.png">
+              <source src="case-studies/reelagree-anim.webm" type="video/webm">
+              <source src="case-studies/reelagree-anim.mp4" type="video/mp4">
+            </video></div>
+            <div class="body">
+              <div class="lang">TypeScript</div>
+              <h3>ReelAgree</h3>
+              <p>Movie-night planning with blind group voting — everyone picks privately, then the server reveals
+                consensus. No spoiled endings, no vetoed suggestions.</p>
+              <ul class="bullets">
+                <li>Blind votes stay hidden until every member has voted</li>
+                <li>Server-authoritative consensus flow, immune to client-side tampering</li>
+                <li>Built from one Expo codebase for web, iOS, and Android</li>
+              </ul>
+              <span class="star">🎬 Group movie planning</span>
+            </div>
+          </a>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Sole developer</span>
+            <span><strong>Status:</strong> Live web app — public beta</span>
+            <span><strong>Platforms:</strong> Web · iOS · Android</span>
           </div>
-        </a>
-        <a class="project-card featured" href="https://listingos.expo.app/" target="_blank" rel="noopener">
-          <video class="shot contain" autoplay muted loop playsinline preload="none"
-            poster="case-studies/listingos-poster.png">
-            <source src="case-studies/listingos-anim.webm" type="video/webm">
-            <source src="case-studies/listingos-anim.mp4" type="video/mp4">
-          </video>
-          <div class="body">
-            <div class="lang">TypeScript</div>
-            <h3>ListingOS</h3>
-            <p>Product photos to review-ready eBay drafts — capture an item, let AI draft the listing with
-              marketplace-verified pricing, then publish from one review screen.</p>
-            <ul class="bullets">
-              <li>Camera-first capture; AI generates titles, categories, descriptions, and item specifics</li>
-              <li>Pricing backed by active eBay comparables, with publish blockers surfaced before review</li>
-              <li>Direct fixed-price publishing after explicit seller approval</li>
-            </ul>
-            <span class="star">📸 Photo-to-listing AI</span>
+          <div class="card-actions">
+            <a class="card-action" href="https://reelagree.com" target="_blank" rel="noopener">Live Demo</a>
           </div>
-        </a>
-        <a class="project-card hide-lg" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
+        </article>
+        <article class="project-card featured">
+          <a class="card-hit" href="https://prepaihq.com" target="_blank" rel="noopener">
+            <div class="shot-wrap"><video class="shot contain brand-animation" autoplay muted loop playsinline preload="none"
+              poster="case-studies/prepai-poster.png">
+              <source src="case-studies/prepai-anim.webm" type="video/webm">
+              <source src="case-studies/prepai-anim.mp4" type="video/mp4">
+            </video></div>
+            <div class="body">
+              <div class="lang">TypeScript</div>
+              <h3>PrepAI</h3>
+              <p>A private health intelligence app. Core health records and supported AI processing stay on-device,
+                and core tracking works fully offline — no account required.</p>
+              <ul class="bullets">
+                <li>On-device inference with clinical knowledge logic</li>
+                <li>HealthKit ingestion and local-only storage of health records</li>
+                <li>Network use limited to optional model downloads, updates, purchases, user-directed exports, and
+                  opt-in diagnostics</li>
+              </ul>
+              <span class="star">🧠 AI health app</span>
+            </div>
+          </a>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Founder · lead mobile architect</span>
+            <span><strong>Status:</strong> iPhone release in progress</span>
+            <span><strong>Platforms:</strong> iOS</span>
+          </div>
+          <div class="card-actions">
+            <a class="card-action" href="https://prepaihq.com" target="_blank" rel="noopener">Product Site</a>
+          </div>
+        </article>
+        <article class="project-card featured">
+          <a class="card-hit" href="https://listingos.expo.app/" target="_blank" rel="noopener">
+            <div class="shot-wrap"><video class="shot contain product-demo" autoplay muted loop playsinline preload="none"
+              poster="case-studies/listingos-poster.png">
+              <source src="case-studies/listingos-anim.webm" type="video/webm">
+              <source src="case-studies/listingos-anim.mp4" type="video/mp4">
+            </video></div>
+            <div class="body">
+              <div class="lang">TypeScript</div>
+              <h3>ListingOS</h3>
+              <p>Product photos to review-ready eBay drafts — capture an item, let AI draft the listing, then publish
+                from one review screen.</p>
+              <ul class="bullets">
+                <li>Camera-first capture; AI generates titles, categories, descriptions, and item specifics</li>
+                <li>Pricing context from active eBay comparables — public demo is non-mutating; fixed-price publishing
+                  validated separately</li>
+                <li>Direct fixed-price publishing after explicit seller approval</li>
+              </ul>
+              <span class="star">📸 Photo-to-listing AI</span>
+            </div>
+          </a>
+          <div class="card-meta">
+            <span><strong>Role:</strong> Sole developer</span>
+            <span><strong>Status:</strong> Public demo — v1.0.1 MVP</span>
+            <span><strong>Platforms:</strong> Web · iOS · Android</span>
+          </div>
+          <div class="card-actions">
+            <a class="card-action" href="https://listingos.expo.app/" target="_blank" rel="noopener">Live Demo</a>
+            <a class="card-action" href="https://github.com/jongan69/ListingOS-AI" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </article>
+        <a class="project-card" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
           rel="noopener">
           <div class="lang">watchOS</div>
           <h3>PushUp Timer Pro</h3>
@@ -1302,14 +1492,14 @@
 
     <article class="section reveal" id="live">
       <div class="section-label">Live</div>
-      <h2>Products currently in production and available</h2>
+      <h2>Shipped and in progress</h2>
       <div class="links-row">
         <a class="link-btn" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
           rel="noopener">
           <span class="icon">⏱️</span> PushUp Timer Pro — Apple App Store
         </a>
         <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <span class="icon">🥗</span> PrepAI — Coming soon to App Store
+          <span class="icon">🥗</span> PrepAI — Release in progress (iPhone)
         </a>
         <a class="link-btn" href="https://reelagree.com" target="_blank" rel="noopener">
           <span class="icon">🎬</span> ReelAgree — Movie discovery app
@@ -1352,69 +1542,6 @@
 
 
   <script>
-    const GH_USERNAME = 'jongan69';
-    const GH_PROFILE_URL = `https://api.github.com/users/${GH_USERNAME}`;
-    const GH_CACHE_KEY = 'github_profile_cache_v1';
-    const GH_CACHE_TTL = 1000 * 60 * 60 * 6;
-
-    function formatCount(value) {
-      if (value === null || value === undefined || Number.isNaN(Number(value))) return '0';
-      return new Intl.NumberFormat('en-US').format(Number(value));
-    }
-
-    function readGitHubCache() {
-      try {
-        const raw = localStorage.getItem(GH_CACHE_KEY);
-        if (!raw) return null;
-        const parsed = JSON.parse(raw);
-        if (!parsed || !parsed.cachedAt) return null;
-        if (Date.now() - parsed.cachedAt > GH_CACHE_TTL) return null;
-        return parsed.data;
-      } catch (error) {
-        return null;
-      }
-    }
-
-    function writeGitHubCache(data) {
-      try {
-        localStorage.setItem(GH_CACHE_KEY, JSON.stringify({ cachedAt: Date.now(), data }));
-      } catch (error) {
-        // ignore storage issues silently
-      }
-    }
-
-    async function loadGitHubData() {
-      const cached = readGitHubCache();
-
-      if (cached) {
-        applyGitHubData(cached.profile);
-        return;
-      }
-
-      try {
-        const res = await fetch(GH_PROFILE_URL, { headers: { Accept: 'application/vnd.github+json' } });
-
-        if (!res.ok) {
-          throw new Error('GitHub fetch failed');
-        }
-
-        const profile = await res.json();
-
-        writeGitHubCache({ profile });
-        applyGitHubData(profile);
-      } catch (error) {
-        console.warn('GitHub data unavailable:', error);
-      }
-    }
-
-    function applyGitHubData(profile) {
-      const repoCountEl = document.getElementById('github-repos');
-      const followerCountEl = document.getElementById('github-followers');
-
-      if (repoCountEl) repoCountEl.textContent = formatCount(profile?.public_repos || 26);
-      if (followerCountEl) followerCountEl.textContent = formatCount(profile?.followers || 300);
-    }
-
     const nav = document.getElementById('nav');
     const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
     window.addEventListener('scroll', updateNav, { passive: true }); updateNav();
@@ -1436,7 +1563,6 @@
       };
       window.addEventListener('load', () => {
         reveal();
-        loadGitHubData();
       });
       window.addEventListener('scroll', reveal, { passive: true });
 
@@ -1448,12 +1574,10 @@
         });
       });
     } else {
-      window.addEventListener('load', () => {
-        loadGitHubData();
-      });
+      // reduced motion: no reveal animations, nothing to load
     }
 
-    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function (e) {
         e.preventDefault();
         const t = document.querySelector(this.getAttribute('href'));
@@ -1466,15 +1590,50 @@
     });
 
     const heroVideos = document.querySelectorAll('.project-card.featured video.shot');
-    if (heroVideos.length && 'IntersectionObserver' in window) {
+    if (heroVideos.length) {
       const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (!reduced && e.isIntersecting) e.target.play().catch(() => { });
-          else e.target.pause();
+
+      heroVideos.forEach(v => {
+        v.setAttribute('aria-hidden', 'true');
+        v.tabIndex = -1;
+
+        const wrap = v.closest('.shot-wrap') || v.parentElement;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'vid-toggle';
+        btn.setAttribute('aria-label', 'Pause animation');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.textContent = '⏸';
+        wrap.appendChild(btn);
+
+        const syncBtn = () => {
+          const paused = v.paused || v.ended;
+          btn.setAttribute('aria-pressed', String(!paused));
+          btn.setAttribute('aria-label', paused ? 'Play animation' : 'Pause animation');
+          btn.textContent = paused ? '▶' : '⏸';
+        };
+        v.addEventListener('play', syncBtn);
+        v.addEventListener('pause', syncBtn);
+
+        btn.addEventListener('click', () => {
+          if (v.paused || v.ended) {
+            v.play().catch(() => { });
+          } else {
+            v.pause();
+          }
+          syncBtn();
         });
-      }, { rootMargin: '200px' });
-      heroVideos.forEach(v => io.observe(v));
+      });
+
+      if (!reduced && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) e.target.play().catch(() => { });
+            else e.target.pause();
+          });
+        }, { rootMargin: '200px' });
+        heroVideos.forEach(v => io.observe(v));
+      }
     }
   </script>
 </body>
