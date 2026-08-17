@@ -2,7 +2,7 @@
 **React Native & Mobile Engineer**
 
 Miami Beach, FL 33141 | (727) 325-3436 | [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com)  
-[GitHub](https://github.com/jongan69) | [Portfolio](https://jongan69.github.io) | [LinkedIn](https://linkedin.com/in/jongan69) | [Medium](https://medium.com/@jonngan) | [YouTube](https://www.youtube.com/@jonngan)
+[GitHub](https://github.com/jongan69) | [Portfolio](https://jongan.com) | [LinkedIn](https://linkedin.com/in/jongan69) | [Medium](https://medium.com/@jonngan) | [YouTube](https://www.youtube.com/@jonngan)
 
 ---
 
@@ -136,7 +136,7 @@ Published NPM package bringing Sony camera control to React Native and Expo apps
 - PTP protocol implementation
 - Community-driven maintenance
 
-### [YouTubeResearchAI](https://jongan69.github.io/YouTubeResearchAI/) — AI Research Pipeline
+### [YouTubeResearchAI](https://jongan.com/YouTubeResearchAI/) — AI Research Pipeline
 **Founder | Live Web App**
 
 Turns any video URL into a research report with automated analysis and citation-oriented output generation.
@@ -145,7 +145,7 @@ Turns any video URL into a research report with automated analysis and citation-
 - Citation-based output formatting
 - Production deployment
 
-### [OpenDating Mobile](https://jongan69.github.io/opendating-mobile/) — Decentralized Dating on Nostr
+### [OpenDating Mobile](https://jongan.com/opendating-mobile/) — Decentralized Dating on Nostr
 **Founder | iOS/Android**
 
 Privacy-first decentralized dating app on Nostr with Tinder-quality UX and end-to-end encrypted messaging.
