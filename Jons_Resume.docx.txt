@@ -1,0 +1,62 @@
+﻿JONATHAN GAN
+React Native & Mobile Engineer
+Miami Beach, FL 33141 | (727) 325-3436 | jongan.engineering@outlook.com 
+github.com/jongan69| jongan69.github.io| linkedin.com/in/jongan69
+PROFESSIONAL PROFILE
+Mobile engineer with 7+ years of experience and 5+ years shipping production React Native systems. Expert in iOS/Android/watchOS delivery with native Kotlin/Swift modules, on-device AI, and hardware integrations. Proven track record in fintech, healthcare, and media, moving prototypes to App Store production with robust CI/CD and offline-first architectures.
+* Mobile: React Native, Expo, SDK 57, Expo Router, TypeScript, TailwindCSS, Redux, Zustand
+* Native: iOS (Swift/SwiftUI), Android (Kotlin), watchOS, Xcode, EAS, App Store Connect
+* AI & Data: On-device LLM (ExecuTorch, Llama 3.2), HealthKit, GraphQL, Node.js, PostgreSQL
+* Cloud: AWS, Cloudflare Workers, GitHub Actions, CI/CD, Jenkins, Vercel, Firebase
+* Standards: Agile, TDD, WCAG 2.1 AA Accessibility, Secure Architecture, Web3 (Solana/BTC)
+KEY ACHIEVEMENTS
+* Published multiple production apps and modules as sole contributor, including App Store and hardware-integrated releases.
+* Owns end-to-end delivery: architecture, implementation, testing, signing, deployment, monitoring, & post-release iterations.
+* Built privacy-first and offline-first mobile workflows for healthcare and AI applications.
+* Designed native device integrations involving camera control, streaming pipelines, BLE workflows, and camera/media interoperability.
+* Authored reusable open-source tooling and native modules to improve time-to-market for React Native teams.
+PROFESSIONAL EXPERIENCE
+Freelance Software Engineer — Mobile & Full-Stack Engineer: Remote | Jul 2024 – Present
+Designed and shipped client and independent mobile products from concept through production using React Native and Expo, owning end-to-end delivery across mobile UI, backend APIs, databases, authentication, payments, native integrations, hardware-aware features, CI/CD, App Store readiness, and QA. Led code reviews, integration planning, and release stabilization to maintain quality across fast-moving MVP cycles.
+Stack: React Native, Expo, TypeScript, Node.js, Cloudflare Workers, PostgreSQL, MongoDB, Firebase, Swift/Kotlin modules, GitHub Actions, Jenkins, EAS, Cloudflare.
+Senior Analyst III / Delivery Cloud Engineer — Kin + Carta: Remote | 2022 – 2024
+Delivered React and enterprise engineering solutions for Syngenta Digital, including responsive interfaces, Java code audits, regulated delivery support, and cloud deployment automation that improved release reliability. Also piloted practical LLM use in internal operations and delivery workflows.
+Stack: React, Redux, Java, AWS, Jenkins, Jira, Confluence, Git.
+React / React Native Developer — ChainBytes LLC: Tampa, FL | 2021 – 2022
+Built and enhanced mobile/web features for a Bitcoin ATM platform, including real-time transaction-centric interfaces. Collaborated to integrate wallet functionality within user-facing mobile experiences.
+Stack: React Native, React, Node.js, Firebase, MongoDB, TailwindCSS
+Code Coach — theCoderSchool        
+Tampa, FL | 2022 – 2023
+Mentored 30+ students through web, game, and mobile curriculum with practical project-based instruction.
+Taught API integration, problem-solving, and object-oriented design patterns using iterative, production-minded mini-projects.
+Junior React Developer / Blockchain Research — BlockSpaces: Tampa, FL | 2019 – 2021
+Built frontend work for dApps and contributed to smart-contract testing environments.
+Researched interoperability across Ethereum and Hyperledger ecosystems for practical product integration decisions.
+SaaS React Developer — Accusoft: Tampa, FL | 2018 – 2019
+Built React components for document-processing SaaS products.
+Implemented secure routing patterns, authentication workflows, and tenant-aware UI behavior for multi-tenant deployments.
+SELECTED SHIPPED PRODUCTS & OPEN SOURCE (DETAILED)
+PushUp Timer Pro — Apple App Store (watchOS)
+Role: Owner | Status: Published / live since Jan 2023
+Built a watchOS workout timer app end-to-end, including HealthKit integration, one-handed user interactions, App Store review preparation, provisioning, and release maintenance.
+
+PrepAI — Offline Health Intelligence
+Role: Founder / Lead Mobile Architect | Status: App Store submission in review phase
+Developed privacy-first iOS app where all inference is on-device with no cloud dependency or account requirement; integrated HealthKit and local clinical knowledge logic.
+
+expo-sony-camera — Open Source Expo Module (GitHub)
+Role: Author/Maintainer | Status: Public MIT project with community traction
+Implemented cross-platform Expo module (Kotlin/Swift + JS bridge) for Sony live view and remote capture via PTP; added robust error handling and developer documentation.
+
+pocketsage — Offline On-Device AI Agent
+Built local Llama 3.2 inference across iOS/Android with memory-efficient model packaging and responsive UI execution under AI load.
+
+PocketRoar — Camera Streaming Stack
+Delivered hardware-oriented mobile systems including BLE pairing, streaming profile handling, HEVC/H.264/AAC capture compatibility, and RTMP publishing paths.
+
+ListingOS — AI Market Listing Builder
+Built image-first listing flow for product capture, AI-generated content steps, and eBay marketplace publishing from mobile.
+
+Additional contributions: react-native-cloud-storage, mobileproof, reelagree, odysseus-expo, Expo Router auth/forms component libraries, additional Web3/NFT tooling proofs of concept.
+EDUCATION
+University of South Florida — B.S. Information Science, 2019–2023

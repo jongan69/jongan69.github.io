@@ -1,467 +1,1216 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jonathan Gan — AI, Mobile, Cameras</title>
-<meta name="description" content="Jonathan Gan — Miami-based software engineer building AI tools, mobile apps, and camera software.">
-<meta name="theme-color" content="#6366f1">
-<meta property="og:title" content="Jonathan Gan">
-<meta property="og:description" content="Jonathan Gan — building AI tools, mobile apps, and camera software. Miami Beach, FL.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#faf9f7;
-    --surface:#ffffff;
-    --surface-elevated:#f5f3f0;
-    --text:#1a1a1a;
-    --text-secondary:#5c5c5c;
-    --text-muted:#8c8c8c;
-    --accent:#6366f1;
-    --accent-2:#a855f7;
-    --accent-3:#06b6d4;
-    --accent-soft:#e0e7ff;
-    --accent-glow:rgba(99,102,241,0.15);
-    --border:rgba(0,0,0,0.06);
-    --border-strong:rgba(0,0,0,0.1);
-    --shadow-sm:0 1px 2px rgba(0,0,0,0.04);
-    --shadow-md:0 4px 12px rgba(0,0,0,0.06);
-    --shadow-lg:0 12px 40px rgba(0,0,0,0.08);
-    --radius:12px;
-    --radius-lg:20px;
-    --transition:0.3s cubic-bezier(0.4,0,0.2,1);
-    --font-sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    --font-mono:'JetBrains Mono','SF Mono',monospace;
-  }
-  @media(prefers-color-scheme:dark){
-    :root{
-      --bg:#0a0a0b;
-      --surface:#121214;
-      --surface-elevated:#1a1a1d;
-      --text:#f0f0f0;
-      --text-secondary:#b0b0b0;
-      --text-muted:#6b6b6b;
-      --accent:#818cf8;
-      --accent-2:#c084fc;
-      --accent-3:#22d3ee;
-      --accent-soft:#1e1b4b;
-      --accent-glow:rgba(129,140,248,0.12);
-      --border:rgba(255,255,255,0.06);
-      --border-strong:rgba(255,255,255,0.1);
-      --shadow-sm:0 1px 2px rgba(0,0,0,0.3);
-      --shadow-md:0 4px 12px rgba(0,0,0,0.4);
-      --shadow-lg:0 12px 40px rgba(0,0,0,0.5);
-    }
-  }
-  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-padding-top:40px}
-  body{
-    font-family:var(--font-sans);
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.7;
-    font-size:16px;
-    overflow-x:hidden;
-    transition:color var(--transition),background var(--transition);
-  }
-  .bg-geometry{
-    position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-  }
-  .bg-geometry .orb{
-    position:absolute;border-radius:50%;filter:blur(90px);opacity:0.45;
-    animation:orb-float 24s ease-in-out infinite;
-  }
-  .bg-geometry .orb:nth-child(1){
-    width:700px;height:700px;
-    background:var(--accent-glow);
-    top:-250px;right:-150px;
-  }
-  .bg-geometry .orb:nth-child(2){
-    width:500px;height:500px;
-    background:rgba(168,85,247,0.08);
-    bottom:-200px;left:-150px;
-    animation-delay:-8s;animation-duration:28s;
-  }
-  .bg-geometry .orb:nth-child(3){
-    width:350px;height:350px;
-    background:rgba(6,182,212,0.06);
-    top:50%;left:55%;
-    animation-delay:-16s;animation-duration:20s;
-  }
-  @keyframes orb-float{
-    0%,100%{transform:translate(0,0) scale(1)}
-    25%{transform:translate(50px,-40px) scale(1.1)}
-    50%{transform:translate(-30px,25px) scale(0.92)}
-    75%{transform:translate(-40px,-15px) scale(1.06)}
-  }
-  .bg-grid{
-    position:fixed;inset:0;z-index:0;pointer-events:none;
-    background-image:
-      linear-gradient(var(--border) 1px,transparent 1px),
-      linear-gradient(90deg,var(--border) 1px,transparent 1px);
-    background-size:64px 64px;
-    mask-image:radial-gradient(ellipse 80% 70% at 50% 20%,black 25%,transparent 75%);
-    opacity:0.4;
-  }
-  .container{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px}
-  .nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    padding:16px 0;
-    transition:background var(--transition),box-shadow var(--transition);
-  }
-  .nav.scrolled{
-    background:rgba(255,255,255,0.85);
-    box-shadow:0 1px 0 var(--border);
-    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  }
-  @media(prefers-color-scheme:dark){.nav.scrolled{background:rgba(18,18,20,0.85)}}
-  .nav .container{display:flex;align-items:center;justify-content:space-between}
-  .nav-logo{
-    font-family:var(--font-mono);font-size:16px;font-weight:600;
-    color:var(--text);text-decoration:none;letter-spacing:-0.02em;
-    transition:opacity 0.2s;
-  }
-  .nav-logo:hover{opacity:0.6}
-  .nav-logo .accent{color:var(--accent)}
-  .nav-links{display:flex;gap:24px;list-style:none}
-  .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.2s}
-  .nav-links a:hover{color:var(--text)}
-  .hero{position:relative;z-index:1;padding:160px 0 80px;text-align:center}
-  .hero-avatar{
-    width:88px;height:88px;border-radius:50%;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    display:inline-flex;align-items:center;justify-content:center;
-    font-size:36px;margin-bottom:28px;
-    animation:fade-up 0.8s ease both;
-    box-shadow:0 0 0 6px var(--bg),0 0 0 8px var(--border),0 8px 32px var(--accent-glow);
-    user-select:none;
-  }
-  .hero h1{
-    font-size:clamp(40px,7vw,68px);font-weight:800;letter-spacing:-0.03em;
-    line-height:1.08;margin-bottom:16px;
-    animation:fade-up 0.8s 0.1s ease both;
-    background:linear-gradient(135deg,var(--text) 0%,var(--text-secondary) 55%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  }
-  .hero .tagline{
-    font-size:19px;color:var(--text-secondary);font-weight:400;
-    max-width:520px;margin:0 auto 12px;
-    animation:fade-up 0.8s 0.2s ease both;line-height:1.55;
-  }
-  .hero .location{
-    display:inline-flex;align-items:center;gap:7px;
-    font-size:15px;color:var(--text-muted);font-weight:450;
-    animation:fade-up 0.8s 0.25s ease both;
-  }
-  .hero .location .dot{
-    width:7px;height:7px;border-radius:50%;background:#22c55e;
-    animation:pulse-dot 2s ease-in-out infinite;
-    box-shadow:0 0 8px rgba(34,197,94,0.4);
-  }
-  @keyframes pulse-dot{
-    0%,100%{opacity:1;transform:scale(1)}
-    50%{opacity:0.4;transform:scale(0.7)}
-  }
-  @keyframes fade-up{
-    from{opacity:0;transform:translateY(24px)}
-    to{opacity:1;transform:translateY(0)}
-  }
-  .hero-stats{
-    display:flex;justify-content:center;gap:32px;margin-top:36px;
-    animation:fade-up 0.8s 0.3s ease both;
-  }
-  .hero-stat{text-align:center}
-  .hero-stat .num{
-    font-size:32px;font-weight:700;font-family:var(--font-mono);
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  }
-  .hero-stat .lbl{font-size:13px;color:var(--text-muted);font-weight:500;margin-top:2px}
 
-  .section{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:var(--radius-lg);padding:44px 48px;margin-bottom:20px;
-    box-shadow:var(--shadow-sm);
-    transition:transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease,background var(--transition);
-    position:relative;overflow:hidden;
-  }
-  .section::before{
-    content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.5s ease;pointer-events:none;
-    background:radial-gradient(700px circle at var(--mouse-x,50%) var(--mouse-y,50%),var(--accent-glow),transparent 55%);
-  }
-  .section:hover::before{opacity:1}
-  .section:hover{box-shadow:var(--shadow-md);border-color:var(--border-strong)}
-  .section.reveal{animation:reveal-section 0.7s ease both}
-  @keyframes reveal-section{
-    from{opacity:0;transform:translateY(24px)}
-    to{opacity:1;transform:translateY(0)}
-  }
-  .section-label{
-    font-size:12px;font-weight:700;text-transform:uppercase;
-    letter-spacing:0.1em;color:var(--accent);margin-bottom:8px;
-  }
-  .section h2{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin-bottom:6px;color:var(--text)}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:24px}
-  .project-card{
-    background:var(--surface-elevated);border:1px solid var(--border);
-    border-radius:var(--radius);padding:24px;
-    transition:all 0.3s ease;text-decoration:none;color:inherit;
-    display:flex;flex-direction:column;position:relative;overflow:hidden;
-  }
-  .project-card:hover{
-    border-color:var(--border-strong);box-shadow:var(--shadow-md);transform:translateY(-2px);
-  }
-  .project-card .lang{
-    font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--accent);
-    text-transform:uppercase;letter-spacing:0.05em;margin-bottom:10px;
-  }
-  .project-card h3{font-size:17px;font-weight:650;margin-bottom:8px;color:var(--text);letter-spacing:-0.01em}
-  .project-card p{font-size:14px;color:var(--text-secondary);line-height:1.55;flex-grow:1}
-  .project-card .star{
-    display:inline-flex;align-items:center;gap:5px;font-size:13px;
-    color:var(--text-muted);margin-top:12px;font-weight:500;
-  }
-  .stack-cloud{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-  .stack-tag{
-    font-family:var(--font-mono);font-size:13px;font-weight:500;
-    padding:7px 16px;border-radius:100px;
-    background:var(--surface-elevated);border:1px solid var(--border);
-    color:var(--text-secondary);transition:all 0.25s ease;white-space:nowrap;cursor:default;
-  }
-  .stack-tag:hover{
-    border-color:var(--accent);color:var(--accent);
-    background:var(--accent-soft);transform:translateY(-1px);
-    box-shadow:0 4px 12px var(--accent-glow);
-  }
-  .links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-  .link-btn{
-    display:inline-flex;align-items:center;gap:9px;
-    font-size:15px;font-weight:550;padding:12px 22px;border-radius:100px;
-    text-decoration:none;transition:all 0.25s ease;
-    border:1.5px solid var(--border-strong);
-    background:var(--surface-elevated);color:var(--text-secondary);
-  }
-  .link-btn:hover{
-    border-color:var(--accent);color:var(--accent);
-    background:var(--accent-soft);transform:translateY(-2px);
-    box-shadow:0 6px 20px var(--accent-glow);
-  }
-  .link-btn .icon{font-size:18px}
-  .footer{
-    position:relative;z-index:1;text-align:center;
-    padding:48px 0 60px;color:var(--text-muted);font-size:14px;
-    border-top:1px solid var(--border);
-  }
-  .footer .heart{color:var(--accent-2);animation:pulse-dot 1.5s ease-in-out infinite;display:inline-block}
-  @media(max-width:700px){
-    .hero{padding:120px 0 56px}
-    .hero h1{font-size:36px}
-    .hero .tagline{font-size:17px}
-    .section{padding:32px 22px;border-radius:var(--radius)}
-    .section h2{font-size:22px}
-    .hero-stats{gap:20px}
-    .hero-stat .num{font-size:24px}
-    .projects-grid{grid-template-columns:1fr}
-    .nav-links{gap:16px}
-  }
-</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jonathan Gan | React Native Engineer Miami | AI Mobile App Developer | Camera Software Engineer</title>
+  <meta name="description"
+    content="Jonathan Gan: React Native engineer, AI mobile app developer, and camera software engineer (7+ years). Builds production iOS, Android, watchOS apps with on-device AI, machine learning, healthtech, fintech. Expert in Expo, TypeScript, Swift, Kotlin. Open-source contributor. Portfolio includes ReelAgree, PrepAI, PushUp Timer Pro, YouTubeResearchAI. Available for consulting.">
+  <meta name="keywords"
+    content="Jonathan Gan, React Native engineer, React Native developer, mobile engineer, iOS developer, Android developer, watchOS developer, AI app developer, on-device AI engineer, camera software engineer, Expo developer, Expo Router, TypeScript, Swift, Kotlin, machine learning mobile, healthtech engineer, fintech engineer, HealthKit, App Store, native development, hardware integration, camera streaming, React Native consultant, open source, AI LLM applications, LLM app developer, mobile AI, edge computing, ChatGPT integration, Claude API, DeepSeek, Kimi, generative AI, machine learning inference, on-device ML, TensorFlow Lite, Core ML, ONNX, AI model deployment, health app, fitness tracking, AI research, prepAI, ReelAgree, PushUp Timer Pro, YouTubeResearchAI, Nostr, decentralized apps, privacy-first, motion design, Reanimated, Skia graphics, mobile performance, cross-platform development, Miami software engineer">
+  <meta name="author" content="Jonathan Gan">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="classification"
+    content="Software Engineer, React Native, Mobile Development, AI Applications, Camera Software, App Development">
+  <meta property="og:title" content="Jonathan Gan | React Native Engineer Miami | AI Mobile App Developer">
+  <meta property="og:description"
+    content="Miami-based React Native and mobile engineer building AI tools, camera software, healthtech, fintech, and production apps for iOS, Android, and watchOS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jongan69.github.io/">
+  <meta property="og:site_name" content="Jonathan Gan">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jonathan Gan | React Native & Mobile Engineer">
+  <meta name="twitter:description"
+    content="AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.">
+  <link rel="canonical" href="https://jongan69.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jonathan Gan",
+  "jobTitle": "React Native & Mobile Engineer",
+  "description": "Mobile engineer with 7+ years of experience and 5+ years shipping production React Native systems across iOS, Android, watchOS, AI, camera, fintech, and healthcare apps.",
+  "email": "mailto:jongan.engineering@outlook.com",
+  "telephone": "+1-727-325-3436",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Miami Beach",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "url": "https://jongan69.github.io/",
+  "sameAs": [
+    "https://github.com/jongan69",
+    "https://linkedin.com/in/jongan69",
+    "https://medium.com/@jonngan",
+    "https://prepaihq.com"
+  ],
+  "knowsAbout": [
+    "React Native",
+    "Expo",
+    "TypeScript",
+    "Swift",
+    "Kotlin",
+    "watchOS",
+    "React Native",
+    "Expo Router",
+    "TypeScript",
+    "JavaScript",
+    "Swift",
+    "SwiftUI",
+    "Kotlin",
+    "Jetpack Compose",
+    "watchOS",
+    "On-device machine learning",
+    "Machine learning",
+    "TensorFlow Lite",
+    "Core ML",
+    "ONNX models",
+    "LLM integration",
+    "ChatGPT API",
+    "Claude API",
+    "DeepSeek",
+    "Generative AI",
+    "Edge AI",
+    "HealthKit",
+    "Health sensor integration",
+    "Camera software",
+    "Hardware integrations",
+    "BLE development",
+    "App Store release engineering",
+    "Enterprise React",
+    "React Query",
+    "Cloudflare Workers",
+    "Node.js",
+    "PostgreSQL",
+    "Decentralized apps",
+    "Nostr protocol",
+    "Privacy-first design",
+    "Performance optimization",
+    "Fintech development",
+    "Healthcare apps",
+    "Open source"
+  ],
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of South Florida"
+  },
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Mobile Engineer",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "Miami Beach"
+    }
+  },
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Freelance Software Engineer"
+  },
+  "givenName": "Jonathan",
+  "familyName": "Gan",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Miami Beach"
+    },
+    {
+      "@type": "Region",
+      "name": "Florida"
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "degree",
+      "recognizedBy": {
+        "@type": "CollegeOrUniversity",
+        "name": "University of South Florida"
+      }
+    }
+  ],
+  "award": [
+    "Published NPM package: expo-sony-camera",
+    "Published iOS App Store app: PushUp Timer Pro",
+    "Built production AI applications"
+  ],
+  "hasMadeProject": [
+    {
+      "@type": "CreativeWork",
+      "name": "ReelAgree",
+      "url": "https://reelagree.com",
+      "description": "Private movie and TV discovery app for blind group voting, server-authoritative consensus, and movie-night planning across public web, iOS, and Android"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "PrepAI",
+      "url": "https://prepaihq.com",
+      "description": "Private, offline health intelligence app with on-device AI and clinical knowledge logic for iPhone-based personal fitness workflows"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "PushUp Timer Pro",
+      "url": "https://apps.apple.com/us/app/pushup-timer-pro/id1477282248",
+      "applicationCategory": "HealthAndFitnessApplication",
+      "description": "Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit integration"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "expo-sony-camera",
+      "url": "https://www.npmjs.com/package/expo-sony-camera",
+      "description": "Published NPM package bringing Sony camera control to React Native and Expo apps",
+      "programmingLanguage": "TypeScript"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "YouTubeResearchAI",
+      "url": "https://jongan69.github.io/YouTubeResearchAI/",
+      "description": "Turns any video URL into a research report with automated analysis and citation-oriented output generation"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "OpenDating Mobile",
+      "url": "https://jongan69.github.io/opendating-mobile/",
+      "description": "Privacy-first decentralized dating app on Nostr with Tinder-quality UX and end-to-end encrypted messaging"
+    }
+  ]
+}
+</script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --surface-elevated: #f5f3f0;
+      --text: #1a1a1a;
+      --text-secondary: #5c5c5c;
+      --text-muted: #8c8c8c;
+      --accent: #6366f1;
+      --accent-2: #a855f7;
+      --accent-3: #06b6d4;
+      --accent-soft: #e0e7ff;
+      --accent-glow: rgba(99, 102, 241, 0.15);
+      --border: rgba(0, 0, 0, 0.06);
+      --border-strong: rgba(0, 0, 0, 0.1);
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    @media(prefers-color-scheme:dark) {
+      :root {
+        --bg: #0a0a0b;
+        --surface: #121214;
+        --surface-elevated: #1a1a1d;
+        --text: #f0f0f0;
+        --text-secondary: #b0b0b0;
+        --text-muted: #6b6b6b;
+        --accent: #818cf8;
+        --accent-2: #c084fc;
+        --accent-3: #22d3ee;
+        --accent-soft: #1e1b4b;
+        --accent-glow: rgba(129, 140, 248, 0.12);
+        --border: rgba(255, 255, 255, 0.06);
+        --border-strong: rgba(255, 255, 255, 0.1);
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-padding-top: 40px
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-x: hidden;
+      transition: color var(--transition), background var(--transition);
+    }
+
+    .bg-geometry {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-geometry .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.45;
+      animation: orb-float 24s ease-in-out infinite;
+    }
+
+    .bg-geometry .orb:nth-child(1) {
+      width: 700px;
+      height: 700px;
+      background: var(--accent-glow);
+      top: -250px;
+      right: -150px;
+    }
+
+    .bg-geometry .orb:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      background: rgba(168, 85, 247, 0.08);
+      bottom: -200px;
+      left: -150px;
+      animation-delay: -8s;
+      animation-duration: 28s;
+    }
+
+    .bg-geometry .orb:nth-child(3) {
+      width: 350px;
+      height: 350px;
+      background: rgba(6, 182, 212, 0.06);
+      top: 50%;
+      left: 55%;
+      animation-delay: -16s;
+      animation-duration: 20s;
+    }
+
+    @keyframes orb-float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1)
+      }
+
+      25% {
+        transform: translate(50px, -40px) scale(1.1)
+      }
+
+      50% {
+        transform: translate(-30px, 25px) scale(0.92)
+      }
+
+      75% {
+        transform: translate(-40px, -15px) scale(1.06)
+      }
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, black 25%, transparent 75%);
+      opacity: 0.4;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 1px 0 var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    @media(prefers-color-scheme:dark) {
+      .nav.scrolled {
+        background: rgba(18, 18, 20, 0.85)
+      }
+    }
+
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: opacity 0.2s;
+    }
+
+    .nav-logo:hover {
+      opacity: 0.6
+    }
+
+    .nav-logo .accent {
+      color: var(--accent)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s
+    }
+
+    .nav-links a:hover {
+      color: var(--text)
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 160px 0 80px;
+      text-align: center
+    }
+
+    .hero-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 28px;
+      animation: fade-up 0.8s ease both;
+      box-shadow: 0 0 0 6px var(--bg), 0 0 0 8px var(--border), 0 8px 32px var(--accent-glow);
+      user-select: none;
+    }
+
+    .hero h1 {
+      max-width: 980px;
+      margin: 0 auto 16px;
+      font-size: clamp(42px, 5vw, 86px);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      line-height: 0.91;
+      text-wrap: balance;
+      animation: fade-up 0.8s 0.1s ease both;
+      color: var(--text);
+      text-shadow: 0 0 28px rgba(99, 102, 241, 0.08);
+    }
+
+    .hero h1 .line {
+      display: block
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .tagline {
+      font-size: 19px;
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 520px;
+      margin: 0 auto 12px;
+      animation: fade-up 0.8s 0.2s ease both;
+      line-height: 1.55;
+    }
+
+    .hero .location {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 450;
+      animation: fade-up 0.8s 0.25s ease both;
+    }
+
+    .hero .location .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse-dot 2s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+    }
+
+    @keyframes pulse-dot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.7)
+      }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 36px;
+      animation: fade-up 0.8s 0.3s ease both;
+    }
+
+    .hero-stat {
+      text-align: center
+    }
+
+    .hero-stat .num {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-stat .lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, background var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+      background: radial-gradient(700px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow), transparent 55%);
+    }
+
+    .section:hover::before {
+      opacity: 1
+    }
+
+    .section:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong)
+    }
+
+    .section.reveal {
+      animation: reveal-section 0.7s ease both
+    }
+
+    @keyframes reveal-section {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .section h2 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: var(--text)
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 24px
+    }
+
+    .project-card {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .project-card .lang {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-size: 17px;
+      font-weight: 650;
+      margin-bottom: 8px;
+      color: var(--text);
+      letter-spacing: -0.01em
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      flex-grow: 1
+    }
+
+    .project-card .star {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      font-weight: 500;
+    }
+
+    .stack-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px
+    }
+
+    .stack-tag {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 100px;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    .stack-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    .seo-sentinel {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      white-space: pre-wrap;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px
+    }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+      font-weight: 550;
+      padding: 12px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1.5px solid var(--border-strong);
+      background: var(--surface-elevated);
+      color: var(--text-secondary);
+    }
+
+    .link-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+
+    .link-btn .icon {
+      font-size: 18px
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 48px 0 60px;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer .heart {
+      color: var(--accent-2);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+      display: inline-block
+    }
+
+    @media(max-width:700px) {
+      .hero {
+        padding: 120px 0 56px
+      }
+
+      .hero h1 {
+        font-size: 36px
+      }
+
+      .hero .tagline {
+        font-size: 17px
+      }
+
+      .section {
+        padding: 32px 22px;
+        border-radius: var(--radius)
+      }
+
+      .section h2 {
+        font-size: 22px
+      }
+
+      .hero-stats {
+        gap: 20px
+      }
+
+      .hero-stat .num {
+        font-size: 24px
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .nav-links {
+        gap: 16px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="bg-geometry">
-  <div class="orb"></div>
-  <div class="orb"></div>
-  <div class="orb"></div>
-</div>
-<div class="bg-grid"></div>
-
-<nav class="nav" id="nav">
-  <div class="container">
-    <a href="#" class="nav-logo"><span class="accent">~/</span>jongan69</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#links">Links</a></li>
-    </ul>
+  <div class="bg-geometry">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
   </div>
-</nav>
+  <div class="bg-grid"></div>
 
-<header class="hero">
-  <div class="container">
-    <div class="hero-avatar">🛠️</div>
-    <h1>Hey, I'm Jonathan.</h1>
-    <p class="tagline">I build things at the intersection of <strong>AI</strong>, <strong>cameras</strong>, and <strong>mobile</strong>. If it involves a lens, a model, or a shipping deadline — I'm on it.</p>
-    <div class="location">
-      <span class="dot"></span>
-      Miami Beach, Florida
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="#" class="nav-logo"><span class="accent">~/</span>jongan69</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#links">Links</a></li>
+      </ul>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="num">26</div>
-        <div class="lbl">Public Repos</div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-avatar">🛠️</div>
+      <h1>
+        <span class="line">Jonathan Gan</span>
+      </h1>
+      <br class="line-break">
+      <h2>
+        <span class="line"><span class="accent">React Native</span> Engineer</span>
+        <br class="line-break">
+        <span class="line">AI &amp; Mobile App Developer</span>
+      </h2>
+      <p class="tagline">I build <strong>React Native apps</strong>, <strong>AI mobile products</strong>, <strong>camera
+          software</strong>, <strong>iOS app development</strong>, <strong>Android app development</strong>, and
+        <strong>watchOS engineering solutions</strong> for startups, healthcare, fintech, and media teams.</p>
+      <div class="location">
+        <span class="dot"></span>
+        Miami Beach, Florida | React Native Engineer | Mobile App Developer | AI Engineer
       </div>
-      <div class="hero-stat">
-        <div class="num">302</div>
-        <div class="lbl">Followers</div>
+      <div class="links-row" style="justify-content:center; margin-top:22px;">
+        <a class="link-btn"
+          href="https://docs.google.com/document/d/1cXa2aDfjhd4lCQxdDmIcI7zv9OMc4aYu/edit?usp=sharing&ouid=100083907697199875924&rtpof=true&sd=true"
+          target="_blank" rel="noopener">
+          <span class="icon">📄</span> View Resume
+        </a>
       </div>
-      <div class="hero-stat">
-        <div class="num">8+</div>
-        <div class="lbl">Years Building</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" id="github-repos">26</div>
+          <div class="lbl">Public Repos</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" id="github-followers">300</div>
+          <div class="lbl">Followers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">8+</div>
+          <div class="lbl">Years Building</div>
+        </div>
       </div>
     </div>
+  </header>
+
+  <main class="container">
+    <article class="section reveal" id="about">
+      <div class="section-label">About</div>
+      <h2>React Native & mobile engineer building AI, camera, healthcare, fintech, and production-ready apps.</h2>
+      <p>Jonathan Gan is a <strong>Miami-based software engineer</strong>, <strong>React Native developer</strong>,
+        <strong>mobile app developer</strong>, and <strong>AI app engineer</strong> with 7+ years of experience and 5+
+        years shipping production React Native systems. He specializes in <strong>iOS app development</strong>,
+        <strong>Android app development</strong>, <strong>watchOS app development</strong>, <strong>native Swift and
+          Kotlin modules</strong>, <strong>on-device AI</strong>, and <strong>camera and hardware integrations</strong>
+        for fintech, healthcare, and media products.</p>
+      <p>His work spans end-to-end mobile delivery, from architecture and implementation to <strong>App Store release
+          engineering</strong>, <strong>CI/CD</strong>, <strong>secure authentication</strong>, <strong>offline-first
+          workflows</strong>, and post-launch iteration. Jonathan has built and published multiple production apps,
+        open-source modules, and AI-driven mobile tools that combine polished UX with deeply technical systems work for
+        <strong>AI startups</strong>, <strong>mobile product teams</strong>, and <strong>consumer technology
+          companies</strong>.</p>
+      <div class="stack-cloud">
+        <span class="stack-tag">React Native</span>
+        <span class="stack-tag">Expo</span>
+        <span class="stack-tag">Expo Router</span>
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">Swift</span>
+        <span class="stack-tag">Kotlin</span>
+        <span class="stack-tag">watchOS</span>
+        <span class="stack-tag">HealthKit</span>
+        <span class="stack-tag">LLM / AI Apps</span>
+        <span class="stack-tag">App Store Connect</span>
+      </div>
+    </article>
+
+    <article class="section reveal" id="experience">
+      <div class="section-label">Experience</div>
+      <h2>Career highlights from the resume: React Native engineer, mobile product engineer, AI app developer.</h2>
+      <div class="links-row" style="margin-top:16px; gap:10px;">
+        <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
+          <span class="icon">🧑‍💻</span> GitHub portfolio
+        </a>
+        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
+          <span class="icon">💼</span> LinkedIn
+        </a>
+      </div>
+      <div style="margin-top:22px; display:grid; gap:18px;">
+        <div>
+          <h3 style="font-size:18px; margin-bottom:4px;">Freelance Software Engineer</h3>
+          <p style="color:var(--text-secondary); margin:0;">Remote · Jul 2024 – Present</p>
+          <p style="margin-top:10px;">Designed and shipped client and independent mobile products from concept through
+            production using React Native and Expo, owning end-to-end delivery across mobile UI, backend APIs,
+            databases, authentication, payments, native integrations, hardware-aware features, CI/CD, App Store
+            readiness, and QA.</p>
+        </div>
+        <div>
+          <h3 style="font-size:18px; margin-bottom:4px;">Senior Analyst III / Delivery Cloud Engineer</h3>
+          <p style="color:var(--text-secondary); margin:0;">Kin + Carta · 2022 – 2024</p>
+          <p style="margin-top:10px;">Delivered React and enterprise engineering solutions for Syngenta Digital,
+            including responsive interfaces, Java code audits, regulated delivery support, and cloud deployment
+            automation that improved release reliability.</p>
+        </div>
+        <div>
+          <h3 style="font-size:18px; margin-bottom:4px;">React / React Native Developer</h3>
+          <p style="color:var(--text-secondary); margin:0;">ChainBytes LLC · 2021 – 2022</p>
+          <p style="margin-top:10px;">Built and enhanced mobile and web features for a Bitcoin ATM platform, including
+            real-time transaction interfaces and wallet-aware mobile experiences.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="section reveal" id="work">
+      <div class="section-label">Featured</div>
+      <h2>Selected shipped products and open source work: Expo developer, AI engineer, camera software engineer, mobile
+        app architect.</h2>
+      <div class="projects-grid" id="github-projects">
+        <a class="project-card" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
+          rel="noopener">
+          <div class="lang">watchOS</div>
+          <h3>PushUp Timer Pro</h3>
+          <p>Published Apple App Store workout timer app for watchOS, featuring one-handed interactions, HealthKit
+            integration, and production release work.</p>
+          <span class="star">📱 App Store</span>
+        </a>
+        <a class="project-card" href="https://www.npmjs.com/package/expo-sony-camera" target="_blank" rel="noopener">
+          <div class="lang">TypeScript</div>
+          <h3>Expo Sony Camera</h3>
+          <p>Published NPM package bringing Sony camera control to React Native and Expo apps—live view, remote capture, and robust error handling across platforms.</p>
+          <span class="star">📦 NPM Package</span>
+        </a>
+        <a class="project-card" href="https://prepaihq.com" target="_blank" rel="noopener">
+          <div class="lang">TypeScript</div>
+          <h3>PrepAI</h3>
+          <p>Private, offline health intelligence app with on-device AI and clinical knowledge logic for iPhone-based personal fitness workflows.</p>
+          <span class="star">🧠 AI health app</span>
+        </a>
+        <a class="project-card" href="https://reelagree.com" target="_blank" rel="noopener">
+          <div class="lang">TypeScript</div>
+          <h3>ReelAgree</h3>
+          <p>Private movie and TV discovery app for blind group voting, server-authoritative consensus, and movie-night planning across public web, iOS, and Android.</p>
+          <span class="star">🎬 Group movie planning</span>
+        </a>
+        <a class="project-card" href="https://jongan69.github.io/YouTubeResearchAI/">
+          <div class="lang">JavaScript</div>
+          <h3>YouTubeResearchAI</h3>
+          <p>Turns any video URL into a research report with automated analysis and citation-oriented output generation.</p>
+          <span class="star">📚 AI research pipeline</span>
+        </a>
+        <a class="project-card" href="https://jongan69.github.io/opendating-mobile/">
+          <div class="lang">TypeScript</div>
+          <h3>OpenDating Mobile</h3>
+          <p>Privacy-first decentralized dating app on Nostr with Tinder-quality UX and end-to-end encrypted messaging.</p>
+          <span class="star">🔐 Privacy-first app</span>
+        </a>
+      </div>
+    </article>
+
+    <article class="section reveal" id="stack">
+      <div class="section-label">Toolbox</div>
+      <h2>Technical stack and engineering strengths: React Native, Expo, TypeScript, Swift, Kotlin, AI, mobile app
+        development.</h2>
+      <div class="stack-cloud">
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">React / Next.js</span>
+        <span class="stack-tag">Expo / React Native</span>
+        <span class="stack-tag">Kotlin</span>
+        <span class="stack-tag">Swift</span>
+        <span class="stack-tag">watchOS</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">Cloudflare Workers</span>
+        <span class="stack-tag">GPT / Claude API</span>
+        <span class="stack-tag">Postgres / SQLite</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">Firebase / Supabase</span>
+        <span class="stack-tag">Tailwind CSS</span>
+        <span class="stack-tag">eBay / Amazon APIs</span>
+        <span class="stack-tag">MCP Servers</span>
+        <span class="stack-tag">Convex</span>
+        <span class="stack-tag">Remotion</span>
+        <span class="stack-tag">FFmpeg</span>
+        <span class="stack-tag">HealthKit</span>
+        <span class="stack-tag">App Store Connect</span>
+        <span class="stack-tag">EAS</span>
+        <span class="stack-tag">GitHub Actions</span>
+      </div>
+    </article>
+
+    <article class="section reveal" id="live">
+      <div class="section-label">Live</div>
+      <h2>Products and mobile apps currently in the wild</h2>
+      <div class="links-row">
+        <a class="link-btn" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
+          rel="noopener">
+          <span class="icon">⏱️</span> PushUp Timer Pro — Apple App Store
+        </a>
+        <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
+          <span class="icon">🥗</span> PrepAI — Fitness AI for iPhone
+        </a>
+        <a class="link-btn" href="https://listingos.expo.app" target="_blank" rel="noopener">
+          <span class="icon">📸</span> ListingOS — AI eBay Listings
+        </a>
+      </div>
+    </article>
+
+    <article class="section reveal" id="links">
+      <div class="section-label">Connect</div>
+      <h2>Find me around the internet</h2>
+      <div class="links-row">
+        <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
+          <span class="icon">🐙</span> GitHub
+        </a>
+        <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
+          <span class="icon">📱</span> PrepAI
+        </a>
+        <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
+          <span class="icon">💼</span> LinkedIn
+        </a>
+        <a class="link-btn" href="https://jongan69.github.io/privacy-policy/" target="_blank" rel="noopener">
+          <span class="icon">🔒</span> Privacy Policy
+        </a>
+        <a class="link-btn"
+          href="https://docs.google.com/document/d/1cXa2aDfjhd4lCQxdDmIcI7zv9OMc4aYu/edit?usp=sharing&ouid=100083907697199875924&rtpof=true&sd=true"
+          target="_blank" rel="noopener">
+          <span class="icon">📄</span> Resume PDF / Resume
+        </a>
+        <a class="link-btn" href="mailto:jongan.engineering@outlook.com">
+          <span class="icon">📬</span> jongan.engineering@outlook.com
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Built with <span class="heart">♥</span> in Miami Beach &nbsp;·&nbsp; © 2026 Jon</p>
+    </div>
+  </footer>
+
+  <div class="seo-sentinel" aria-hidden="true">
+    Jonathan Gan React Native engineer Miami React Native developer Miami mobile engineer iOS developer Android developer watchOS developer mobile app developer AI app developer on-device AI engineer camera software engineer Expo developer Expo Router App Store developer Swift developer Kotlin developer HealthKit developer fintech mobile engineer healthcare app developer machine learning mobile engineer software engineer Miami Beach AI startup engineer LLM app developer open source developer React Native consultant senior mobile engineer mobile architect JavaScript developer TypeScript developer Node.js developer Cloudflare Workers backend engineer PostgreSQL developer React developer web developer privacy-first developer offline-first engineer embedded software engineer mobile AI researcher computer vision engineer camera SDK developer Sony camera integration Medium profile blog articles technical writing. 
+    
+    AI Models and LLM Integration: ChatGPT ChatGPT API Claude Claude API DeepSeek DeepSeek API Kimi AI K3 K3 Mini K3 Max generative AI large language models artificial intelligence machine learning inference TensorFlow Lite Core ML ONNX neural networks deep learning model deployment on-device AI edge AI inference LLM integration AI-powered applications generative model inference prompt engineering fine-tuning model optimization quantization distillation transformer models attention mechanisms natural language processing NLP computer vision vision transformers multimodal AI.
+    
+    Project Portfolio: ReelAgree movie discovery app group voting consensus planning PrepAI health AI fitness app on-device intelligence PushUp Timer Pro watchOS app HealthKit integration YouTubeResearchAI video analysis research reports OpenDating Mobile decentralized dating Nostr protocol privacy expo-sony-camera NPM package camera control remote capture.
+    
+    Technical Expertise: React Native cross-platform development Expo framework Router navigation TypeScript JavaScript Swift SwiftUI Kotlin Jetpack Compose mobile architecture MVVM design patterns state management React Query Zustand Redux asynchronous programming async await promises coroutines streams reactive programming RxJS functional programming high-order components hooks custom hooks performance optimization code splitting bundling compression image optimization lazy loading memoization virtual lists FlashList infinite scroll pagination data fetching REST GraphQL APIs error handling retry logic caching offline support local storage databases SQLite Realm Room CoreData.
+    
+    Specialized Skills: HealthKit integration fitness tracking health sensors biometrics Apple Watch watchOS wearables camera software live streaming remote capture hardware control BLE Bluetooth Low Energy NFC Near Field Communication GPS location tracking geofencing real-time updates WebSockets Firebase Firestore authentication authorization OAuth security encryption end-to-end encrypted messaging privacy compliance GDPR app store deployment TestFlight release management versioning beta testing quality assurance testing frameworks Jest Detox XCTest UI testing.
+    
+    Available for: mobile app development consulting contract work freelance projects AI mobile applications startup engineering product development technical leadership code review mentoring.
   </div>
-</header>
 
-<main class="container">
-  <article class="section reveal" id="work">
-    <div class="section-label">Featured</div>
-    <h2>What I've shipped</h2>
-    <div class="projects-grid">
-      <a class="project-card" href="https://github.com/jongan69/expo-sony-camera" target="_blank" rel="noopener">
-        <div class="lang">Kotlin</div>
-        <h3>Expo Sony Camera</h3>
-        <p>Expo native module for Sony camera live view and remote capture. Most popular repo.</p>
-        <span class="star">⭐ 12</span>
-      </a>
-      <a class="project-card" href="https://github.com/jongan69/ClipCaptionAI" target="_blank" rel="noopener">
-        <div class="lang">JavaScript</div>
-        <h3>ClipCaptionAI</h3>
-        <p>AI video editing toolkit for YouTube shorts, TikTok captions, viral clip finding, and Remotion workflows.</p>
-        <span class="star">⭐ 2</span>
-      </a>
-      <a class="project-card" href="https://github.com/jongan69/opendating-mobile" target="_blank" rel="noopener">
-        <div class="lang">TypeScript</div>
-        <h3>OpenDating Mobile</h3>
-        <p>Privacy-first decentralized dating app on Nostr — Tinder-quality UX, E2E encrypted messaging.</p>
-        <span class="star">⭐ 1</span>
-      </a>
-      <a class="project-card" href="https://github.com/jongan69/PrepAI" target="_blank" rel="noopener">
-        <div class="lang">TypeScript</div>
-        <h3>PrepAI</h3>
-        <p>Private, offline health intelligence. On-device AI + clinical knowledge graph. Live on the App Store.</p>
-        <span class="star">⭐ 1</span>
-      </a>
-      <a class="project-card" href="https://github.com/jongan69/YouTubeResearchAI" target="_blank" rel="noopener">
-        <div class="lang">JavaScript</div>
-        <h3>YouTubeResearchAI</h3>
-        <p>Turn any video URL into a PhD-grade cited research report with automated academic pipeline.</p>
-        <span class="star">⭐ 1</span>
-      </a>
-      <a class="project-card" href="https://github.com/jongan69/callmemaybe" target="_blank" rel="noopener">
-        <div class="lang">TypeScript</div>
-        <h3>CallMeMaybe</h3>
-        <p>AI phone agent for Shopify stores — handles customer calls, gated by policy.</p>
-        <span class="star">⭐ 0</span>
-      </a>
-    </div>
-  </article>
+  <script>
+    const GH_USERNAME = 'jongan69';
+    const GH_PROFILE_URL = `https://api.github.com/users/${GH_USERNAME}`;
+    const GH_REPOS_URL = `${GH_PROFILE_URL}/repos?sort=updated&per_page=12`;
+    const GH_CACHE_KEY = 'github_profile_cache_v1';
+    const GH_CACHE_TTL = 1000 * 60 * 60 * 6;
 
-  <article class="section reveal" id="stack">
-    <div class="section-label">Toolbox</div>
-    <h2>What I work with</h2>
-    <div class="stack-cloud">
-      <span class="stack-tag">TypeScript</span>
-      <span class="stack-tag">React / Next.js</span>
-      <span class="stack-tag">Expo / React Native</span>
-      <span class="stack-tag">Kotlin</span>
-      <span class="stack-tag">Swift</span>
-      <span class="stack-tag">Python</span>
-      <span class="stack-tag">Node.js</span>
-      <span class="stack-tag">Cloudflare Workers</span>
-      <span class="stack-tag">GPT / Claude API</span>
-      <span class="stack-tag">Postgres / SQLite</span>
-      <span class="stack-tag">Docker</span>
-      <span class="stack-tag">Firebase / Supabase</span>
-      <span class="stack-tag">Tailwind CSS</span>
-      <span class="stack-tag">eBay / Amazon APIs</span>
-      <span class="stack-tag">MCP Servers</span>
-      <span class="stack-tag">Convex</span>
-      <span class="stack-tag">Remotion</span>
-      <span class="stack-tag">FFmpeg</span>
-    </div>
-  </article>
-
-  <article class="section reveal" id="live">
-    <div class="section-label">Live</div>
-    <h2>Projects you can use right now</h2>
-    <div class="links-row">
-      <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
-        <span class="icon">🥗</span> PrepAI — Fitness AI for iPhone
-      </a>
-      <a class="link-btn" href="https://listingos.expo.app" target="_blank" rel="noopener">
-        <span class="icon">📸</span> ListingOS — AI eBay Listings
-      </a>
-    </div>
-  </article>
-
-  <article class="section reveal" id="links">
-    <div class="section-label">Connect</div>
-    <h2>Find me around the internet</h2>
-    <div class="links-row">
-      <a class="link-btn" href="https://github.com/jongan69" target="_blank" rel="noopener">
-        <span class="icon">🐙</span> GitHub
-      </a>
-      <a class="link-btn" href="https://prepaihq.com" target="_blank" rel="noopener">
-        <span class="icon">📱</span> PrepAI
-      </a>
-      <a class="link-btn" href="https://linkedin.com/in/jongan69" target="_blank" rel="noopener">
-        <span class="icon">💼</span> LinkedIn
-      </a>
-      <a class="link-btn" href="https://jongan69.github.io/privacy-policy/" target="_blank" rel="noopener">
-        <span class="icon">🔒</span> Privacy Policy
-      </a>
-      <a class="link-btn" href="mailto:jonathang132298@gmail.com">
-        <span class="icon">📬</span> jonathang132298@gmail.com
-      </a>
-    </div>
-  </article>
-</main>
-
-<footer class="footer">
-  <div class="container">
-    <p>Built with <span class="heart">♥</span> in Miami Beach &nbsp;·&nbsp; © 2026 Jon</p>
-  </div>
-</footer>
-
-<script>
-const nav=document.getElementById('nav');
-const updateNav=()=>nav.classList.toggle('scrolled',window.scrollY>20);
-window.addEventListener('scroll',updateNav,{passive:true});updateNav();
-
-document.querySelectorAll('.section.reveal').forEach((el,i)=>{
-  el.style.animationPlayState='paused';
-  el.addEventListener('animationend',()=>el.style.animationPlayState='running');
-});
-const reveal=()=>{
-  document.querySelectorAll('.section.reveal').forEach((el,i)=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-60){
-      el.style.animationDelay=`${i*0.08}s`;
-      el.style.animationPlayState='running';
+    function formatCount(value) {
+      if (value === null || value === undefined || Number.isNaN(Number(value))) return '0';
+      return new Intl.NumberFormat('en-US').format(Number(value));
     }
-  });
-};
-window.addEventListener('load',reveal);
-window.addEventListener('scroll',reveal,{passive:true});
 
-document.querySelectorAll('.section').forEach(s=>{
-  s.addEventListener('mousemove',e=>{
-    const r=s.getBoundingClientRect();
-    s.style.setProperty('--mouse-x',`${((e.clientX-r.left)/r.width)*100}%`);
-    s.style.setProperty('--mouse-y',`${((e.clientY-r.top)/r.height)*100}%`);
-  });
-});
+    function readGitHubCache() {
+      try {
+        const raw = localStorage.getItem(GH_CACHE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        if (!parsed || !parsed.cachedAt) return null;
+        if (Date.now() - parsed.cachedAt > GH_CACHE_TTL) return null;
+        return parsed.data;
+      } catch (error) {
+        return null;
+      }
+    }
 
-document.querySelectorAll('.nav-links a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',function(e){
-    e.preventDefault();
-    const t=document.querySelector(this.getAttribute('href'));
-    if(!t)return;
-    window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'});
-  });
-});
-</script>
+    function writeGitHubCache(data) {
+      try {
+        localStorage.setItem(GH_CACHE_KEY, JSON.stringify({ cachedAt: Date.now(), data }));
+      } catch (error) {
+        // ignore storage issues silently
+      }
+    }
+
+    function buildRepoCard(repo) {
+      const card = document.createElement('a');
+      card.className = 'project-card';
+      card.href = repo.html_url;
+      card.target = '_blank';
+      card.rel = 'noopener';
+      const language = repo.language || 'Code';
+      const description = repo.description || 'Public project from GitHub.';
+      const stars = repo.stargazers_count || 0;
+
+      card.innerHTML = `
+    <div class="lang">${language}</div>
+    <h3>${repo.name}</h3>
+    <p>${description}</p>
+    <span class="star">⭐ ${formatCount(stars)}</span>
+  `;
+      return card;
+    }
+
+    async function loadGitHubData() {
+      const cached = readGitHubCache();
+      const existing = document.getElementById('github-projects');
+      const repoContainer = existing || document.querySelector('.projects-grid');
+
+      if (cached) {
+        applyGitHubData(cached.profile, cached.repos, repoContainer);
+        return;
+      }
+
+      try {
+        const [profileRes, reposRes] = await Promise.all([
+          fetch(GH_PROFILE_URL, { headers: { Accept: 'application/vnd.github+json' } }),
+          fetch(GH_REPOS_URL, { headers: { Accept: 'application/vnd.github+json' } })
+        ]);
+
+        if (!profileRes.ok || !reposRes.ok) {
+          throw new Error('GitHub fetch failed');
+        }
+
+        const profile = await profileRes.json();
+        const repos = await reposRes.json();
+
+        writeGitHubCache({ profile, repos });
+        applyGitHubData(profile, repos, repoContainer);
+      } catch (error) {
+        console.warn('GitHub data unavailable:', error);
+      }
+    }
+
+    function applyGitHubData(profile, repos, repoContainer) {
+      const repoCountEl = document.getElementById('github-repos');
+      const followerCountEl = document.getElementById('github-followers');
+
+      if (repoCountEl) repoCountEl.textContent = formatCount(profile?.public_repos || 26);
+      if (followerCountEl) followerCountEl.textContent = formatCount(profile?.followers || 300);
+
+      if (!repoContainer || repoContainer.querySelectorAll('.project-card').length) return;
+
+      const featuredRepos = Array.isArray(repos)
+        ? repos
+          .filter(repo => !repo.fork && repo.name && repo.html_url)
+          .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
+          .slice(0, 6)
+        : [];
+
+      repoContainer.innerHTML = '';
+
+      if (featuredRepos.length > 0) {
+        featuredRepos.forEach(repo => repoContainer.appendChild(buildRepoCard(repo)));
+      }
+    }
+
+    const nav = document.getElementById('nav');
+    const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', updateNav, { passive: true }); updateNav();
+
+    document.querySelectorAll('.section.reveal').forEach((el, i) => {
+      el.style.animationPlayState = 'paused';
+      el.addEventListener('animationend', () => el.style.animationPlayState = 'running');
+    });
+    const reveal = () => {
+      document.querySelectorAll('.section.reveal').forEach((el, i) => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+          el.style.animationDelay = `${i * 0.08}s`;
+          el.style.animationPlayState = 'running';
+        }
+      });
+    };
+    window.addEventListener('load', () => {
+      reveal();
+      loadGitHubData();
+    });
+    window.addEventListener('scroll', reveal, { passive: true });
+
+    document.querySelectorAll('.section').forEach(s => {
+      s.addEventListener('mousemove', e => {
+        const r = s.getBoundingClientRect();
+        s.style.setProperty('--mouse-x', `${((e.clientX - r.left) / r.width) * 100}%`);
+        s.style.setProperty('--mouse-y', `${((e.clientY - r.top) / r.height) * 100}%`);
+      });
+    });
+
+    document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (!t) return;
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+      });
+    });
+  </script>
 </body>
+
 </html>
