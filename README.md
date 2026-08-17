@@ -193,7 +193,7 @@ This repo also hosts a Next.js app on Vercel that handles subdomain redirects:
 - `blog.jongan.com` → `https://medium.com/@jonngan`
 - `video.jongan.com` → `https://www.youtube.com/@jonngan`
 
-- **`vercel.json`** defines host-based redirect rules
+- **`next.config.js`** defines host-based redirect rules (Next.js-native)
 - **`app/`** minimal Next.js App Router app
 - **`package.json`** Next.js 15 dependencies
 
@@ -205,7 +205,7 @@ vercel --prod
 
 ### Updating redirects
 
-Edit `vercel.json`, commit, and redeploy with `vercel --prod`.
+Edit `next.config.js`, commit, and redeploy with `vercel --prod`.
 
 ### DNS (done once)
 
