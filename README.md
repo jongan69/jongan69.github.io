@@ -2,7 +2,7 @@
 **React Native & Mobile Engineer**
 
 Miami Beach, FL 33141 | (727) 325-3436 | [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com)  
-[GitHub](https://github.com/jongan69) | [Portfolio](https://jongan69.github.io) | [LinkedIn](https://linkedin.com/in/jongan69) | [Medium](https://medium.com/@jonngan)
+[GitHub](https://github.com/jongan69) | [Portfolio](https://jongan69.github.io) | [LinkedIn](https://linkedin.com/in/jongan69) | [Medium](https://medium.com/@jonngan) | [YouTube](https://www.youtube.com/@jonngan)
 
 ---
 
