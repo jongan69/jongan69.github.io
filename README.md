@@ -183,3 +183,33 @@ Available for:
 - Mentorship & team leadership
 
 **Contact:** [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com) | [(727) 325-3436](tel:+17273253436)
+
+---
+
+## Subdomain Redirects (Vercel)
+
+This repo also hosts a Next.js app on Vercel that handles subdomain redirects:
+
+- `blog.jongan.com` → `https://medium.com/@jonngan`
+- `video.jongan.com` → `https://www.youtube.com/@jonngan`
+
+- **`vercel.json`** defines host-based redirect rules
+- **`app/`** minimal Next.js App Router app
+- **`package.json`** Next.js 15 dependencies
+
+### Deploy
+
+```bash
+vercel --prod
+```
+
+### Updating redirects
+
+Edit `vercel.json`, commit, and redeploy with `vercel --prod`.
+
+### DNS (done once)
+
+- `blog.jongan.com` → `CNAME` → `cname.vercel.com`
+- `video.jongan.com` → `CNAME` → `cname.vercel.com`
+
+Verify: `curl -I https://blog.jongan.com` and `curl -I https://video.jongan.com`

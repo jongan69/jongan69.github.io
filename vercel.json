@@ -1,0 +1,24 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.jongan.com"
+        }
+      ],
+      "destination": "https://medium.com/@jonngan"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "video.jongan.com"
+        }
+      ],
+      "destination": "https://www.youtube.com/@jonngan"
+    }
+  ]
+}
