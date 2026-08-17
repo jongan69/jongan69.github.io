@@ -9,7 +9,7 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Jonathan Gan | React Native & Mobile Engineer",
+    title: "Jonathan Gan — React Native & Mobile Engineer",
     description: "AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.",
     url: "https://jongan.com/",
     siteName: "Jonathan Gan",
@@ -26,7 +26,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jonathan Gan | React Native & Mobile Engineer",
+    title: "Jonathan Gan — React Native & Mobile Engineer",
     description: "AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.",
     images: ["https://jongan.com/og-image.png"],
   },

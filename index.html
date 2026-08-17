@@ -4,20 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jonathan Gan | React Native Engineer Miami | AI Mobile App Developer | Camera Software Engineer</title>
+  <title>Jonathan Gan — React Native & Mobile Engineer</title>
   <meta name="description"
-    content="Jonathan Gan: React Native engineer, AI mobile app developer, and camera software engineer (7+ years). Builds production iOS, Android, watchOS apps with on-device AI, machine learning, healthtech, fintech. Expert in Expo, TypeScript, Swift, Kotlin. Open-source contributor. Portfolio includes ReelAgree, PrepAI, PushUp Timer Pro, YouTubeResearchAI. Available for consulting.">
+    content="React Native engineer building production iOS, Android, and watchOS products with on-device AI, native camera integrations, Swift, Kotlin, and Expo.">
 
   <meta name="author" content="Jonathan Gan">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
   <meta name="bingbot" content="index, follow">
-  <meta name="theme-color" content="#6366f1">
+  <meta name="theme-color" content="#4f46e5">
   <meta name="classification"
     content="Software Engineer, React Native, Mobile Development, AI Applications, Camera Software, App Development">
-  <meta property="og:title" content="Jonathan Gan | React Native Engineer Miami | AI Mobile App Developer">
+  <meta property="og:title" content="Jonathan Gan — React Native & Mobile Engineer">
   <meta property="og:description"
-    content="Miami-based React Native and mobile engineer building AI tools, camera software, healthtech, fintech, and production apps for iOS, Android, and watchOS.">
+    content="React Native engineer building production iOS, Android, and watchOS products with on-device AI, native camera integrations, Swift, Kotlin, and Expo.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jongan.com/">
   <meta property="og:image" content="https://jongan.com/og-image.png">
@@ -27,7 +27,7 @@
   <meta property="og:site_name" content="Jonathan Gan">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jonathan Gan | React Native & Mobile Engineer">
+  <meta name="twitter:title" content="Jonathan Gan — React Native & Mobile Engineer">
   <meta name="twitter:description"
     content="AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.">
   <meta name="twitter:image" content="https://jongan.com/og-image.png">
@@ -209,8 +209,8 @@
       --surface-elevated: #f5f3f0;
       --text: #1a1a1a;
       --text-secondary: #5c5c5c;
-      --text-muted: #8c8c8c;
-      --accent: #6366f1;
+      --text-muted: #6b6b6b;
+      --accent: #4f46e5;
       --accent-2: #a855f7;
       --accent-3: #06b6d4;
       --accent-soft: #e0e7ff;
@@ -234,7 +234,7 @@
         --surface-elevated: #1a1a1d;
         --text: #f0f0f0;
         --text-secondary: #b0b0b0;
-        --text-muted: #6b6b6b;
+--text-muted: #9c9c9c;
         --accent: #818cf8;
         --accent-2: #c084fc;
         --accent-3: #22d3ee;
@@ -415,6 +415,32 @@
       color: var(--text)
     }
 
+    .skip-link {
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 200;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transform: translateY(-300%);
+      transition: transform 0.2s ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0)
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     .hero {
       position: relative;
       z-index: 1;
@@ -459,6 +485,33 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .hero h2 {
+      max-width: 760px;
+      margin: 0 auto 20px;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 750;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+      color: var(--text);
+      animation: fade-up 0.8s 0.15s ease both;
+    }
+
+    .hero h2 .accent {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-avatar .monogram {
+      font-family: var(--font-mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.04em;
     }
 
     .hero .tagline {
@@ -786,6 +839,28 @@
       box-shadow: 0 4px 12px var(--accent-glow);
     }
 
+    .stack-group {
+      margin-bottom: 22px
+    }
+
+    .stack-group:last-child {
+      margin-bottom: 0
+    }
+
+    .stack-group-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .stack-group .stack-cloud {
+      margin-top: 0
+    }
+
     .seo-sentinel {
       position: absolute;
       left: -9999px;
@@ -846,6 +921,26 @@
       color: var(--accent-2);
       animation: pulse-dot 1.5s ease-in-out infinite;
       display: inline-block
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .bg-geometry .orb,
+      .footer .heart {
+        animation: none
+      }
     }
 
     @media(max-width:700px) {
@@ -920,6 +1015,8 @@
 
 <body>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <div class="bg-geometry">
     <div class="orb"></div>
     <div class="orb"></div>
@@ -943,11 +1040,10 @@
 
   <header class="hero">
     <div class="container">
-      <div class="hero-avatar">🛠️</div>
+      <div class="hero-avatar"><span class="monogram">JG</span></div>
       <h1>
         <span class="line">Jonathan Gan</span>
       </h1>
-      <br class="line-break">
       <h2>
         <span class="line">Building <span class="accent">AI-powered mobile</span> experiences</span>
       </h2>
@@ -978,7 +1074,7 @@
     </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main">
     <article class="section reveal" id="about">
       <div class="section-label">About</div>
       <h2>Mobile engineer building AI-powered, hardware-aware apps — from concept to App Store.</h2>
@@ -1048,7 +1144,7 @@
             <div class="lang">TypeScript</div>
             <h3>Expo Sony Camera</h3>
             <p>Control a Sony camera from React Native — live view, remote capture, and robust error handling — without
-              leaving Expo. Published MIT module with community traction.</p>
+              leaving Expo. Published MIT module with 13 GitHub stars since its July 2026 launch.</p>
             <div class="flow" aria-hidden="true">
               <span class="flow-node">React Native UI</span>
               <span class="flow-arrow">→</span>
@@ -1067,7 +1163,11 @@
           </div>
         </a>
         <a class="project-card featured" href="https://reelagree.com" target="_blank" rel="noopener">
-          <img class="shot contain" src="case-studies/reelagree-logo.png" alt="ReelAgree logo" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="case-studies/reelagree-logo-anim.webp">
+            <img class="shot contain" src="case-studies/reelagree-logo.png" alt="ReelAgree logo"
+              loading="lazy">
+          </picture>
           <div class="body">
             <div class="lang">TypeScript</div>
             <h3>ReelAgree</h3>
@@ -1082,7 +1182,10 @@
           </div>
         </a>
         <a class="project-card featured" href="https://prepaihq.com" target="_blank" rel="noopener">
-          <img class="shot contain" src="case-studies/prepai-logo.png" alt="PrepAI logo" loading="lazy">
+          <picture>
+            <source type="image/webp" srcset="case-studies/prepai-logo-anim.webp">
+            <img class="shot contain" src="case-studies/prepai-logo.png" alt="PrepAI logo" loading="lazy">
+          </picture>
           <div class="body">
             <div class="lang">TypeScript</div>
             <h3>PrepAI</h3>
@@ -1091,9 +1194,26 @@
             <ul class="bullets">
               <li>On-device inference with clinical knowledge logic</li>
               <li>HealthKit ingestion and local-only storage</li>
-              <li>Fully functional offline; App Store submission in review</li>
+              <li>Fully functional offline; iPhone release in progress</li>
             </ul>
             <span class="star">🧠 AI health app</span>
+          </div>
+        </a>
+        <a class="project-card featured" href="https://jongan.com/ListingOS/" target="_blank" rel="noopener">
+          <video class="shot contain" autoplay muted loop playsinline preload="none"
+            poster="case-studies/listingos-poster.png">
+            <source src="case-studies/listingos-anim.webm" type="video/webm">
+            <source src="case-studies/listingos-anim.mp4" type="video/mp4">
+          </video>
+          <div class="body">
+            <div class="lang">Product</div>
+            <h3>ListingOS</h3>
+            <p>An operating system for creating and managing listings — watch the product walkthrough.</p>
+            <ul class="bullets">
+              <li>Product demo — description coming soon</li>
+              <li>Uploaded for this portfolio feature</li>
+            </ul>
+            <span class="star">🚀 New project</span>
           </div>
         </a>
         <a class="project-card" href="https://apps.apple.com/us/app/pushup-timer-pro/id1664672788" target="_blank"
@@ -1121,30 +1241,53 @@
     <article class="section reveal" id="stack">
       <div class="section-label">Toolbox</div>
       <h2>Technical stack and toolbox</h2>
-      <div class="stack-cloud">
-        <span class="stack-tag">TypeScript</span>
-        <span class="stack-tag">React / Next.js</span>
-        <span class="stack-tag">Expo / React Native</span>
-        <span class="stack-tag">Kotlin</span>
-        <span class="stack-tag">Swift</span>
-        <span class="stack-tag">watchOS</span>
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">Node.js</span>
-        <span class="stack-tag">Cloudflare Workers</span>
-        <span class="stack-tag">GPT / Claude API</span>
-        <span class="stack-tag">Postgres / SQLite</span>
-        <span class="stack-tag">Docker</span>
-        <span class="stack-tag">Firebase / Supabase</span>
-        <span class="stack-tag">Tailwind CSS</span>
-        <span class="stack-tag">eBay / Amazon APIs</span>
-        <span class="stack-tag">MCP Servers</span>
-        <span class="stack-tag">Convex</span>
-        <span class="stack-tag">Remotion</span>
-        <span class="stack-tag">FFmpeg</span>
-        <span class="stack-tag">HealthKit</span>
-        <span class="stack-tag">App Store Connect</span>
-        <span class="stack-tag">EAS</span>
-        <span class="stack-tag">GitHub Actions</span>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <div class="stack-group-label">Mobile</div>
+          <div class="stack-cloud">
+            <span class="stack-tag">React Native</span>
+            <span class="stack-tag">Expo</span>
+            <span class="stack-tag">Swift</span>
+            <span class="stack-tag">Kotlin</span>
+            <span class="stack-tag">watchOS</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-label">Native &amp; hardware</div>
+          <div class="stack-cloud">
+            <span class="stack-tag">HealthKit</span>
+            <span class="stack-tag">BLE</span>
+            <span class="stack-tag">PTP / camera control</span>
+            <span class="stack-tag">UVC</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-label">AI</div>
+          <div class="stack-cloud">
+            <span class="stack-tag">On-device inference</span>
+            <span class="stack-tag">ExecuTorch</span>
+            <span class="stack-tag">LLM integrations</span>
+            <span class="stack-tag">GPT / Claude API</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-label">Backend</div>
+          <div class="stack-cloud">
+            <span class="stack-tag">Node.js</span>
+            <span class="stack-tag">Cloudflare Workers</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">Firebase / Supabase</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-label">Delivery</div>
+          <div class="stack-cloud">
+            <span class="stack-tag">EAS</span>
+            <span class="stack-tag">App Store Connect</span>
+            <span class="stack-tag">GitHub Actions</span>
+            <span class="stack-tag">Docker</span>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -1202,7 +1345,6 @@
   <script>
     const GH_USERNAME = 'jongan69';
     const GH_PROFILE_URL = `https://api.github.com/users/${GH_USERNAME}`;
-    const GH_REPOS_URL = `${GH_PROFILE_URL}/repos?sort=updated&per_page=12`;
     const GH_CACHE_KEY = 'github_profile_cache_v1';
     const GH_CACHE_TTL = 1000 * 60 * 60 * 6;
 
@@ -1232,116 +1374,99 @@
       }
     }
 
-    function buildRepoCard(repo) {
-      const card = document.createElement('a');
-      card.className = 'project-card';
-      card.href = repo.html_url;
-      card.target = '_blank';
-      card.rel = 'noopener';
-      const language = repo.language || 'Code';
-      const description = repo.description || 'Public project from GitHub.';
-      const stars = repo.stargazers_count || 0;
-
-      card.innerHTML = `
-    <div class="lang">${language}</div>
-    <h3>${repo.name}</h3>
-    <p>${description}</p>
-    <span class="star">⭐ ${formatCount(stars)}</span>
-  `;
-      return card;
-    }
-
     async function loadGitHubData() {
       const cached = readGitHubCache();
-      const existing = document.getElementById('github-projects');
-      const repoContainer = existing || document.querySelector('.projects-grid');
 
       if (cached) {
-        applyGitHubData(cached.profile, cached.repos, repoContainer);
+        applyGitHubData(cached.profile);
         return;
       }
 
       try {
-        const [profileRes, reposRes] = await Promise.all([
-          fetch(GH_PROFILE_URL, { headers: { Accept: 'application/vnd.github+json' } }),
-          fetch(GH_REPOS_URL, { headers: { Accept: 'application/vnd.github+json' } })
-        ]);
+        const res = await fetch(GH_PROFILE_URL, { headers: { Accept: 'application/vnd.github+json' } });
 
-        if (!profileRes.ok || !reposRes.ok) {
+        if (!res.ok) {
           throw new Error('GitHub fetch failed');
         }
 
-        const profile = await profileRes.json();
-        const repos = await reposRes.json();
+        const profile = await res.json();
 
-        writeGitHubCache({ profile, repos });
-        applyGitHubData(profile, repos, repoContainer);
+        writeGitHubCache({ profile });
+        applyGitHubData(profile);
       } catch (error) {
         console.warn('GitHub data unavailable:', error);
       }
     }
 
-    function applyGitHubData(profile, repos, repoContainer) {
+    function applyGitHubData(profile) {
       const repoCountEl = document.getElementById('github-repos');
       const followerCountEl = document.getElementById('github-followers');
 
       if (repoCountEl) repoCountEl.textContent = formatCount(profile?.public_repos || 26);
       if (followerCountEl) followerCountEl.textContent = formatCount(profile?.followers || 300);
-
-      if (!repoContainer || repoContainer.querySelectorAll('.project-card').length) return;
-
-      const featuredRepos = Array.isArray(repos)
-        ? repos
-          .filter(repo => !repo.fork && repo.name && repo.html_url)
-          .sort((a, b) => (b.stargazers_count || 0) - (a.stargazers_count || 0))
-          .slice(0, 6)
-        : [];
-
-      repoContainer.innerHTML = '';
-
-      if (featuredRepos.length > 0) {
-        featuredRepos.forEach(repo => repoContainer.appendChild(buildRepoCard(repo)));
-      }
     }
 
     const nav = document.getElementById('nav');
     const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
     window.addEventListener('scroll', updateNav, { passive: true }); updateNav();
 
-    document.querySelectorAll('.section.reveal').forEach((el, i) => {
-      el.style.animationPlayState = 'paused';
-      el.addEventListener('animationend', () => el.style.animationPlayState = 'running');
-    });
-    const reveal = () => {
-      document.querySelectorAll('.section.reveal').forEach((el, i) => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-          el.style.animationDelay = `${i * 0.08}s`;
-          el.style.animationPlayState = 'running';
-        }
-      });
-    };
-    window.addEventListener('load', () => {
-      reveal();
-      loadGitHubData();
-    });
-    window.addEventListener('scroll', reveal, { passive: true });
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    document.querySelectorAll('.section').forEach(s => {
-      s.addEventListener('mousemove', e => {
-        const r = s.getBoundingClientRect();
-        s.style.setProperty('--mouse-x', `${((e.clientX - r.left) / r.width) * 100}%`);
-        s.style.setProperty('--mouse-y', `${((e.clientY - r.top) / r.height) * 100}%`);
+    if (!prefersReducedMotion) {
+      document.querySelectorAll('.section.reveal').forEach((el, i) => {
+        el.style.animationPlayState = 'paused';
+        el.addEventListener('animationend', () => el.style.animationPlayState = 'running');
       });
-    });
+      const reveal = () => {
+        document.querySelectorAll('.section.reveal').forEach((el, i) => {
+          if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+            el.style.animationDelay = `${i * 0.08}s`;
+            el.style.animationPlayState = 'running';
+          }
+        });
+      };
+      window.addEventListener('load', () => {
+        reveal();
+        loadGitHubData();
+      });
+      window.addEventListener('scroll', reveal, { passive: true });
+
+      document.querySelectorAll('.section').forEach(s => {
+        s.addEventListener('mousemove', e => {
+          const r = s.getBoundingClientRect();
+          s.style.setProperty('--mouse-x', `${((e.clientX - r.left) / r.width) * 100}%`);
+          s.style.setProperty('--mouse-y', `${((e.clientY - r.top) / r.height) * 100}%`);
+        });
+      });
+    } else {
+      window.addEventListener('load', () => {
+        loadGitHubData();
+      });
+    }
 
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => {
       a.addEventListener('click', function (e) {
         e.preventDefault();
         const t = document.querySelector(this.getAttribute('href'));
         if (!t) return;
-        window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+        window.scrollTo({
+          top: t.getBoundingClientRect().top + window.pageYOffset - 80,
+          behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
       });
     });
+
+    const heroVideos = document.querySelectorAll('.project-card.featured video.shot');
+    if (heroVideos.length && 'IntersectionObserver' in window) {
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!reduced && e.isIntersecting) e.target.play().catch(() => { });
+          else e.target.pause();
+        });
+      }, { rootMargin: '200px' });
+      heroVideos.forEach(v => io.observe(v));
+    }
   </script>
 </body>
 
