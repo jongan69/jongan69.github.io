@@ -19,16 +19,13 @@ describe('homepage HTTP representations', () => {
   test('serves meaningful raw HTML without JavaScript', async () => {
     const response = await getHomepage(new Request('https://jongan.com/'));
     const html = await response.text();
-    const visibleText = html
-      .replace(/<script[\s\S]*?<\/script>/gi, '')
-      .replace(/<style[\s\S]*?<\/style>/gi, '')
-      .replace(/<[^>]+>/g, ' ')
-      .replace(/\s+/g, ' ')
-      .trim();
+    const body = html.slice(html.indexOf('<body'), html.lastIndexOf('<script>'));
+    const textCharacters = [...body.matchAll(/>([^<]+)</g)]
+      .reduce((total, match) => total + match[1].trim().length, 0);
 
     expect(response.headers.get('content-type')).toBe('text/html; charset=utf-8');
     expect(html).toMatch(/<h1[\s>]/i);
-    expect(visibleText.length).toBeGreaterThanOrEqual(500);
+    expect(textCharacters).toBeGreaterThanOrEqual(500);
   });
 
   test.each([
