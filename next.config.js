@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  outputFileTracingIncludes: {
+    '/': ['./index.html', './index.md'],
+    '/[...path]': ['./404.html', './404.md'],
+  },
   async redirects() {
     return [
       {
@@ -16,6 +20,14 @@ const nextConfig = {
         permanent: true,
       },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: ['YouTubeResearchAI', 'opendating-mobile', 'privacy-policy'].map((path) => ({
+        source: `/${path}/:path*`,
+        destination: `https://pages.jongan.com/${path}/:path*`,
+      })),
+    };
   },
 };
 

@@ -31,17 +31,21 @@ for (const p of localRefs) {
 }
 
 const urls = [...new Set([...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]))];
-await Promise.all(urls.map(async (u) => {
+const externalUrls = urls.filter((href) => {
+  const parsedUrl = new URL(href);
+  return parsedUrl.origin !== 'https://jongan.com' || !existsSync(join(root, parsedUrl.pathname));
+});
+await Promise.all(externalUrls.map(async (href) => {
   try {
-    if (/fonts\.(googleapis|gstatic)\.com/.test(u)) return;
-    const res = await fetch(u, { method: 'HEAD', redirect: 'follow' });
+    if (/fonts\.(googleapis|gstatic)\.com/.test(href)) return;
+    const res = await fetch(href, { method: 'HEAD', redirect: 'follow' });
     if (res.status === 403) {
-      console.log('note: 403 (bot-protected), skipping', u);
+      console.log('note: 403 (bot-protected), skipping', href);
       return;
     }
-    if (!res.ok && res.status !== 405) fail(`link ${u} -> HTTP ${res.status}`);
+    if (!res.ok && res.status !== 405) fail(`link ${href} -> HTTP ${res.status}`);
   } catch (e) {
-    fail(`link ${u} unreachable: ${e.message}`);
+    fail(`link ${href} unreachable: ${e.message}`);
   }
 }));
 

@@ -1,11 +1,17 @@
 {
   "name": "jongan-com",
   "version": "1.0.0",
+  "type": "module",
   "description": "jongan.com portfolio + subdomain redirects",
   "scripts": {
+    "stage": "bun scripts/stage-site.mjs",
+    "predev": "bun run stage",
     "dev": "next dev",
+    "prebuild": "bun run stage",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "bun test",
+    "verify": "bun test && bunx html-validate index.html 404.html && bun scripts/validate.mjs && bun run build"
   },
   "dependencies": {
     "next": "^15.0.0",
@@ -15,6 +21,7 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
+    "html-validate": "^11.9.0",
     "typescript": "^5.0.0"
   }
 }

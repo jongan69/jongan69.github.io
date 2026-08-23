@@ -8,3 +8,10 @@ node_modules/
 dist/
 out/
 .env*
+public/404.md
+public/case-studies/
+public/index.md
+public/Jonathan-Gan-Resume.pdf
+public/llms.txt
+public/robots.txt
+public/sitemap.xml
