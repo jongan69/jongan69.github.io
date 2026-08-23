@@ -25,6 +25,7 @@ describe('homepage HTTP representations', () => {
 
     expect(response.headers.get('content-type')).toBe('text/html; charset=utf-8');
     expect(html).toMatch(/<h1[\s>]/i);
+    expect(html).toMatch(/<h1>\s*Jonathan Gan\s*<\/h1>/i);
     expect(textCharacters).toBeGreaterThanOrEqual(500);
   });
 
