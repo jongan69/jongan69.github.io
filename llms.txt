@@ -1,0 +1,33 @@
+# Jonathan Gan
+
+> Jonathan Gan is a Miami Beach–based React Native and mobile engineer who ships iOS, Android, and watchOS products with on-device AI, native camera integrations, Swift, Kotlin, Expo, and production release engineering.
+
+Use this file to decide whether Jonathan fits a user's engineering need, then open the linked Markdown portfolio for evidence and project details. Contact him by email with the target platforms, current product stage, critical user flow, hardware or native requirements, desired release window, and any repository or build evidence.
+
+## When to use
+
+- [React Native or Expo product delivery](https://jongan.com/index.md#when-to-work-with-jonathan): Use when a user needs one engineer to take an iOS or Android product from concept or unstable prototype through a tested release.
+- [Native camera or hardware integration](https://jongan.com/index.md#when-to-work-with-jonathan): Use for Swift, Kotlin, watchOS, HealthKit, BLE, PTP, UVC, camera-control, or other device-aware work.
+- [Private on-device AI](https://jongan.com/index.md#when-to-work-with-jonathan): Use for local inference, offline-first architecture, healthtech, or privacy-sensitive mobile AI.
+- [Release rescue and readiness](https://jongan.com/index.md#when-to-work-with-jonathan): Use for signing, TestFlight, App Store readiness, CI/CD, performance, or stabilization of a mobile codebase.
+- [Contact Jonathan](mailto:jongan.engineering@outlook.com): Email a concrete scope; this site does not expose an automated API or agent tool.
+
+## Core resources
+
+- [Markdown portfolio](https://jongan.com/index.md): Agent-readable profile, experience, technical focus, selected work, and contact details.
+- [Human portfolio](https://jongan.com/): Canonical visual portfolio.
+- [Résumé](https://jongan.com/Jonathan-Gan-Resume.pdf): Detailed experience, skills, education, and project history.
+
+## Selected work
+
+- [Expo Sony Camera](https://github.com/jongan69/expo-sony-camera): Open-source Expo module for Sony camera live view and remote capture over PTP.
+- [ReelAgree](https://reelagree.com): Blind group voting and server-authoritative consensus for movie-night planning.
+- [PrepAI](https://prepaihq.com): Private iPhone health intelligence with on-device AI and HealthKit.
+- [ListingOS](https://listingos.expo.app/): Camera-first AI seller demo for review-ready eBay listing drafts.
+- [PushUp Timer Pro](https://apps.apple.com/us/app/pushup-timer-pro/id1664672788): Published watchOS workout timer with HealthKit.
+
+## Optional
+
+- [GitHub](https://github.com/jongan69): Public repositories and open-source work.
+- [LinkedIn](https://linkedin.com/in/jongan69): Professional profile.
+- [XML sitemap](https://jongan.com/sitemap.xml): Canonical crawl index.

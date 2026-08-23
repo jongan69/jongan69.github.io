@@ -186,30 +186,33 @@ Available for:
 
 ---
 
-## Subdomain Redirects (Vercel)
+## Hosting and redirects
 
-This repo also hosts a Next.js app on Vercel that handles subdomain redirects:
+Vercel serves `jongan.com`, including HTML/Markdown content negotiation and agent-friendly 404s. GitHub Pages remains available at `pages.jongan.com` for the published project paths proxied by `next.config.js`.
+
+The same Vercel app keeps the existing subdomain redirects:
 
 - `blog.jongan.com` → `https://medium.com/@jonngan`
 - `video.jongan.com` → `https://www.youtube.com/@jonngan`
 
-- **`next.config.js`** defines host-based redirect rules (Next.js-native)
-- **`app/`** minimal Next.js App Router app
-- **`package.json`** Next.js 15 dependencies
+- **`app/`** serves the homepage and 404 representations.
+- **`next.config.js`** defines host redirects and legacy project rewrites.
+- **`index.md`** and **`llms.txt`** provide agent-readable content and guidance.
 
 ### Deploy
 
 ```bash
-vercel --prod
+bun run verify
+bunx vercel --prod
 ```
 
 ### Updating redirects
 
-Edit `next.config.js`, commit, and redeploy with `vercel --prod`.
+Edit `next.config.js`, run `bun run verify`, commit, and redeploy.
 
 ### DNS (done once)
 
-- `blog.jongan.com` → `CNAME` → `cname.vercel.com`
-- `video.jongan.com` → `CNAME` → `cname.vercel.com`
+- `jongan.com`, `www`, `blog`, and `video` → Vercel
+- `pages.jongan.com` → `jongan69.github.io`
 
 Verify: `curl -I https://blog.jongan.com` and `curl -I https://video.jongan.com`

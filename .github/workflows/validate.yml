@@ -15,11 +15,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-      - name: HTML validation
-        run: npx --yes html-validate index.html 404.html
-      - name: JSON-LD, assets, anchors, links
-        run: node scripts/validate.mjs
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Verify
+        run: bun run verify

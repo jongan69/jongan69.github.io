@@ -31,7 +31,11 @@ for (const p of localRefs) {
 }
 
 const urls = [...new Set([...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]))];
-await Promise.all(urls.map(async (u) => {
+const externalUrls = urls.filter((u) => {
+  const url = new URL(u);
+  return url.origin !== 'https://jongan.com' || !existsSync(join(root, url.pathname));
+});
+await Promise.all(externalUrls.map(async (u) => {
   try {
     if (/fonts\.(googleapis|gstatic)\.com/.test(u)) return;
     const res = await fetch(u, { method: 'HEAD', redirect: 'follow' });
