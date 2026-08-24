@@ -119,6 +119,9 @@ describe('portfolio experience contracts', () => {
     expect(html).toContain('class="signal-fallback"');
     expect(css).toContain('@media (prefers-reduced-motion: reduce)');
     expect(css).not.toMatch(/transition:\s*all\b/);
+    expect(css).toContain('overscroll-behavior-inline: contain');
+    expect(css).not.toContain('.nav-links li:not(:last-child)');
+    expect(css).toContain('text-rendering: optimizelegibility');
     expect(javascript).toContain('WebGLRenderer,');
     expect(javascript).toContain("from 'three';");
     expect(javascript).toContain("matchMedia('(prefers-reduced-motion: reduce)')");
@@ -137,6 +140,8 @@ describe('portfolio experience contracts', () => {
     expect(javascript).toContain("button.setAttribute('aria-label', 'Play project animation')");
     expect(javascript).toContain("button.setAttribute('aria-pressed', String(!paused))");
     expect(javascript).toContain("button.type = 'button'");
+    expect(javascript).toContain('const manuallyPausedVideos = new WeakSet();');
+    expect(javascript).toContain('!manuallyPausedVideos.has(entry.target)');
   });
 
   test('uses the signal identity across social and browser assets', async () => {
@@ -161,6 +166,7 @@ describe('host and legacy route preservation', () => {
     expect(workflow).toContain('run: bun install --frozen-lockfile');
     expect(workflow).toContain('run: bun run stage');
     expect(workflow).toContain("path: 'public'");
+    expect(workflow).toContain('bun-version: 1.3.14');
   });
 
   test('keeps the existing blog and video subdomain redirects', async () => {

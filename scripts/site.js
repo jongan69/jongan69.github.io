@@ -44,6 +44,7 @@ if (!reducedMotion && 'IntersectionObserver' in window) {
 }
 
 const projectVideos = document.querySelectorAll('.project-visual video');
+const manuallyPausedVideos = new WeakSet();
 for (const video of projectVideos) {
   video.setAttribute('aria-hidden', 'true');
   video.tabIndex = -1;
@@ -63,8 +64,13 @@ for (const video of projectVideos) {
   };
 
   button.addEventListener('click', () => {
-    if (video.paused || video.ended) video.play().catch(() => {});
-    else video.pause();
+    if (video.paused || video.ended) {
+      manuallyPausedVideos.delete(video);
+      video.play().catch(() => {});
+    } else {
+      manuallyPausedVideos.add(video);
+      video.pause();
+    }
   });
   video.addEventListener('play', syncButton);
   video.addEventListener('pause', syncButton);
@@ -74,7 +80,7 @@ for (const video of projectVideos) {
 if (!reducedMotion && !saveData && 'IntersectionObserver' in window) {
   const videoObserver = new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      if (entry.isIntersecting) entry.target.play().catch(() => {});
+      if (entry.isIntersecting && !manuallyPausedVideos.has(entry.target)) entry.target.play().catch(() => {});
       else entry.target.pause();
     }
   }, { rootMargin: '160px' });

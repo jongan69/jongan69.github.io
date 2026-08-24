@@ -13,8 +13,8 @@
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --sans: "Manrope", "Helvetica Neue", sans-serif;
-  --serif: "Instrument Serif", Georgia, serif;
-  --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --serif: "Instrument Serif", "Georgia", serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
   --page: min(1440px, calc(100vw - 64px));
 }
 
@@ -41,7 +41,7 @@ body {
   font-family: var(--sans);
   font-size: 16px;
   line-height: 1.6;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -252,7 +252,7 @@ h3 {
 .eyebrow::before {
   width: 34px;
   height: 1px;
-  background: currentColor;
+  background: currentcolor;
   content: "";
 }
 
@@ -322,7 +322,7 @@ h1 {
 
 .action.primary::after,
 .action.down::after {
-  color: currentColor;
+  color: currentcolor;
 }
 
 .action.down::after {
@@ -1111,12 +1111,25 @@ h1 {
   }
 
   .nav-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 20px;
     min-height: 62px;
   }
 
-  .nav-links li:not(:last-child) {
+  .nav-links {
+    min-width: 0;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
     display: none;
+  }
+
+  .nav-links li {
+    flex: 0 0 auto;
   }
 
   .nav-contact {
