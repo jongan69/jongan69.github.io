@@ -107,12 +107,10 @@ describe('agent and brand discovery files', () => {
 
 describe('portfolio experience contracts', () => {
   test('keeps the Three.js experience local, optional, and motion-safe', async () => {
-    const [html, css, javascript, rootBundle, publicBundle, stageScript] = await Promise.all([
+    const [html, css, javascript, stageScript] = await Promise.all([
       readFile(new URL('../index.html', import.meta.url), 'utf8'),
       readFile(new URL('../site.css', import.meta.url), 'utf8'),
       readFile(new URL('../scripts/site.js', import.meta.url), 'utf8'),
-      readFile(new URL('../site.js', import.meta.url), 'utf8'),
-      readFile(new URL('../public/site.js', import.meta.url), 'utf8'),
       readFile(new URL('../scripts/stage-site.mjs', import.meta.url), 'utf8'),
     ]);
 
@@ -125,12 +123,12 @@ describe('portfolio experience contracts', () => {
     expect(javascript).toContain("from 'three';");
     expect(javascript).toContain("matchMedia('(prefers-reduced-motion: reduce)')");
     expect(javascript).toContain('navigator.connection?.saveData');
-    expect(rootBundle).toBe(publicBundle);
     expect(stageScript).toContain('await Bun.build({');
     expect(stageScript).toContain("target: 'browser'");
     expect(stageScript).toContain("'site.css'");
     expect(stageScript).toContain("entrypoints: ['scripts/site.js']");
-    expect(stageScript).toContain("copyFile('public/site.js', 'site.js')");
+    expect(stageScript).toContain("'index.html'");
+    expect(stageScript).toContain("'404.html'");
   });
 
   test('preserves accessible project media controls', async () => {
@@ -157,6 +155,14 @@ describe('portfolio experience contracts', () => {
 });
 
 describe('host and legacy route preservation', () => {
+  test('publishes GitHub Pages from the same staged artifact as Vercel', async () => {
+    const workflow = await readFile(new URL('../.github/workflows/static.yml', import.meta.url), 'utf8');
+
+    expect(workflow).toContain('run: bun install --frozen-lockfile');
+    expect(workflow).toContain('run: bun run stage');
+    expect(workflow).toContain("path: 'public'");
+  });
+
   test('keeps the existing blog and video subdomain redirects', async () => {
     const redirects = await nextConfig.redirects();
 

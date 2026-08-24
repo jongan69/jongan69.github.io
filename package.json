@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "test": "bun test",
-    "verify": "bun test && bunx html-validate index.html 404.html && bun scripts/validate.mjs && bun run build"
+    "verify": "bun run stage && bun test && bunx html-validate index.html 404.html && bun scripts/validate.mjs && bun run build"
   },
   "dependencies": {
     "next": "^15.0.0",

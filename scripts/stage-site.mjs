@@ -3,7 +3,9 @@ import { copyFile, cp, mkdir } from 'node:fs/promises';
 await mkdir('public', { recursive: true });
 await Promise.all([
   'index.md',
+  'index.html',
   '404.md',
+  '404.html',
   'llms.txt',
   'robots.txt',
   'sitemap.xml',
@@ -21,5 +23,4 @@ const bundle = await Bun.build({
   target: 'browser',
 });
 if (!bundle.success) throw new AggregateError(bundle.logs, 'Failed to bundle site.js');
-await copyFile('public/site.js', 'site.js');
 await cp('case-studies', 'public/case-studies', { recursive: true });
