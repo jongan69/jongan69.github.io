@@ -1,39 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Jonathan Gan — Mobile Systems Engineer</title>
+  <desc id="desc">An ice-blue signal sculpture on a precise near-black field.</desc>
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#1e1b4b"/>
-      <stop offset="0.55" stop-color="#3730a3"/>
-      <stop offset="1" stop-color="#5b21b6"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#818cf8"/>
-      <stop offset="1" stop-color="#c4b5fd"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.6">
-      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.55"/>
-      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    <radialGradient id="field" cx="82%" cy="18%" r="60%">
+      <stop offset="0" stop-color="#36597a" stop-opacity=".34"/>
+      <stop offset=".55" stop-color="#111a25" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#05070a" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d6ebff" stop-opacity=".1"/>
+      <stop offset=".38" stop-color="#0d141d" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#05070a" stop-opacity=".16"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#6aaee7"/>
+      <stop offset=".48" stop-color="#e0f2ff"/>
+      <stop offset="1" stop-color="#7fa5c8"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
+      <path d="M46 0H0V46" fill="none" stroke="#d5e9ff" stroke-opacity=".035"/>
+    </pattern>
   </defs>
 
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="#05070a"/>
+  <rect width="1200" height="630" fill="url(#field)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <path d="M42 42h34M42 42v34M1158 42h-34M1158 42v34M42 588h34M42 588v-34M1158 588h-34M1158 588v-34" fill="none" stroke="#d5e9ff" stroke-opacity=".25"/>
 
-  <g stroke="#818cf8" stroke-opacity="0.18" stroke-width="2">
-    <line x1="0" y1="157.5" x2="1200" y2="157.5"/>
-    <line x1="0" y1="315" x2="1200" y2="315"/>
-    <line x1="0" y1="472.5" x2="1200" y2="472.5"/>
-    <line x1="300" y1="0" x2="300" y2="630"/>
-    <line x1="600" y1="0" x2="600" y2="630"/>
-    <line x1="900" y1="0" x2="900" y2="630"/>
+  <g transform="translate(650 58)">
+    <rect width="468" height="514" fill="url(#glass)" stroke="#d8ecff" stroke-opacity=".24"/>
+    <rect x="14" y="14" width="440" height="486" fill="none" stroke="#d8ecff" stroke-opacity=".08"/>
+    <path d="M368 0v514" stroke="#d8ecff" stroke-opacity=".13"/>
+    <text x="26" y="38" fill="#a9d5ff" font-family="SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2">SIGNAL / 07</text>
+    <text x="442" y="38" text-anchor="end" fill="#8190a3" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.2">25°46′ N</text>
+
+    <g transform="translate(233 261) rotate(-8)" fill="none" stroke="url(#signal)" stroke-linecap="round" filter="url(#glow)">
+      <path d="M-175 0C-130-101 104-103 174-7C114 67-123 76-175 0Z" stroke-opacity=".2"/>
+      <path d="M-168-15C-101-118 118-80 171 6C92 91-132 55-168-15Z" stroke-opacity=".3"/>
+      <path d="M-158-28C-74-120 132-52 164 19C68 105-140 32-158-28Z" stroke-opacity=".4"/>
+      <path d="M-146-41C-45-113 139-22 151 32C42 107-139 7-146-41Z" stroke-opacity=".58"/>
+      <path d="M-132-53C-15-98 139 7 135 43C16 99-128-18-132-53Z" stroke-opacity=".78"/>
+      <path d="M-114-63C16-76 132 35 116 51C-6 82-111-43-114-63Z" stroke-opacity=".96" stroke-width="1.4"/>
+      <ellipse rx="87" ry="167" transform="rotate(61)" stroke-opacity=".24"/>
+      <ellipse rx="58" ry="132" transform="rotate(38)" stroke-opacity=".46"/>
+    </g>
+    <g fill="#e0f2ff" filter="url(#glow)">
+      <circle cx="111" cy="219" r="2.5"/><circle cx="332" cy="201" r="2"/><circle cx="286" cy="340" r="2.5"/><circle cx="171" cy="355" r="1.8"/><circle cx="381" cy="263" r="1.6"/>
+    </g>
+    <text x="26" y="482" fill="#a9d5ff" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">LIVE SYSTEM FIELD</text>
+    <text x="442" y="482" text-anchor="end" fill="#8190a3" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.2">JONGAN.COM</text>
   </g>
 
-  <rect x="72" y="70" width="96" height="12" rx="6" fill="url(#accent)"/>
-
-  <text x="72" y="250" font-family="Helvetica, Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">Jonathan Gan</text>
-  <text x="72" y="340" font-family="Helvetica, Arial, sans-serif" font-size="52" font-weight="600" fill="#e0e7ff">React Native &amp; Mobile Engineer</text>
-  <text x="72" y="420" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="400" fill="#a5b4fc">AI apps · iOS · Android · watchOS · Camera systems</text>
-
-  <text x="72" y="530" font-family="Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#c7d2fe">jongan.com</text>
-
-  <rect x="72" y="548" width="44" height="6" rx="3" fill="url(#accent)"/>
+  <g transform="translate(76 0)">
+    <text y="92" fill="#a9d5ff" font-family="SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="3">MOBILE SYSTEMS / 2026</text>
+    <line y1="112" x2="58" y2="112" stroke="#a9d5ff"/>
+    <text y="268" fill="#f4f7fb" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="80" font-weight="600" letter-spacing="-5">JONATHAN</text>
+    <text y="342" fill="#f4f7fb" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="80" font-weight="600" letter-spacing="-5">GAN</text>
+    <text y="408" fill="#9aa7b8" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="23" font-weight="400" letter-spacing="1">MOBILE SYSTEMS ENGINEER</text>
+    <text y="517" fill="#6f7c8d" font-family="SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="1.6">NATIVE CAMERAS · ON-DEVICE AI</text>
+    <text y="540" fill="#6f7c8d" font-family="SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="1.6">iOS · ANDROID · watchOS</text>
+  </g>
 </svg>

@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "jongan.com redirects",
-  description: "Subdomain redirects to blog and video",
+  title: "Jonathan Gan — Mobile Systems Engineer",
+  description: "Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "48x48" },
@@ -9,8 +9,8 @@ export const metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Jonathan Gan — React Native & Mobile Engineer",
-    description: "AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.",
+    title: "Jonathan Gan — Mobile Systems Engineer",
+    description: "Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.",
     url: "https://jongan.com/",
     siteName: "Jonathan Gan",
     images: [
@@ -18,7 +18,7 @@ export const metadata = {
         url: "https://jongan.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Jonathan Gan — React Native & Mobile Engineer: AI apps, iOS, Android, watchOS, camera systems",
+        alt: "Jonathan Gan — Mobile Systems Engineer",
       },
     ],
     locale: "en_US",
@@ -26,8 +26,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jonathan Gan — React Native & Mobile Engineer",
-    description: "AI, mobile, and camera systems engineer shipping production apps across iOS, Android, and watchOS.",
+    title: "Jonathan Gan — Mobile Systems Engineer",
+    description: "Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.",
     images: ["https://jongan.com/og-image.png"],
   },
 };

@@ -10,6 +10,9 @@ out/
 .env*
 public/404.md
 public/case-studies/
+public/site.*
+public/index.html
+public/404.html
 public/index.md
 public/Jonathan-Gan-Resume.pdf
 public/llms.txt

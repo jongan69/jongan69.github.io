@@ -27,7 +27,8 @@ const localRefs = [...html.matchAll(/(?:src|href)="(?!https?:|mailto:|#|data:)([
   .filter((p) => !p.startsWith('tel:'));
 for (const p of localRefs) {
   const clean = p.split('#')[0].split('?')[0];
-  if (clean && !existsSync(join(root, clean))) fail(`missing local asset ${clean}`);
+  const path = clean.startsWith('/') ? join(root, 'public', clean.slice(1)) : join(root, clean);
+  if (clean && !existsSync(path)) fail(`missing local asset ${clean}`);
 }
 
 const urls = [...new Set([...html.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]))];
