@@ -1,101 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 — Page not found · Jon Gan</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 — Signal lost · Jonathan Gan</title>
+  <meta name="description" content="This route does not exist. Return to Jonathan Gan's portfolio, project index, agent instructions, or sitemap.">
   <meta name="robots" content="noindex">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0a0e14;
-      --surface: #111720;
-      --text: #e6edf3;
-      --text-secondary: #9aa7b4;
-      --border: #1e2732;
-      --accent: #5eead4;
-      --accent-2: #38bdf8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding: 24px;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 48px 40px;
-      max-width: 440px;
-      width: 100%;
-      text-align: center;
-    }
-    .code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      margin: 0 0 12px;
-    }
-    h1 {
-      font-size: 24px;
-      margin: 0 0 10px;
-      letter-spacing: -0.01em;
-    }
-    p {
-      color: var(--text-secondary);
-      font-size: 15px;
-      line-height: 1.55;
-      margin: 0 0 26px;
-    }
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-    a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 9px 18px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    a:hover, a:focus-visible {
-      border-color: var(--accent);
-      color: var(--accent);
-      outline: none;
-    }
-    a.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #06120f;
-      border-color: transparent;
-    }
-  </style>
+  <meta name="theme-color" content="#05070a">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/site.css">
 </head>
-<body>
-  <div class="card">
-    <p class="code">404</p>
-    <h1>Page not found</h1>
-    <p>This page has moved or no longer exists. The projects, experience, and contact details are all on the portfolio.</p>
-    <div class="row">
-      <a class="primary" href="/">Back to portfolio</a>
-      <a href="/#work">View projects</a>
-      <a href="/llms.txt">Agent instructions</a>
-      <a href="/sitemap.xml">Sitemap</a>
-      <a href="mailto:jongan.engineering@outlook.com">Email Jonathan</a>
-      <a href="https://github.com/jongan69" target="_blank" rel="noopener">GitHub</a>
+<body class="error-page">
+  <main class="error-shell shell">
+    <div class="error-copy">
+      <p class="eyebrow">Signal lost / route unavailable</p>
+      <h1 class="error-code">404</h1>
+      <h2>The route ended. The work didn’t.</h2>
+      <p>This address does not exist. Re-enter through the portfolio, inspect the selected systems, or use the machine-readable indexes to recover.</p>
+      <div class="contact-actions">
+        <a class="action primary" href="/">Return to portfolio</a>
+        <a class="action down" href="/#work">Selected systems</a>
+        <a class="action" href="/llms.txt">Agent instructions</a>
+        <a class="action" href="/sitemap.xml">Sitemap</a>
+      </div>
     </div>
-  </div>
+
+    <figure class="instrument error-instrument" aria-label="A static signal field marking a missing route">
+      <figcaption class="instrument-meta"><span>Error / 404</span><span>No carrier</span></figcaption>
+      <div class="signal-fallback" aria-hidden="true"><span class="signal-ring"></span></div>
+      <span class="axis-label a" aria-hidden="true">requested path</span>
+      <span class="axis-label b" aria-hidden="true">no return</span>
+      <div class="instrument-foot"><span>Recovery available</span><span>jongan.com</span></div>
+    </figure>
+  </main>
 </body>
 </html>

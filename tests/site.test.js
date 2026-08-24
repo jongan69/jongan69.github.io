@@ -2,6 +2,7 @@ import { describe, expect, test } from 'bun:test';
 import { readFile } from 'node:fs/promises';
 import { GET as getHomepage } from '../app/route.js';
 import { GET as getNotFound } from '../app/[...path]/route.js';
+import { metadata } from '../app/layout.js';
 import nextConfig from '../next.config.js';
 
 describe('homepage HTTP representations', () => {
@@ -60,6 +61,20 @@ describe('not-found HTTP representations', () => {
     expect(body).toContain('[Agent instructions](https://jongan.com/llms.txt)');
     expect(body).toContain('[Sitemap](https://jongan.com/sitemap.xml)');
   });
+
+  test('keeps the branded HTML 404 recoverable without JavaScript', async () => {
+    const response = await getNotFound(new Request('https://jongan.com/missing-page', {
+      headers: { Accept: 'text/html' },
+    }));
+    const body = await response.text();
+
+    expect(response.status).toBe(404);
+    expect(body).toContain('<h1 class="error-code">404</h1>');
+    expect(body).toContain('href="/site.css"');
+    expect(body).toContain('href="/llms.txt"');
+    expect(body).toContain('href="/sitemap.xml"');
+    expect(body).not.toContain('<script');
+  });
 });
 
 describe('agent and brand discovery files', () => {
@@ -85,6 +100,59 @@ describe('agent and brand discovery files', () => {
       name: 'Jonathan Gan',
       url: 'https://jongan.com/',
     }));
+    expect(metadata.openGraph.title).toBe('Jonathan Gan — Mobile Systems Engineer');
+    expect(metadata.openGraph.images[0].alt).toBe('Jonathan Gan — Mobile Systems Engineer');
+  });
+});
+
+describe('portfolio experience contracts', () => {
+  test('keeps the Three.js experience local, optional, and motion-safe', async () => {
+    const [html, css, javascript, rootBundle, publicBundle, stageScript] = await Promise.all([
+      readFile(new URL('../index.html', import.meta.url), 'utf8'),
+      readFile(new URL('../site.css', import.meta.url), 'utf8'),
+      readFile(new URL('../scripts/site.js', import.meta.url), 'utf8'),
+      readFile(new URL('../site.js', import.meta.url), 'utf8'),
+      readFile(new URL('../public/site.js', import.meta.url), 'utf8'),
+      readFile(new URL('../scripts/stage-site.mjs', import.meta.url), 'utf8'),
+    ]);
+
+    expect(html).toContain('<canvas id="observatory-canvas" aria-hidden="true"></canvas>');
+    expect(html).toContain('<script type="module" src="/site.js"></script>');
+    expect(html).toContain('class="signal-fallback"');
+    expect(css).toContain('@media (prefers-reduced-motion: reduce)');
+    expect(css).not.toMatch(/transition:\s*all\b/);
+    expect(javascript).toContain('WebGLRenderer,');
+    expect(javascript).toContain("from 'three';");
+    expect(javascript).toContain("matchMedia('(prefers-reduced-motion: reduce)')");
+    expect(javascript).toContain('navigator.connection?.saveData');
+    expect(rootBundle).toBe(publicBundle);
+    expect(stageScript).toContain('await Bun.build({');
+    expect(stageScript).toContain("target: 'browser'");
+    expect(stageScript).toContain("'site.css'");
+    expect(stageScript).toContain("entrypoints: ['scripts/site.js']");
+    expect(stageScript).toContain("copyFile('public/site.js', 'site.js')");
+  });
+
+  test('preserves accessible project media controls', async () => {
+    const javascript = await readFile(new URL('../scripts/site.js', import.meta.url), 'utf8');
+
+    expect(javascript).toContain("button.setAttribute('aria-label', 'Play project animation')");
+    expect(javascript).toContain("button.setAttribute('aria-pressed', String(!paused))");
+    expect(javascript).toContain("button.type = 'button'");
+  });
+
+  test('uses the signal identity across social and browser assets', async () => {
+    const [favicon, socialCard] = await Promise.all([
+      readFile(new URL('../favicon.svg', import.meta.url), 'utf8'),
+      readFile(new URL('../public/og-image.svg', import.meta.url), 'utf8'),
+    ]);
+
+    expect(favicon).toContain('aria-label="Jonathan Gan signal mark"');
+    expect(favicon).toContain('#a9d5ff');
+    expect(favicon).not.toContain('#6366f1');
+    expect(socialCard).toContain('JONATHAN');
+    expect(socialCard).toContain('MOBILE SYSTEMS ENGINEER');
+    expect(socialCard).toContain('SIGNAL / 07');
   });
 });
 
