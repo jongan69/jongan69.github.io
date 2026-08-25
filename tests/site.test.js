@@ -101,6 +101,8 @@ describe('agent and brand discovery files', () => {
       url: 'https://jongan.com/',
     }));
     expect(metadata.openGraph.title).toBe('Jonathan Gan — Mobile Systems Engineer');
+    expect(metadata.openGraph.description).toBe('Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.');
+    expect(metadata.twitter.description).toBe(metadata.openGraph.description);
     expect(metadata.openGraph.images[0].alt).toBe('Jonathan Gan — Mobile Systems Engineer');
   });
 });
