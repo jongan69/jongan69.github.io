@@ -101,37 +101,56 @@ describe('agent and brand discovery files', () => {
       url: 'https://jongan.com/',
     }));
     expect(metadata.openGraph.title).toBe('Jonathan Gan — Mobile Systems Engineer');
+    expect(metadata.openGraph.description).toBe('Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.');
+    expect(metadata.twitter.description).toBe(metadata.openGraph.description);
     expect(metadata.openGraph.images[0].alt).toBe('Jonathan Gan — Mobile Systems Engineer');
   });
 });
 
 describe('portfolio experience contracts', () => {
-  test('keeps the Three.js experience local, optional, and motion-safe', async () => {
-    const [html, css, javascript, stageScript] = await Promise.all([
+  test('keeps the editorial experience local, lightweight, and motion-safe', async () => {
+    const [html, css, javascript, stageScript, packageJson] = await Promise.all([
       readFile(new URL('../index.html', import.meta.url), 'utf8'),
       readFile(new URL('../site.css', import.meta.url), 'utf8'),
       readFile(new URL('../scripts/site.js', import.meta.url), 'utf8'),
       readFile(new URL('../scripts/stage-site.mjs', import.meta.url), 'utf8'),
+      readFile(new URL('../package.json', import.meta.url), 'utf8'),
     ]);
 
-    expect(html).toContain('<canvas id="observatory-canvas" aria-hidden="true"></canvas>');
     expect(html).toContain('<script type="module" src="/site.js"></script>');
-    expect(html).toContain('class="signal-fallback"');
+    expect(html).toContain('class="hero-practice"');
+    expect(html).not.toContain('id="observatory-canvas"');
     expect(css).toContain('@media (prefers-reduced-motion: reduce)');
     expect(css).not.toMatch(/transition:\s*all\b/);
-    expect(css).toContain('overscroll-behavior-inline: contain');
-    expect(css).not.toContain('.nav-links li:not(:last-child)');
     expect(css).toContain('text-rendering: optimizelegibility');
-    expect(javascript).toContain('WebGLRenderer,');
-    expect(javascript).toContain("from 'three';");
     expect(javascript).toContain("matchMedia('(prefers-reduced-motion: reduce)')");
     expect(javascript).toContain('navigator.connection?.saveData');
+    expect(javascript).not.toContain("from 'three'");
+    expect(packageJson).not.toContain('"three"');
     expect(stageScript).toContain('await Bun.build({');
     expect(stageScript).toContain("target: 'browser'");
     expect(stageScript).toContain("'site.css'");
     expect(stageScript).toContain("entrypoints: ['scripts/site.js']");
     expect(stageScript).toContain("'index.html'");
     expect(stageScript).toContain("'404.html'");
+  });
+
+  test('provides an accessible mobile menu with a no-JavaScript fallback', async () => {
+    const [html, css, javascript] = await Promise.all([
+      readFile(new URL('../index.html', import.meta.url), 'utf8'),
+      readFile(new URL('../site.css', import.meta.url), 'utf8'),
+      readFile(new URL('../scripts/site.js', import.meta.url), 'utf8'),
+    ]);
+
+    expect(html).toContain('class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"');
+    expect(html).toContain('class="nav-links" id="primary-links"');
+    expect(css).toContain('.has-navigation .nav-toggle');
+    expect(css).toContain('.nav.is-menu-open .nav-links');
+    expect(css).toContain('overscroll-behavior-inline: contain');
+    expect(javascript).toContain("document.documentElement.classList.add('has-navigation')");
+    expect(javascript).toContain("navToggle.setAttribute('aria-expanded', String(isOpen))");
+    expect(javascript).toContain("event.key !== 'Escape'");
+    expect(javascript).toContain('navToggle.focus()');
   });
 
   test('preserves accessible project media controls', async () => {

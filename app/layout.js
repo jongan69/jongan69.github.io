@@ -10,7 +10,7 @@ export const metadata = {
   },
   openGraph: {
     title: "Jonathan Gan — Mobile Systems Engineer",
-    description: "Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.",
+    description: "Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.",
     url: "https://jongan.com/",
     siteName: "Jonathan Gan",
     images: [
@@ -27,7 +27,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jonathan Gan — Mobile Systems Engineer",
-    description: "Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.",
+    description: "Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.",
     images: ["https://jongan.com/og-image.png"],
   },
 };

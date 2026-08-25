@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#05070a">
   <meta name="classification" content="Software Engineer, React Native, Mobile Development, AI Applications, Camera Software, App Development">
   <meta property="og:title" content="Jonathan Gan — Mobile Systems Engineer">
-  <meta property="og:description" content="Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.">
+  <meta property="og:description" content="Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jongan.com/">
   <meta property="og:image" content="https://jongan.com/og-image.png">
@@ -23,7 +23,7 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jonathan Gan — Mobile Systems Engineer">
-  <meta name="twitter:description" content="Difficult hardware, made inevitable. Production mobile systems spanning on-device AI, native cameras, iOS, Android, and watchOS.">
+  <meta name="twitter:description" content="Mobile products at the edge of software and the physical world—native cameras, on-device intelligence, iOS, Android, and watchOS.">
   <meta name="twitter:image" content="https://jongan.com/og-image.png">
   <meta name="twitter:image:alt" content="Jonathan Gan — Mobile Systems Engineer">
   <link rel="canonical" href="https://jongan.com/">
@@ -149,7 +149,11 @@
   <nav class="nav" aria-label="Primary navigation">
     <div class="nav-inner shell">
       <a class="nav-wordmark" href="#top" aria-label="Jonathan Gan, back to top"><span>JG</span> / 2026</a>
-      <ul class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+        <span>Menu</span>
+        <span class="nav-toggle-mark" aria-hidden="true"><i></i><i></i></span>
+      </button>
+      <ul class="nav-links" id="primary-links">
         <li><a href="#about">About</a></li>
         <li><a href="#work">Selected systems</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -164,25 +168,24 @@
       <div class="hero-copy">
         <p class="eyebrow">Mobile systems engineer · Miami Beach</p>
         <h1>Jonathan Gan</h1>
-        <h2>I make <em>difficult hardware</em> feel inevitable.</h2>
-        <p class="hero-intro">I engineer production mobile products where polished interfaces meet native cameras, on-device intelligence, health data, and real-world constraints.</p>
+        <h2>I build mobile products at the edge of software and the <em>physical world.</em></h2>
+        <p class="hero-intro">From camera protocols and HealthKit to on-device intelligence, I turn difficult technical systems into calm, direct product experiences.</p>
         <div class="hero-actions">
-          <a class="action primary" href="#work">Enter selected systems</a>
+          <a class="action primary" href="#work">View selected work</a>
           <a class="action down" href="Jonathan-Gan-Resume.pdf" download>Résumé</a>
         </div>
-        <p class="status-line"><span class="status-pulse" aria-hidden="true"></span> Available for ambitious mobile work · 2026</p>
       </div>
 
-      <figure class="instrument" aria-label="A generative signal sculpture representing connected mobile systems">
-        <figcaption class="instrument-meta"><span>Signal / 07</span><span>25°46′ N · 80°08′ W</span></figcaption>
-        <div class="signal-fallback" aria-hidden="true"><span class="signal-ring"></span></div>
-        <canvas id="observatory-canvas" aria-hidden="true"></canvas>
-        <span class="axis-label a" aria-hidden="true">native / optical</span>
-        <span class="axis-label b" aria-hidden="true">local / intelligent</span>
-        <div class="instrument-foot"><span>Live system field</span><span>Move to refract</span></div>
-      </figure>
+      <aside class="hero-practice" aria-label="Engineering focus">
+        <p class="hero-practice-label">Selected practice / 2026</p>
+        <ol class="hero-practice-list">
+          <li><span>01</span><strong>Physical interfaces</strong><small>Cameras, sensors, wearables</small></li>
+          <li><span>02</span><strong>Local intelligence</strong><small>Private, on-device decisions</small></li>
+          <li><span>03</span><strong>Production delivery</strong><small>iOS, Android, watchOS</small></li>
+        </ol>
+        <p class="status-line"><span aria-hidden="true">↳</span> Available for select mobile work</p>
+      </aside>
     </div>
-    <span class="scroll-note" aria-hidden="true">Descend</span>
   </header>
 
   <main id="main" tabindex="-1">
@@ -399,7 +402,7 @@
   <footer class="footer shell">
     <span>Jonathan Gan · Mobile systems engineer</span>
     <span>Built in Miami Beach · © 2026</span>
-    <a href="#top">Return to signal ↑</a>
+    <a href="#top">Return to top ↑</a>
   </footer>
 
   <script type="module" src="/site.js"></script>
