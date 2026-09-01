@@ -12,6 +12,7 @@ await Promise.all([
   'site.css',
   'og-image.png',
   'favicon.svg',
+  'brand-forward-threshold.svg',
   'favicon.ico',
   'apple-touch-icon.png',
   'Jonathan-Gan-Resume.pdf',

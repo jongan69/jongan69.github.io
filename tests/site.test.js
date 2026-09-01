@@ -163,18 +163,21 @@ describe('portfolio experience contracts', () => {
     expect(javascript).toContain('!manuallyPausedVideos.has(entry.target)');
   });
 
-  test('uses the signal identity across social and browser assets', async () => {
-    const [favicon, socialCard] = await Promise.all([
-      readFile(new URL('../favicon.svg', import.meta.url), 'utf8'),
+  test('uses The Store Front identity across social and browser assets', async () => {
+    const [brandMark, socialCard, html] = await Promise.all([
+      readFile(new URL('../brand-forward-threshold.svg', import.meta.url), 'utf8'),
       readFile(new URL('../public/og-image.svg', import.meta.url), 'utf8'),
+      readFile(new URL('../index.html', import.meta.url), 'utf8'),
     ]);
 
-    expect(favicon).toContain('aria-label="Jonathan Gan signal mark"');
-    expect(favicon).toContain('#a9d5ff');
-    expect(favicon).not.toContain('#6366f1');
+    expect(brandMark).toContain('The Store Front Forward Threshold mark');
+    expect(brandMark).toContain('#74B8D4');
+    expect(brandMark).toContain('#F9B6C0');
+    expect(html).toContain('href="https://thestorefront.cc/"');
     expect(socialCard).toContain('JONATHAN');
     expect(socialCard).toContain('MOBILE SYSTEMS ENGINEER');
-    expect(socialCard).toContain('SIGNAL / 07');
+    expect(socialCard).toContain('THE STORE FRONT');
+    expect(socialCard).toContain('MIAMI WORKSHOP / 2026');
   });
 });
 
