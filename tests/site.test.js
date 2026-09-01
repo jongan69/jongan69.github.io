@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'bun:test';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { GET as getHomepage } from '../app/route.js';
 import { GET as getNotFound } from '../app/[...path]/route.js';
@@ -164,20 +165,33 @@ describe('portfolio experience contracts', () => {
   });
 
   test('uses The Store Front identity across social and browser assets', async () => {
-    const [brandMark, socialCard, html] = await Promise.all([
+    const [brandMark, favicon, socialCard, socialPng, appleTouchIcon, legacyFavicon, html] = await Promise.all([
       readFile(new URL('../brand-forward-threshold.svg', import.meta.url), 'utf8'),
+      readFile(new URL('../favicon.svg', import.meta.url), 'utf8'),
       readFile(new URL('../public/og-image.svg', import.meta.url), 'utf8'),
+      readFile(new URL('../og-image.png', import.meta.url)),
+      readFile(new URL('../apple-touch-icon.png', import.meta.url)),
+      readFile(new URL('../favicon.ico', import.meta.url)),
       readFile(new URL('../index.html', import.meta.url), 'utf8'),
     ]);
+    const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 
     expect(brandMark).toContain('The Store Front Forward Threshold mark');
     expect(brandMark).toContain('#74B8D4');
     expect(brandMark).toContain('#F9B6C0');
+    expect(favicon).toContain('The Store Front Forward Threshold mark');
     expect(html).toContain('href="https://thestorefront.cc/"');
+    expect(html).toContain('Mobile systems engineer · Miami Beach');
     expect(socialCard).toContain('JONATHAN');
     expect(socialCard).toContain('MOBILE SYSTEMS ENGINEER');
     expect(socialCard).toContain('THE STORE FRONT');
     expect(socialCard).toContain('MIAMI WORKSHOP / 2026');
+    expect(socialCard).toContain('M 463.059 522.21');
+    expect(socialPng.subarray(1, 4).toString()).toBe('PNG');
+    expect(socialPng.readUInt32BE(16)).toBe(1200);
+    expect(socialPng.readUInt32BE(20)).toBe(630);
+    expect(sha256(appleTouchIcon)).toBe('c7e42c21bd4cf02c0d21319f86ce246d65014169d43b4131d53e4a0835872e80');
+    expect(sha256(legacyFavicon)).toBe('a0439b0dc0a4fc02bdb87d5cdc44aaff32ce39d427f8577e82c06b33a41bbdc2');
   });
 });
 

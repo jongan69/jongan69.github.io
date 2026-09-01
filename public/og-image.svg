@@ -12,15 +12,6 @@
       <stop offset=".38" stop-color="#5d1f2a" stop-opacity=".32"/>
       <stop offset="1" stop-color="#1f211d" stop-opacity=".16"/>
     </linearGradient>
-    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#74b8d4"/>
-      <stop offset=".48" stop-color="#d8ff3e"/>
-      <stop offset="1" stop-color="#f9b6c0"/>
-    </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
     <pattern id="grid" width="46" height="46" patternUnits="userSpaceOnUse">
       <path d="M46 0H0V46" fill="none" stroke="#f1e5ce" stroke-opacity=".035"/>
     </pattern>
@@ -38,18 +29,13 @@
     <text x="26" y="38" fill="#d8ff3e" font-family="SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2">THE STORE FRONT</text>
     <text x="442" y="38" text-anchor="end" fill="#8190a3" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.2">25°46′ N</text>
 
-    <g transform="translate(233 261) rotate(-8)" fill="none" stroke="url(#signal)" stroke-linecap="round" filter="url(#glow)">
-      <path d="M-175 0C-130-101 104-103 174-7C114 67-123 76-175 0Z" stroke-opacity=".2"/>
-      <path d="M-168-15C-101-118 118-80 171 6C92 91-132 55-168-15Z" stroke-opacity=".3"/>
-      <path d="M-158-28C-74-120 132-52 164 19C68 105-140 32-158-28Z" stroke-opacity=".4"/>
-      <path d="M-146-41C-45-113 139-22 151 32C42 107-139 7-146-41Z" stroke-opacity=".58"/>
-      <path d="M-132-53C-15-98 139 7 135 43C16 99-128-18-132-53Z" stroke-opacity=".78"/>
-      <path d="M-114-63C16-76 132 35 116 51C-6 82-111-43-114-63Z" stroke-opacity=".96" stroke-width="1.4"/>
-      <ellipse rx="87" ry="167" transform="rotate(61)" stroke-opacity=".24"/>
-      <ellipse rx="58" ry="132" transform="rotate(38)" stroke-opacity=".46"/>
-    </g>
-    <g fill="#e0f2ff" filter="url(#glow)">
-      <circle cx="111" cy="219" r="2.5"/><circle cx="332" cy="201" r="2"/><circle cx="286" cy="340" r="2.5"/><circle cx="171" cy="355" r="1.8"/><circle cx="381" cy="263" r="1.6"/>
+    <g transform="translate(50 72) scale(.18)">
+      <path fill="#1F211D" d="M 463.059 522.21 L 1057.15 522.232 L 1057.19 626.315 L 570.98 626.299 L 570.898 1422.71 L 949.783 1422.7 L 950.194 981.289 L 1417.5 981.308 L 1471.38 981.332 C 1471.99 1023.66 1471.33 1067.23 1471.35 1109.66 L 1471.45 1410.73 L 1367.13 1410.58 L 1367.05 1081.84 L 1055.85 1081.75 L 1055.83 1526.91 L 462.929 1526.7 L 463.059 522.21 z"/>
+      <path fill="#74B8D4" d="M 588.414 642.216 L 1368.28 642.635 L 1368.49 856.321 L 1267.01 856.268 L 1266.95 739.218 L 692.195 739.238 L 692.004 852.75 L 692.148 1307.03 L 934.127 1306.95 L 934.37 1405.21 L 588.227 1405.13 L 588.414 642.216 z"/>
+      <path fill="#F9B6C0" d="M 829.208 872.854 L 1586.72 873.153 L 1586.76 1297.8 L 1488.85 1298.07 L 1488.95 1185.5 L 1488.68 963.883 L 934.005 963.886 L 933.787 1173.59 L 829.325 1173.41 L 829.208 872.854 z"/>
+      <path fill="#1F211D" d="M 708.839 756.915 L 1248.57 756.934 C 1249.26 789.727 1248.79 823.934 1248.8 856.832 L 813.699 856.863 L 813.776 978.5 L 813.366 1189.28 L 934.042 1189.3 L 934.044 1291.67 L 708.937 1291.57 L 708.839 756.915 z"/>
+      <path fill="#1F211D" d="M 1140.8 1097.3 L 1245.96 1097.46 L 1245.88 1412.99 L 1176.5 1412.69 L 1071.87 1412.79 L 1071.96 1306.99 L 1140.56 1306.91 C 1141.35 1237.09 1140.23 1167.11 1140.8 1097.3 z"/>
+      <path fill="#F9B6C0" d="M 1263.91 1097.14 L 1351.05 1097.36 L 1350.73 1298 L 1263.82 1298.05 C 1263.62 1231.74 1262.66 1163.28 1263.91 1097.14 z"/>
     </g>
     <text x="26" y="482" fill="#74b8d4" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.6">MIAMI WORKSHOP / 2026</text>
     <text x="442" y="482" text-anchor="end" fill="#8190a3" font-family="SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.2">JONGAN.COM</text>
