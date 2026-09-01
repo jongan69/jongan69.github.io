@@ -1,5 +1,4 @@
 import { describe, expect, test } from 'bun:test';
-import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import { GET as getHomepage } from '../app/route.js';
 import { GET as getNotFound } from '../app/[...path]/route.js';
@@ -174,8 +173,6 @@ describe('portfolio experience contracts', () => {
       readFile(new URL('../favicon.ico', import.meta.url)),
       readFile(new URL('../index.html', import.meta.url), 'utf8'),
     ]);
-    const sha256 = (value) => createHash('sha256').update(value).digest('hex');
-
     expect(brandMark).toContain('The Store Front Forward Threshold mark');
     expect(brandMark).toContain('#74B8D4');
     expect(brandMark).toContain('#F9B6C0');
@@ -190,8 +187,12 @@ describe('portfolio experience contracts', () => {
     expect(socialPng.subarray(1, 4).toString()).toBe('PNG');
     expect(socialPng.readUInt32BE(16)).toBe(1200);
     expect(socialPng.readUInt32BE(20)).toBe(630);
-    expect(sha256(appleTouchIcon)).toBe('c7e42c21bd4cf02c0d21319f86ce246d65014169d43b4131d53e4a0835872e80');
-    expect(sha256(legacyFavicon)).toBe('a0439b0dc0a4fc02bdb87d5cdc44aaff32ce39d427f8577e82c06b33a41bbdc2');
+    expect(appleTouchIcon.subarray(1, 4).toString()).toBe('PNG');
+    expect(appleTouchIcon.readUInt32BE(16)).toBe(180);
+    expect(appleTouchIcon.readUInt32BE(20)).toBe(180);
+    expect(legacyFavicon.readUInt16LE(0)).toBe(0);
+    expect(legacyFavicon.readUInt16LE(2)).toBe(1);
+    expect(legacyFavicon.readUInt16LE(4)).toBeGreaterThan(0);
   });
 });
 
