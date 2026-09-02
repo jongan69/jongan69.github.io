@@ -1,17 +1,15 @@
 :root {
   color-scheme: dark;
-  --ink: #1f211d;
-  --ink-soft: #292b26;
-  --paper: #f1e5ce;
-  --mist: #c9bda8;
-  --dim: #9b927f;
-  --line: rgba(241, 229, 206, 0.16);
-  --line-bright: rgba(241, 229, 206, 0.34);
-  --signal: #74b8d4;
-  --signal-bright: #d8ff3e;
-  --glass: rgba(31, 33, 29, 0.62);
-  --coral: #ff5b45;
-  --pink: #f9b6c0;
+  --ink: #05070a;
+  --ink-soft: #0a0e14;
+  --paper: #f4f7fb;
+  --mist: #9aa7b8;
+  --dim: #667284;
+  --line: rgba(207, 226, 255, 0.14);
+  --line-bright: rgba(221, 237, 255, 0.3);
+  --signal: #a9d5ff;
+  --signal-bright: #e0f2ff;
+  --glass: rgba(12, 18, 27, 0.48);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --sans: "IBM Plex Sans", "Helvetica Neue", sans-serif;
@@ -137,7 +135,7 @@ h3 {
 
 .nav.is-scrolled {
   border-color: var(--line);
-  background: rgba(31, 33, 29, 0.78);
+  background: rgba(5, 7, 10, 0.7);
   -webkit-backdrop-filter: blur(20px) saturate(130%);
   backdrop-filter: blur(20px) saturate(130%);
 }
@@ -151,41 +149,13 @@ h3 {
 }
 
 .nav-wordmark {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   justify-self: start;
   color: var(--paper);
-  letter-spacing: 0;
+  letter-spacing: 0.08em;
 }
 
-.nav-wordmark img,
-.footer-brand img {
-  width: 38px;
-  height: 38px;
-  padding: 3px;
-  background: var(--paper);
-}
-
-.nav-wordmark span,
-.footer-brand span {
-  display: grid;
-  gap: 2px;
-}
-
-.nav-wordmark strong,
-.footer-brand strong {
-  font-family: var(--display);
-  font-size: .78rem;
-  letter-spacing: -.02em;
-  text-transform: none;
-}
-
-.nav-wordmark small,
-.footer-brand small {
-  color: var(--mist);
-  font-size: .56rem;
-  letter-spacing: .09em;
+.nav-wordmark span {
+  color: var(--signal);
 }
 
 .nav-toggle {
@@ -242,7 +212,7 @@ h3 {
   inset: 0 0 auto;
   height: 52%;
   pointer-events: none;
-  background: radial-gradient(circle at 72% 0%, rgba(116, 184, 212, 0.15), transparent 42%), radial-gradient(circle at 20% 35%, rgba(255, 91, 69, 0.08), transparent 32%);
+  background: radial-gradient(circle at 72% 0%, rgba(95, 148, 196, 0.08), transparent 48%);
   content: "";
 }
 
@@ -555,7 +525,6 @@ h1 {
 }
 
 .statement em {
-  font-family: var(--serif);
   color: var(--signal);
   font-weight: 400;
 }
@@ -953,14 +922,7 @@ h1 {
   color: var(--dim);
 }
 
-.footer-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--paper);
-}
-
-.footer a:not(.footer-brand) {
+.footer a {
   color: var(--mist);
 }
 
@@ -1135,10 +1097,6 @@ h1 {
     grid-template-columns: auto minmax(0, 1fr);
     gap: 20px;
     min-height: 62px;
-  }
-
-  .nav-wordmark small {
-    display: none;
   }
 
   .nav-links {

@@ -163,36 +163,34 @@ describe('portfolio experience contracts', () => {
     expect(javascript).toContain('!manuallyPausedVideos.has(entry.target)');
   });
 
-  test('uses The Store Front identity across social and browser assets', async () => {
-    const [brandMark, favicon, socialCard, socialPng, appleTouchIcon, legacyFavicon, html] = await Promise.all([
-      readFile(new URL('../brand-forward-threshold.svg', import.meta.url), 'utf8'),
+  test('uses the signal identity across social and browser assets', async () => {
+    const [favicon, socialCard] = await Promise.all([
       readFile(new URL('../favicon.svg', import.meta.url), 'utf8'),
       readFile(new URL('../public/og-image.svg', import.meta.url), 'utf8'),
-      readFile(new URL('../og-image.png', import.meta.url)),
-      readFile(new URL('../apple-touch-icon.png', import.meta.url)),
-      readFile(new URL('../favicon.ico', import.meta.url)),
-      readFile(new URL('../index.html', import.meta.url), 'utf8'),
     ]);
-    expect(brandMark).toContain('The Store Front Forward Threshold mark');
-    expect(brandMark).toContain('#74B8D4');
-    expect(brandMark).toContain('#F9B6C0');
-    expect(favicon).toContain('The Store Front Forward Threshold mark');
-    expect(html).toContain('href="https://thestorefront.cc/"');
-    expect(html).toContain('Mobile systems engineer · Miami Beach');
+
+    expect(favicon).toContain('aria-label="Jonathan Gan signal mark"');
+    expect(favicon).toContain('#a9d5ff');
+    expect(favicon).not.toContain('#6366f1');
     expect(socialCard).toContain('JONATHAN');
     expect(socialCard).toContain('MOBILE SYSTEMS ENGINEER');
-    expect(socialCard).toContain('THE STORE FRONT');
-    expect(socialCard).toContain('MIAMI WORKSHOP / 2026');
-    expect(socialCard).toContain('M 463.059 522.21');
-    expect(socialPng.subarray(1, 4).toString()).toBe('PNG');
-    expect(socialPng.readUInt32BE(16)).toBe(1200);
-    expect(socialPng.readUInt32BE(20)).toBe(630);
-    expect(appleTouchIcon.subarray(1, 4).toString()).toBe('PNG');
-    expect(appleTouchIcon.readUInt32BE(16)).toBe(180);
-    expect(appleTouchIcon.readUInt32BE(20)).toBe(180);
-    expect(legacyFavicon.readUInt16LE(0)).toBe(0);
-    expect(legacyFavicon.readUInt16LE(2)).toBe(1);
-    expect(legacyFavicon.readUInt16LE(4)).toBeGreaterThan(0);
+    expect(socialCard).toContain('SIGNAL / 07');
+  });
+
+  test('keeps The Store Front out of the personal brand', async () => {
+    const files = [
+      '../404.html', '../app/layout.js', '../favicon.svg', '../index.html',
+      '../public/og-image.svg', '../scripts/stage-site.mjs', '../site.css',
+    ];
+    const value = (await Promise.all(files.map((path) => (
+      readFile(new URL(path, import.meta.url), 'utf8')
+    )))).join('\n').toLowerCase();
+
+    for (const forbidden of [
+      'the store front', 'thestorefront', 'forward threshold',
+      '#1f211d', '#f1e5ce', '#5d1f2a', '#d8ff3e', '#ff5b45', '#74b8d4', '#f9b6c0',
+    ]) expect(value).not.toContain(forbidden);
+    expect(await Bun.file(new URL('../brand-forward-threshold.svg', import.meta.url)).exists()).toBeFalse();
   });
 });
 
