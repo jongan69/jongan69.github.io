@@ -164,9 +164,12 @@ describe('portfolio experience contracts', () => {
   });
 
   test('uses the signal identity across social and browser assets', async () => {
-    const [favicon, socialCard] = await Promise.all([
+    const [favicon, socialCard, socialPng, appleTouchIcon, legacyFavicon] = await Promise.all([
       readFile(new URL('../favicon.svg', import.meta.url), 'utf8'),
       readFile(new URL('../public/og-image.svg', import.meta.url), 'utf8'),
+      readFile(new URL('../og-image.png', import.meta.url)),
+      readFile(new URL('../apple-touch-icon.png', import.meta.url)),
+      readFile(new URL('../favicon.ico', import.meta.url)),
     ]);
 
     expect(favicon).toContain('aria-label="Jonathan Gan signal mark"');
@@ -175,6 +178,15 @@ describe('portfolio experience contracts', () => {
     expect(socialCard).toContain('JONATHAN');
     expect(socialCard).toContain('MOBILE SYSTEMS ENGINEER');
     expect(socialCard).toContain('SIGNAL / 07');
+    expect(socialPng.subarray(1, 4).toString()).toBe('PNG');
+    expect(socialPng.readUInt32BE(16)).toBe(1200);
+    expect(socialPng.readUInt32BE(20)).toBe(630);
+    expect(appleTouchIcon.subarray(1, 4).toString()).toBe('PNG');
+    expect(appleTouchIcon.readUInt32BE(16)).toBe(180);
+    expect(appleTouchIcon.readUInt32BE(20)).toBe(180);
+    expect(legacyFavicon.readUInt16LE(0)).toBe(0);
+    expect(legacyFavicon.readUInt16LE(2)).toBe(1);
+    expect(legacyFavicon.readUInt16LE(4)).toBeGreaterThan(0);
   });
 
   test('keeps The Store Front out of the personal brand', async () => {
