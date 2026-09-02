@@ -12,8 +12,9 @@
   --glass: rgba(12, 18, 27, 0.48);
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --sans: "Manrope", "Helvetica Neue", sans-serif;
-  --serif: "Instrument Serif", "Georgia", serif;
+  --sans: "IBM Plex Sans", "Helvetica Neue", sans-serif;
+  --display: "Space Grotesk", "Helvetica Neue", sans-serif;
+  --serif: "Georgia", serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
   --page: min(1440px, calc(100vw - 64px));
 }
@@ -72,6 +73,12 @@ h1,
 h2,
 h3 {
   margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
 }
 
 .skip-link {
@@ -248,7 +255,7 @@ h1 {
 .hero h2 {
   max-width: 900px;
   margin-bottom: 28px;
-  font-family: var(--serif);
+  font-family: var(--display);
   font-size: clamp(2.2rem, 3.8vw, 4.7rem);
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -257,6 +264,7 @@ h1 {
 
 .hero h2 em {
   color: var(--signal-bright);
+  font-family: var(--serif);
   font-weight: 400;
 }
 
