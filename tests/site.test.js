@@ -248,3 +248,12 @@ describe('host and legacy route preservation', () => {
     });
   });
 });
+
+test('public resume text keeps contact email-only', async () => {
+  for (const file of ['README.md', 'Jons_Resume.docx.txt']) {
+    const text = await readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+    expect(text).toContain('jongan.engineering@outlook.com');
+    expect(text).not.toMatch(/\btel:/i);
+    expect(text).not.toMatch(/\(?\b\d{3}\)?[ .-]\d{3}[ .-]\d{4}\b/);
+  }
+});

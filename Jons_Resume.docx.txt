@@ -1,6 +1,6 @@
 ﻿JONATHAN GAN
 React Native & Mobile Engineer
-Miami Beach, FL 33141 | (727) 325-3436 | jongan.engineering@outlook.com 
+Miami Beach, FL 33141 | jongan.engineering@outlook.com 
 github.com/jongan69| jongan69.github.io| linkedin.com/in/jongan69
 PROFESSIONAL PROFILE
 Mobile engineer with 7+ years of experience and 5+ years shipping production React Native systems. Expert in iOS/Android/watchOS delivery with native Kotlin/Swift modules, on-device AI, and hardware integrations. Proven track record in fintech, healthcare, and media, moving prototypes to App Store production with robust CI/CD and offline-first architectures.
