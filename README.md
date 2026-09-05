@@ -1,7 +1,7 @@
 # Jonathan Gan
 **React Native & Mobile Engineer**
 
-Miami Beach, FL 33141 | (727) 325-3436 | [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com)  
+Miami Beach, FL 33141 | [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com)  
 [GitHub](https://github.com/jongan69) | [Portfolio](https://jongan.com) | [LinkedIn](https://linkedin.com/in/jongan69) | [Medium](https://medium.com/@jonngan) | [YouTube](https://www.youtube.com/@jonngan)
 
 ---
@@ -182,7 +182,7 @@ Available for:
 - Technical leadership & code review
 - Mentorship & team leadership
 
-**Contact:** [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com) | [(727) 325-3436](tel:+17273253436)
+**Contact:** [jongan.engineering@outlook.com](mailto:jongan.engineering@outlook.com)
 
 ---
 
